@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 
 public class EntityScubaSteve extends CreatureEntity {
 
-    boolean alwaysRenderNameTag = true;
     private String name = "Scuba Steve";
 
     public EntityScubaSteve(EntityType<? extends CreatureEntity> type, World worldIn) {
@@ -48,7 +47,7 @@ public class EntityScubaSteve extends CreatureEntity {
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 5.0D)
                 .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 0.1D)
-                .createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 10D);
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 10D);
 
     }
     @Override

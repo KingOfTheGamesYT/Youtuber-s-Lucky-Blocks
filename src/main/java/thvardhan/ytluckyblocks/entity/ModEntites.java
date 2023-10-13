@@ -18,7 +18,14 @@ public class ModEntites {
     }
     public static final RegistryObject<EntityType<EntityScubaSteve>> SCUBA_STEVE = ENTITIES
             .register("scuba_steve",
-                    () -> EntityType.Builder.<EntityScubaSteve>create(EntityScubaSteve::new, EntityClassification.AMBIENT)
+                    () -> EntityType.Builder.<EntityScubaSteve>create(EntityScubaSteve::new, EntityClassification.CREATURE)
                             .size(0.6F, 2.0F)
                             .build(new ResourceLocation(Main.MODID, "scuba_steve").toString()));
+
+    public static final RegistryObject<EntityType<EntityAlexirCraft>> ALEXIRCRAFT = ENTITIES
+            .register("alexircraft",
+                    () -> EntityType.Builder.<EntityAlexirCraft>create(EntityAlexirCraft::new, EntityClassification.CREATURE)
+                            .size(0.6F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "alexircraft").toString()));
+
 }

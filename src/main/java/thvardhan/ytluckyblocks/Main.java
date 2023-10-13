@@ -50,13 +50,16 @@ public class Main {
         LOGGER.info("Creating mod tabs");
      //   ModTabs.createTabs();
         DeferredWorkQueue.runLater(() -> {
-            GlobalEntityTypeAttributes.put(ModEntites.SCUBA_STEVE.get(), EntityScubaSteve.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.SCUBA_STEVE.get(), EntityAlexirCraft.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.ALEXIRCRAFT.get(), EntityAlexirCraft.getAttributes().create());
         });
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         RenderingRegistry.registerEntityRenderingHandler(ModEntites.SCUBA_STEVE.get(), EntityScubaSteveRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.ALEXIRCRAFT.get(), EntityAlexircraftRender::new);
+
         registerEntities();
     }
 
@@ -114,7 +117,7 @@ public class Main {
         registerModEntityWithEgg(EntityTewity.class, "tewity", 0xffcc00, 0xffff1a);
         registerModEntityWithEgg(EntityFrizzleandpop.class, "frizzleandpop", 0xffcc00, 0x86b300);
         registerModEntityWithEgg(EntityBajanCanadian.class, "bajancanadian", 0xe60000, 0x000000);
-        registerModEntityWithEgg(EntityAlexirCraft.class, "alexircraft", 0xcc00cc, 0x330033);
+        registerModEntityWithEgg( "alexircraft", 0xcc00cc, 0x330033);
         registerModEntityWithEgg(EntityJeromeASF.class, "jerome", 0xb37700, 0xffad33);
         registerModEntityWithEgg(EntityLogDotZip.class, "logdotzip", 0xff3333, 0xffaa00);
         registerModEntityWithEgg(EntityPopularMMO.class, "popularmmo", 0x262626, 0x005580);
