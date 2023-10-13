@@ -1,10 +1,24 @@
 package thvardhan.ytluckyblocks.entity;
 
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+
 import thvardhan.ytluckyblocks.Main;
 
 public class ModEntites {
-    @ObjectHolder(Main.MODID+":Alexircraft")
-    public static EntityType<EntityAlexirCraft> alexirCraftEntityType;
+    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Main.MODID);
+
+    public static void init() {
+        ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
+    }
+    public static final RegistryObject<EntityType<EntityScubaSteve>> SCUBA_STEVE = ENTITIES
+            .register("scuba_steve",
+                    () -> EntityType.Builder.<EntityScubaSteve>create(EntityScubaSteve::new, EntityClassification.AMBIENT)
+                            .size(0.6F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "scuba_steve").toString()));
 }

@@ -1,10 +1,7 @@
 package thvardhan.ytluckyblocks;
 
-import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.DistExecutor;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import thvardhan.ytluckyblocks.entity.*;
 import thvardhan.ytluckyblocks.entity.model.*;
@@ -15,29 +12,18 @@ import thvardhan.ytluckyblocks.init.ModTabs;
 import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;
 
 
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.Mod;
-import thvardhan.ytluckyblocks.entity.*;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
-
-import java.util.stream.Collectors;
 
 
 @Mod(Main.MODID)
@@ -46,52 +32,32 @@ public class Main {
     public static final String VERSION = "6.1.2";
     public static final String NAME = "YouTuber's Lucky Blocks Mod";
     private static final Logger LOGGER = LogManager.getLogger();
-//    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
-//    @DistExecutor(clientSide = "thvardhan.ytluckyblocks.proxy.ClientProxy", serverSide = "thvardhan.ytluckyblocks.proxy.ServerProxy")
-//    public static CommonProxy proxy;
-//    @Mod.Instance(MODID)
     public static Main instance;
-//    private static int modEntitys = 0;
 
     public Main() {
         instance = this;
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register the enqueueIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-        // Register the processIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(new YTEventHandler());
+        ModEntites.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("Creating mod tabs");
-        ModTabs.createTabs();
+     //   ModTabs.createTabs();
+        DeferredWorkQueue.runLater(() -> {
+            GlobalEntityTypeAttributes.put(ModEntites.SCUBA_STEVE.get(), EntityScubaSteve.getAttributes().create());
+        });
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.SCUBA_STEVE.get(), EntityScubaSteveRender::new);
         registerEntities();
-
-    }
-
-    private void enqueueIMC(final InterModEnqueueEvent event) {
-        // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("examplemod", "helloworld", () -> {
-            LOGGER.info("Hello world from the MDK");
-            return "Hello world";
-        });
-    }
-
-    private void processIMC(final InterModProcessEvent event) {
-        // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m -> m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -114,15 +80,11 @@ public class Main {
 
 
     private void registerEntities() {
-
-
-        registerModEntityWithEgg(EntityScubaSteve.class, "scubasteve", 0xffcc00, 0xffff00);
+        registerModEntityWithEgg("scuba_steve", 0xffcc00, 0xffff00);
         registerModEntityWithEgg(EntityLittleRopo.class, "littleropo", 0xcc00cc, 0xffffb3);
         registerModEntityWithEgg(EntityMrCrainer.class, "mrcrainer", 0x000000, 0xff944d);
         registerModEntityWithEgg(EntityBabyAngel.class, "babyangel", 0x999999, 0xe6e6e6);
         registerModEntityWithEgg(EntityAphmau.class, "aphmau", 0x000000, 0xff944d);
-
-
         registerModEntityWithEgg(EntityBabyDuck.class, "babyduck", 0xffcc00, 0xffff00);
         registerModEntityWithEgg(EntityBabyLeah.class, "babyleah", 0xcc00cc, 0xffffb3);
         registerModEntityWithEgg(EntityBabyMax.class, "babymax", 0x000000, 0xff944d);
@@ -137,15 +99,12 @@ public class Main {
         registerModEntityWithEgg(EntityMaxTheMonkey.class, "maxthemonkey", 0xcc6600, 0xffcc99);
         registerModEntityWithEgg(EntitySharky.class, "sharky", 0x6666ff, 0x00ccff);
         registerModEntityWithEgg(EntityTinyTurtle.class, "tinyturtle", 0x006600, 0x994d00);
-
-
         registerModEntityWithEgg(EntityExplodingTNT.class, "explodingtnt", 0xff0000, 0x000000);
         registerModEntityWithEgg(EntityMrWoofless.class, "mrwoofless", 0x3366ff, 0xffaa80);
         registerModEntityWithEgg(EntityLachlan.class, "lachlan", 0xff944d, 0xffcc99);
         registerModEntityWithEgg(EntityVikkstar123.class, "vikkstar123", 0x005ce6, 0xffcc00);
         registerModEntityWithEgg(EntityPeteZahHutt.class, "petazahhutt", 0xccff99, 0x66ff66);
         registerModEntityWithEgg(EntityPinkSheep.class, "pinksheep", 0xff00ff, 0x330033);
-
         registerModEntityWithEgg(EntityThnxCya.class, "thnxcya", 0x00cc66, 0x333300);
         registerModEntityWithEgg(EntityStampylonghead.class, "stampylonghead", 0xffcc00, 0xff9933);
         registerModEntityWithEgg(EntitySSundee.class, "ssundee", 0x000000, 0xcc6600);
@@ -168,11 +127,10 @@ public class Main {
         registerModEntityWithEgg(EntityISquid.class, "iballisticsquid", 0x000066, 0x000000);
         registerModEntityWithEgg(EntitySkyDoesMinecraft.class, "skydoesminecraft", 0xffff33, 0x000000);
         registerModEntityWithEgg(EntityTruemu.class, "truemu", 0x0066ff, 0xff9933);
-        registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0);
+        registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0); */
 
 //        BlockRenderRegister.registerBlockRenderer();
 //        ItemRenderRegistry.registerItemRender();
-//        RenderingRegistry.registerEntityRenderingHandler(EntityScubaSteve.class, new EntityScubaSteveRender(new BipedModel<MobEntity>(), 0.5F));
 //        RenderingRegistry.registerEntityRenderingHandler(EntityLittleRopo.class, new EntityLittleRopoRender(new ModelBiped(), 0.5F));
 //        RenderingRegistry.registerEntityRenderingHandler(EntityMrCrainer.class, new EntityMrCrainerRender(new ModelBiped(), 0.5F));
 //        RenderingRegistry.registerEntityRenderingHandler(EntityBabyAngel.class, new EntityBabyAngelRender(new ModelBiped(), 0.5F));
@@ -231,14 +189,12 @@ public class Main {
 //        RenderingRegistry.registerEntityRenderingHandler(EntityAntVenom.class, new EntityAntVenomRender(new EntityAntVenomModel(), 0.8F));
 
     }
-
-
-    public void registerModEntityWithEgg(Class parEntityClass, String parEntityName, int parEggColor, int parEggSpotsColor) {
+    public void registerModEntityWithEgg(String parEntityName, int parEggColor, int parEggSpotsColor) {
 //        EntityRegistry.registerModEntity(new ResourceLocation(MODID, parEntityName), parEntityClass, parEntityName, ++modEntitys, Main.instance, 80, 3, false);
-        registerSpawnEgg(parEntityName, parEntityClass, parEggColor, parEggSpotsColor);
+        registerSpawnEgg(parEntityName, parEggColor, parEggSpotsColor);
     }
 
-    private void registerSpawnEgg(String parEntityName, Class parEntityClass, int parEggColor,
+    private void registerSpawnEgg(String parEntityName, int parEggColor,
                                   int parEggSpotsColor) {
 //        EntityRegistry.registerEgg(new ResourceLocation(MODID, parEntityName), parEggColor, parEggSpotsColor);
 
