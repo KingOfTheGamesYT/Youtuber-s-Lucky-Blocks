@@ -23,7 +23,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
+//import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
 
 
 @Mod(Main.MODID)
@@ -41,17 +41,48 @@ public class Main {
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(new YTEventHandler());
+        //MinecraftForge.EVENT_BUS.register(new YTEventHandler());
         ModEntites.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("Creating mod tabs");
-     //   ModTabs.createTabs();
+       ModTabs.createTabs();
         DeferredWorkQueue.runLater(() -> {
-            GlobalEntityTypeAttributes.put(ModEntites.SCUBA_STEVE.get(), EntityAlexirCraft.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.SCUBA_STEVE.get(), EntityScubaSteve.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntites.ALEXIRCRAFT.get(), EntityAlexirCraft.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.ANTVENNOM.get(), EntityAntVenom.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.APHMAU.get(), EntityAphmau.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.BABY_ANGEL.get(), EntityBabyAngel.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.BABY_DUCK.get(), EntityBabyDuck.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.BABY_LEAH.get(), EntityBabyLeah.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.BABY_MAX.get(), EntityBabyMax.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.BABJANCANADIAN.get(), EntityBajanCanadian.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.CAPTAIN_SPARKLEZ.get(), EntityCaptainSparklez.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.CASSIE_THE_CAT.get(), EntityCassieTheCat.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.DONUT_THE_DOG.get(), EntityDonutTheDog.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.DANTDM.get(), EntityDanTDM.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.EVIL_LITTLE_KELLY.get(), EntityEvilLittleKelly.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.EXPLODING_TNT.get(), EntityExplodingTNT.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.FRIZZLEANDPOP.get(), EntityFrizzleandpop.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.IHASCUPQUAKE.get(), EntityIhasCupquake.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.ISQUID.get(), EntityISquid.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.JEROMEASF.get(), EntityJeromeASF.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.LACHLAN.get(), EntityLachlan.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.LDSHADOWLADY.get(), EntityLDShadowLady.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.LITTLEALLY.get(), EntityLittleAlly.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.LITTLECARLYMC.get(), EntityLittleCarlyMC.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.LITTLEDONNY.get(), EntityLittleDonny.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.LITTLEKELLYMC.get(), EntityLittleKellyMC.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.LITTLELIZARDGAMING.get(), EntityLittleLizardGaming.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.LITTLEROPO.get(), EntityLittleRopo.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.MAXTHEMONKEY.get(), EntityMaxTheMonkey.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.MRCRAINER.get(), EntityMrCrainer.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.MRWOOFLESS.get(), EntityMrWoofless.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.PETEZAHHUTT.get(), EntityPeteZahHutt.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.PINKSHEEP.get(), EntityPinkSheep.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.PRESTONPLAYZ.get(), EntityPrestonPlayz.getAttributes().create());
         });
     }
 
@@ -59,7 +90,37 @@ public class Main {
         // do something that can only be done on the client
         RenderingRegistry.registerEntityRenderingHandler(ModEntites.SCUBA_STEVE.get(), EntityScubaSteveRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntites.ALEXIRCRAFT.get(), EntityAlexircraftRender::new);
-
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.ANTVENNOM.get(), EntityAntVenomRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.APHMAU.get(), EntityAphmauRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.BABY_ANGEL.get(), EntityBabyAngelRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.BABY_DUCK.get(), EntityBabyDuckRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.BABY_LEAH.get(), EntityBabyLeahRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.BABY_MAX.get(), EntityBabyMaxRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.BABJANCANADIAN.get(), EntityBajanCanadianRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.CAPTAIN_SPARKLEZ.get(), EntityCaptainSparklezRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.CASSIE_THE_CAT.get(), EntityCassieTheCatRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.DONUT_THE_DOG.get(), EntityDonutTheDogRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.DANTDM.get(), EntityDanTDMRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.EVIL_LITTLE_KELLY.get(), EntityEvilLittleKellyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.EXPLODING_TNT.get(), EntityExplodingTNTRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.FRIZZLEANDPOP.get(), EntityFrizzleandPopRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.IHASCUPQUAKE.get(), EntityIhascupquakeRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.ISQUID.get(), EntityISquidRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.JEROMEASF.get(), EntityJeromeASFRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LACHLAN.get(), EntityLachlanRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LDSHADOWLADY.get(), EntityLDShadowLadyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLEALLY.get(), EntityLittleAllyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLECARLYMC.get(), EntityLittleCarlyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLEDONNY.get(), EntityLittleDonnyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLEKELLYMC.get(), EntityLittleKellyMCRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLELIZARDGAMING.get(), EntityLittleLizardGamingRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLEROPO.get(), EntityLittleRopoRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.MAXTHEMONKEY.get(), EntityMaxTheMonkeyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.MRCRAINER.get(), EntityMRCrainerRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.MRWOOFLESS.get(), EntityMRWooflessRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.PETEZAHHUTT.get(), EntityPetaRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.PINKSHEEP.get(), EntityPinkSheepRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.PRESTONPLAYZ.get(), EntityPrestonRender::new);
         registerEntities();
     }
 
@@ -83,125 +144,23 @@ public class Main {
 
 
     private void registerEntities() {
-        registerModEntityWithEgg("scuba_steve", 0xffcc00, 0xffff00);
-        registerModEntityWithEgg(EntityLittleRopo.class, "littleropo", 0xcc00cc, 0xffffb3);
-        registerModEntityWithEgg(EntityMrCrainer.class, "mrcrainer", 0x000000, 0xff944d);
-        registerModEntityWithEgg(EntityBabyAngel.class, "babyangel", 0x999999, 0xe6e6e6);
-        registerModEntityWithEgg(EntityAphmau.class, "aphmau", 0x000000, 0xff944d);
-        registerModEntityWithEgg(EntityBabyDuck.class, "babyduck", 0xffcc00, 0xffff00);
-        registerModEntityWithEgg(EntityBabyLeah.class, "babyleah", 0xcc00cc, 0xffffb3);
-        registerModEntityWithEgg(EntityBabyMax.class, "babymax", 0x000000, 0xff944d);
-        registerModEntityWithEgg(EntityCassieTheCat.class, "cassiethecat", 0x999999, 0xe6e6e6);
-        registerModEntityWithEgg(EntityDonutTheDog.class, "donutthedog", 0x000000, 0xff944d);
-        registerModEntityWithEgg(EntityEvilLittleKelly.class, "evillittlekelly", 0xff1a1a, 0xffffb3);
-        registerModEntityWithEgg(EntityLittleAlly.class, "littleally", 0xff8566, 0xffffb3);
-        registerModEntityWithEgg(EntityLittleCarlyMC.class, "littlecarly", 0x66ccff, 0xffffb3);
-        registerModEntityWithEgg(EntityLittleDonny.class, "littledonny", 0x1ab2ff, 0xff8c1a);
-        registerModEntityWithEgg(EntityLittleKellyMC.class, "littlekelly", 0xff99ff, 0x99ff66);
-        registerModEntityWithEgg(EntityLittleLizardGaming.class, "littlelizardgaming", 0x009933, 0xccffcc);
-        registerModEntityWithEgg(EntityMaxTheMonkey.class, "maxthemonkey", 0xcc6600, 0xffcc99);
         registerModEntityWithEgg(EntitySharky.class, "sharky", 0x6666ff, 0x00ccff);
         registerModEntityWithEgg(EntityTinyTurtle.class, "tinyturtle", 0x006600, 0x994d00);
-        registerModEntityWithEgg(EntityExplodingTNT.class, "explodingtnt", 0xff0000, 0x000000);
-        registerModEntityWithEgg(EntityMrWoofless.class, "mrwoofless", 0x3366ff, 0xffaa80);
-        registerModEntityWithEgg(EntityLachlan.class, "lachlan", 0xff944d, 0xffcc99);
-        registerModEntityWithEgg(EntityVikkstar123.class, "vikkstar123", 0x005ce6, 0xffcc00);
-        registerModEntityWithEgg(EntityPeteZahHutt.class, "petazahhutt", 0xccff99, 0x66ff66);
-        registerModEntityWithEgg(EntityPinkSheep.class, "pinksheep", 0xff00ff, 0x330033);
-        registerModEntityWithEgg(EntityThnxCya.class, "thnxcya", 0x00cc66, 0x333300);
-        registerModEntityWithEgg(EntityStampylonghead.class, "stampylonghead", 0xffcc00, 0xff9933);
+          registerModEntityWithEgg(EntityVikkstar123.class, "vikkstar123", 0x005ce6, 0xffcc00);
+         registerModEntityWithEgg(EntityThnxCya.class, "thnxcya", 0x00cc66, 0x333300);
+       registerModEntityWithEgg(EntityStampylonghead.class, "stampylonghead", 0xffcc00, 0xff9933);
         registerModEntityWithEgg(EntitySSundee.class, "ssundee", 0x000000, 0xcc6600);
-        registerModEntityWithEgg(EntityPrestonPlayz.class, "prestonplayz", 0xff0000, 0xff6600);
-        registerModEntityWithEgg(EntityLDShadowLady.class, "ldshadowlady", 0xcc99ff, 0x000066);
-        registerModEntityWithEgg(EntityIhasCupquake.class, "ihascupquake", 0xff66ff, 0x66ff66);
-        registerModEntityWithEgg(EntityTewity.class, "tewity", 0xffcc00, 0xffff1a);
-        registerModEntityWithEgg(EntityFrizzleandpop.class, "frizzleandpop", 0xffcc00, 0x86b300);
-        registerModEntityWithEgg(EntityBajanCanadian.class, "bajancanadian", 0xe60000, 0x000000);
-        registerModEntityWithEgg( "alexircraft", 0xcc00cc, 0x330033);
-        registerModEntityWithEgg(EntityJeromeASF.class, "jerome", 0xb37700, 0xffad33);
+         registerModEntityWithEgg(EntityTewity.class, "tewity", 0xffcc00, 0xffff1a);
         registerModEntityWithEgg(EntityLogDotZip.class, "logdotzip", 0xff3333, 0xffaa00);
         registerModEntityWithEgg(EntityPopularMMO.class, "popularmmo", 0x262626, 0x005580);
-        registerModEntityWithEgg(EntityAntVenom.class, "antvenom", 0x77b300, 0x111a00);
-        registerModEntityWithEgg(EntityCaptainSparklez.class, "captainsparklez", 0xff4d4d, 0xffffcc);
         registerModEntityWithEgg(EntityGhost.class, "ghost", 0x4d0000, 0x000000);
-        registerModEntityWithEgg(EntityDanTDM.class, "dantdm", 0x66ffff, 0xffffff);
         registerModEntityWithEgg(EntitySerialPlayer.class, "thvardhan", 0xcc9900, 0xffff66);
         registerModEntityWithEgg(EntitySuperGirlyGamer.class, "supergirlygamer", 0xff33cc, 0xe6005c);
-        registerModEntityWithEgg(EntityISquid.class, "iballisticsquid", 0x000066, 0x000000);
         registerModEntityWithEgg(EntitySkyDoesMinecraft.class, "skydoesminecraft", 0xffff33, 0x000000);
         registerModEntityWithEgg(EntityTruemu.class, "truemu", 0x0066ff, 0xff9933);
         registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0); */
 
-//        BlockRenderRegister.registerBlockRenderer();
-//        ItemRenderRegistry.registerItemRender();
-//        RenderingRegistry.registerEntityRenderingHandler(EntityLittleRopo.class, new EntityLittleRopoRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityMrCrainer.class, new EntityMrCrainerRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityBabyAngel.class, new EntityBabyAngelRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityAphmau.class, new EntityAphmauRender(new ModelBiped(), 0.5F));
-//
-//
-//        RenderingRegistry.registerEntityRenderingHandler(EntityBabyDuck.class, new EntityBabyDuckRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityBabyLeah.class, new EntityBabyLeahRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityBabyMax.class, new EntityBabyMaxRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityCassieTheCat.class, new EntityCassieTheCatRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityDonutTheDog.class, new EntityDonutTheDogRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityEvilLittleKelly.class, new EntityEvilLittleKellyRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityLittleAlly.class, new EntityLittleAllyRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityLittleCarlyMC.class, new EntityLittleCarlyRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityLittleDonny.class, new EntityLittleDonnyRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityLittleKellyMC.class, new EntityLittleKellyRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityLittleLizardGaming.class, new EntityLittleLizardGamingRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityMaxTheMonkey.class, new EntityMaxTheMonkeyRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntitySharky.class, new EntitySharkyRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityTinyTurtle.class, new EntityTinyTurtleRender(new ModelBiped(), 0.5F));
-//
-//
-//        RenderingRegistry.registerEntityRenderingHandler(EntityExplodingTNT.class, new EntityExplodingTNTRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityMrWoofless.class, new EntityMrWooflessRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityLachlan.class, new EntityLachlanRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityVikkstar123.class, new EntityVikkstar123Render(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityPeteZahHutt.class, new EntityPeteZahHuttRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityPinkSheep.class, new EntityPinkSheepRender(new ModelBiped(), 0.5F));
-//
-//
-//        RenderingRegistry.registerEntityRenderingHandler(EntityIhasCupquake.class, new EntityIhasCupquakeRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityLDShadowLady.class, new EntityLDShadowLadyRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityPrestonPlayz.class, new EntityPrestonPlayzRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntitySSundee.class, new EntitySSundeeRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityStampylonghead.class, new EntityStampylongheadRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityThnxCya.class, new EntityThnxCyaRender(new ModelBiped(), 0.5F));
-//
-//
-//        RenderingRegistry.registerEntityRenderingHandler(EntityBajanCanadian.class, new EntityBajanCanadianRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityFrizzleandpop.class, new EntityFrizzleandpopRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityTewity.class, new EntityTewityRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityAlexirCraft.class, new EntityAlexircraftRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityJeromeASF.class, new EntityJeromeRender(new ModelBiped(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityLuckyMob.class, new EntityLuckyMobRender(new EntityLuckyMobModel(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityTruemu.class, new EntityTruemuRender(new EntityTruemuModel(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityISquid.class, new EntityISquidRender(new EntityISquidModel(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntitySkyDoesMinecraft.class, new EntitySkyDoesMinecraftRender(new EntitySkyDoesMinecraftModel(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntitySuperGirlyGamer.class, new EntitySuperGirlyGamerRender(new EntitySuperGirlyGamerModel(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntitySerialPlayer.class, new EntitySerialPlayerRender(new EntitySerialPlayerModel(), 0.1F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityDanTDM.class, new EntityDanTDMRender(new EntityDanTDMModel(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityGhost.class, new EntityGhostRender(new EntityGhostModel(), 0F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityCaptainSparklez.class, new EntityCaptainSparklezRender(new EntityCaptiainSparklezModel(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityLogDotZip.class, new EntityLogDotZipRender(new EntityLogDotZipModel(), 0.5F));
-//        RenderingRegistry.registerEntityRenderingHandler(EntityPopularMMO.class, new EntityPopularMMORender(new EntityPopularMMOModel(), 0.5F));
-//
-//        RenderingRegistry.registerEntityRenderingHandler(EntityAntVenom.class, new EntityAntVenomRender(new EntityAntVenomModel(), 0.8F));
-
+        BlockRenderRegister.registerBlockRenderer();
+        ItemRenderRegistry.registerItemRender();
     }
-    public void registerModEntityWithEgg(String parEntityName, int parEggColor, int parEggSpotsColor) {
-//        EntityRegistry.registerModEntity(new ResourceLocation(MODID, parEntityName), parEntityClass, parEntityName, ++modEntitys, Main.instance, 80, 3, false);
-        registerSpawnEgg(parEntityName, parEggColor, parEggSpotsColor);
-    }
-
-    private void registerSpawnEgg(String parEntityName, int parEggColor,
-                                  int parEggSpotsColor) {
-//        EntityRegistry.registerEgg(new ResourceLocation(MODID, parEntityName), parEggColor, parEggSpotsColor);
-
-    }
-
-
 }

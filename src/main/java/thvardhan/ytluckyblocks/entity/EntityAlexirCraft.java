@@ -33,14 +33,12 @@ public class EntityAlexirCraft extends CreatureEntity {
 
     protected void applyEntityAI() {
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
-
         // this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, false, 10, this::isBreakDoorsTaskSet));
         this.goalSelector.addGoal(1, new HurtByTargetGoal(this, ZombifiedPiglinEntity.class));
         this.goalSelector.addGoal(2, new NearestAttackableTargetGoal(this, PlayerEntity.class, true));
         this.goalSelector.addGoal(3, new NearestAttackableTargetGoal(this, VillagerEntity.class, false));
         this.goalSelector.addGoal(3, new NearestAttackableTargetGoal(this, IronGolemEntity.class, true));
     }
-
     public static AttributeModifierMap.MutableAttribute getAttributes() {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 30D)
@@ -58,5 +56,4 @@ public class EntityAlexirCraft extends CreatureEntity {
         public boolean getAlwaysRenderNameTagForRender() {
             return true;
         }
-
     }

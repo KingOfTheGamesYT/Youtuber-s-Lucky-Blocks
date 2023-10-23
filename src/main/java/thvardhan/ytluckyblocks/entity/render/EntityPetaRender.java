@@ -5,13 +5,13 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.ResourceLocation;
 import thvardhan.ytluckyblocks.Main;
-import thvardhan.ytluckyblocks.entity.EntityLittleCarlyMC;
-import thvardhan.ytluckyblocks.entity.EntityScubaSteve;
+import thvardhan.ytluckyblocks.entity.EntityAlexirCraft;
+import thvardhan.ytluckyblocks.entity.EntityPeteZahHutt;
 
-public class EntityLittleCarlyRender extends BipedRenderer<EntityLittleCarlyMC, BipedModel<EntityLittleCarlyMC>> {
-    protected ResourceLocation texture = new ResourceLocation(Main.MODID + ":textures/entity/little_carly.png");
+public class EntityPetaRender extends BipedRenderer<EntityPeteZahHutt, BipedModel<EntityPeteZahHutt>> {
+    protected ResourceLocation texture = new ResourceLocation(Main.MODID + ":textures/entity/peta_skin.png");
 
-    public EntityLittleCarlyRender(EntityRendererManager renderManager) {
+    public EntityPetaRender(EntityRendererManager renderManager) {
         super(renderManager, new BipedModel<>(0.0F), 0.5F);
     }
 
@@ -19,7 +19,7 @@ public class EntityLittleCarlyRender extends BipedRenderer<EntityLittleCarlyMC, 
      * Returns the location of an entity's texture.
      */
     @Override
-    public ResourceLocation getEntityTexture(EntityLittleCarlyMC entity) {
+    public ResourceLocation getEntityTexture(EntityPeteZahHutt entity) {
         return texture;
     }
 }

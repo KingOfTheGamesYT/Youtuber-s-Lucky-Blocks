@@ -9,18 +9,17 @@ import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.entity.EntityScubaSteve;
 
 public class EntityScubaSteveRender extends BipedRenderer<EntityScubaSteve, BipedModel<EntityScubaSteve>> {
-    protected ResourceLocation alexircraft = new ResourceLocation(Main.MODID + ":textures/entity/scuba_steve.png");
+    protected ResourceLocation texture = new ResourceLocation(Main.MODID + ":textures/entity/scuba_steve.png");
 
     public EntityScubaSteveRender(EntityRendererManager renderManager) {
         super(renderManager, new BipedModel<>(0.0F), 0.5F);
     }
-
 
     /**
      * Returns the location of an entity's texture.
      */
     @Override
     public ResourceLocation getEntityTexture(EntityScubaSteve entity) {
-        return alexircraft;
+        return texture;
     }
 }
