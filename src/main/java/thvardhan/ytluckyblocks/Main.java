@@ -4,12 +4,12 @@ import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import thvardhan.ytluckyblocks.entity.*;
-//import thvardhan.ytluckyblocks.entity.model.*;
+import thvardhan.ytluckyblocks.entity.model.*;
 import thvardhan.ytluckyblocks.entity.render.*;
-/*import thvardhan.ytluckyblocks.handler.YTEventHandler;
+import thvardhan.ytluckyblocks.handler.YTEventHandler;
 import thvardhan.ytluckyblocks.init.ModItems;
 import thvardhan.ytluckyblocks.init.ModTabs;
-import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;*/
+import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;
 
 
 import net.minecraftforge.fml.common.Mod;
@@ -48,7 +48,7 @@ public class Main {
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("Creating mod tabs");
-       ModTabs.createTabs();
+       //ModTabs.createTabs();
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(ModEntites.SCUBA_STEVE.get(), EntityScubaSteve.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntites.ALEXIRCRAFT.get(), EntityAlexirCraft.getAttributes().create());
@@ -86,6 +86,10 @@ public class Main {
             GlobalEntityTypeAttributes.put(ModEntites.SHARKY.get(), EntitySharky.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntites.TINYTURTLE.get(), EntityTinyTurtle.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntites.VIKKSTAR123.get(), EntityVikkstar123.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.SSUNDEE.get(), EntitySSundee.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.STAMPYLONGHEAD.get(), EntityStampylonghead.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.TEWITY.get(), EntityTewity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.THNXCYA.get(), EntityThnxCya.getAttributes().create());
 
         });
     }
@@ -128,6 +132,10 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(ModEntites.SHARKY.get(), EntitySharkyRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntites.TINYTURTLE.get(), EntityTinyTurtleRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntites.VIKKSTAR123.get(), EntityVikkstar123Render::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.TEWITY.get(), EntityTewityRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.THNXCYA.get(), EntityThnxcyaRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.SSUNDEE.get(), EntitySsundeeRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.STAMPYLONGHEAD.get(), EntityStampylongheadRender::new);
 
         registerEntities();
     }
@@ -152,10 +160,6 @@ public class Main {
 
 
     private void registerEntities() {
-        registerModEntityWithEgg(EntityThnxCya.class, "thnxcya", 0x00cc66, 0x333300);
-       registerModEntityWithEgg(EntityStampylonghead.class, "stampylonghead", 0xffcc00, 0xff9933);
-        registerModEntityWithEgg(EntitySSundee.class, "ssundee", 0x000000, 0xcc6600);
-         registerModEntityWithEgg(EntityTewity.class, "tewity", 0xffcc00, 0xffff1a);
         registerModEntityWithEgg(EntityLogDotZip.class, "logdotzip", 0xff3333, 0xffaa00);
         registerModEntityWithEgg(EntityPopularMMO.class, "popularmmo", 0x262626, 0x005580);
         registerModEntityWithEgg(EntityGhost.class, "ghost", 0x4d0000, 0x000000);

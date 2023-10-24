@@ -238,6 +238,29 @@ public class ModEntites {
                             .size(0.6F, 2.0F)
                             .build(new ResourceLocation(Main.MODID, "vikkstar123").toString()));
 
+    public static final RegistryObject<EntityType<EntitySSundee>> SSUNDEE = ENTITIES
+            .register("ssundee",
+                    () -> EntityType.Builder.<EntitySSundee>create(EntitySSundee::new, EntityClassification.CREATURE)
+                            .size(0.6F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "ssundee").toString()));
+
+    public static final RegistryObject<EntityType<EntityStampylonghead>> STAMPYLONGHEAD = ENTITIES
+            .register("stampylonghead",
+                    () -> EntityType.Builder.<EntityStampylonghead>create(EntityStampylonghead::new, EntityClassification.CREATURE)
+                            .size(0.6F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "stampylonghead").toString()));
+
+    public static final RegistryObject<EntityType<EntityTewity>> TEWITY = ENTITIES
+            .register("tewity",
+                    () -> EntityType.Builder.<EntityTewity>create(EntityTewity::new, EntityClassification.CREATURE)
+                            .size(0.6F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "tewity").toString()));
+
+    public static final RegistryObject<EntityType<EntityThnxCya>> THNXCYA = ENTITIES
+            .register("thnxcya",
+                    () -> EntityType.Builder.<EntityThnxCya>create(EntityThnxCya::new, EntityClassification.CREATURE)
+                            .size(0.6F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "thnxcya").toString()));
 
     public static final RegistryObject<Item> ALEXIRCRAFT_SPAWN_EGG = ITEMS.register("alexircraft_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.ALEXIRCRAFT, 0xcc00cc, 0x330033, new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> ANTVENOM_SPAWN_EGG = ITEMS.register("antvenom_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.ANTVENNOM, 0x77b300, 0x111a00, new Item.Properties().group(ItemGroup.MISC)));
@@ -275,5 +298,9 @@ public class ModEntites {
     public static final RegistryObject<Item> SHARKY_SPAWN_EGG = ITEMS.register( "sharky_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.SHARKY, 0x6666ff, 0x00ccff,new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> TINYTURTLE_SPAWN_EGG = ITEMS.register( "tinyturtle_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.TINYTURTLE, 0x006600, 0x994d00,new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> VICKSTAR_SPAWN_EGG = ITEMS.register( "vikkstar_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.VIKKSTAR123, 0x005ce6, 0xffcc00,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> SSUNDEE_SPAWN_EGG = ITEMS.register( "ssundee_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.SSUNDEE, 0x000000, 0xcc6600,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> STAMPYLONGHEAD_SPAWN_EGG = ITEMS.register( "stampylonghead_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.STAMPYLONGHEAD, 0xffcc00, 0xff9933,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> TEWTIY_SPAWN_EGG = ITEMS.register( "tewity_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.TEWITY, 0xffcc00, 0xffff1a,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> THNXCYA_SPAWN_EGG = ITEMS.register( "thnxcya_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.THNXCYA, 0x00cc66, 0x333300,new Item.Properties().group(ItemGroup.MISC)));
 
 }
