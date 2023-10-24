@@ -4,12 +4,12 @@ import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import thvardhan.ytluckyblocks.entity.*;
-import thvardhan.ytluckyblocks.entity.model.*;
+//import thvardhan.ytluckyblocks.entity.model.*;
 import thvardhan.ytluckyblocks.entity.render.*;
-import thvardhan.ytluckyblocks.handler.YTEventHandler;
+/*import thvardhan.ytluckyblocks.handler.YTEventHandler;
 import thvardhan.ytluckyblocks.init.ModItems;
 import thvardhan.ytluckyblocks.init.ModTabs;
-import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;
+import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;*/
 
 
 import net.minecraftforge.fml.common.Mod;
@@ -23,7 +23,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-//import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
+import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
 
 
 @Mod(Main.MODID)
@@ -83,6 +83,10 @@ public class Main {
             GlobalEntityTypeAttributes.put(ModEntites.PETEZAHHUTT.get(), EntityPeteZahHutt.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntites.PINKSHEEP.get(), EntityPinkSheep.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntites.PRESTONPLAYZ.get(), EntityPrestonPlayz.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.SHARKY.get(), EntitySharky.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.TINYTURTLE.get(), EntityTinyTurtle.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntites.VIKKSTAR123.get(), EntityVikkstar123.getAttributes().create());
+
         });
     }
 
@@ -121,6 +125,10 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(ModEntites.PETEZAHHUTT.get(), EntityPetaRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntites.PINKSHEEP.get(), EntityPinkSheepRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntites.PRESTONPLAYZ.get(), EntityPrestonRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.SHARKY.get(), EntitySharkyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.TINYTURTLE.get(), EntityTinyTurtleRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntites.VIKKSTAR123.get(), EntityVikkstar123Render::new);
+
         registerEntities();
     }
 
@@ -144,10 +152,7 @@ public class Main {
 
 
     private void registerEntities() {
-        registerModEntityWithEgg(EntitySharky.class, "sharky", 0x6666ff, 0x00ccff);
-        registerModEntityWithEgg(EntityTinyTurtle.class, "tinyturtle", 0x006600, 0x994d00);
-          registerModEntityWithEgg(EntityVikkstar123.class, "vikkstar123", 0x005ce6, 0xffcc00);
-         registerModEntityWithEgg(EntityThnxCya.class, "thnxcya", 0x00cc66, 0x333300);
+        registerModEntityWithEgg(EntityThnxCya.class, "thnxcya", 0x00cc66, 0x333300);
        registerModEntityWithEgg(EntityStampylonghead.class, "stampylonghead", 0xffcc00, 0xff9933);
         registerModEntityWithEgg(EntitySSundee.class, "ssundee", 0x000000, 0xcc6600);
          registerModEntityWithEgg(EntityTewity.class, "tewity", 0xffcc00, 0xffff1a);
@@ -158,7 +163,7 @@ public class Main {
         registerModEntityWithEgg(EntitySuperGirlyGamer.class, "supergirlygamer", 0xff33cc, 0xe6005c);
         registerModEntityWithEgg(EntitySkyDoesMinecraft.class, "skydoesminecraft", 0xffff33, 0x000000);
         registerModEntityWithEgg(EntityTruemu.class, "truemu", 0x0066ff, 0xff9933);
-        registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0); */
+        registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0);
 
         BlockRenderRegister.registerBlockRenderer();
         ItemRenderRegistry.registerItemRender();
