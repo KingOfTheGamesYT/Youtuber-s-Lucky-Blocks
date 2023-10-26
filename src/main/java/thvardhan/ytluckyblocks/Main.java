@@ -11,7 +11,7 @@ import thvardhan.ytluckyblocks.entity.render.*;
 import thvardhan.ytluckyblocks.handler.YTEventHandler;
 import thvardhan.ytluckyblocks.init.ModItems;
 import thvardhan.ytluckyblocks.init.ModTabs;
-import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;*/
+import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;
 
 
 import net.minecraftforge.fml.common.Mod;
@@ -50,7 +50,7 @@ public class Main {
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("Creating mod tabs");
-       //ModTabs.createTabs();
+       ModTabs.createTabs();
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(ModRegistry.SCUBA_STEVE.get(), EntityScubaSteve.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModRegistry.ALEXIRCRAFT.get(), EntityAlexirCraft.getAttributes().create());
@@ -94,6 +94,8 @@ public class Main {
             GlobalEntityTypeAttributes.put(ModRegistry.THNXCYA.get(), EntityThnxCya.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModRegistry.LOGDOTZIP.get(), EntityLogDotZip.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModRegistry.POPULARMMOS.get(), EntityPopularMMO.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.SERIALPLAYER.get(), EntitySerialPlayer.getAttributes().create());
+
 
         });
     }
@@ -142,6 +144,7 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.STAMPYLONGHEAD.get(), EntityStampylongheadRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LOGDOTZIP.get(), EntityLogDotZipRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.POPULARMMOS.get(), PopularmmosRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SERIALPLAYER.get(), EntitySerialPlayerRender::new);
 
         registerEntities();
     }
@@ -167,7 +170,6 @@ public class Main {
 
     private void registerEntities() {
         registerModEntityWithEgg(EntityGhost.class, "ghost", 0x4d0000, 0x000000);
-        registerModEntityWithEgg(EntitySerialPlayer.class, "thvardhan", 0xcc9900, 0xffff66);
         registerModEntityWithEgg(EntitySuperGirlyGamer.class, "supergirlygamer", 0xff33cc, 0xe6005c);
         registerModEntityWithEgg(EntitySkyDoesMinecraft.class, "skydoesminecraft", 0xffff33, 0x000000);
         registerModEntityWithEgg(EntityTruemu.class, "truemu", 0x0066ff, 0xff9933);
