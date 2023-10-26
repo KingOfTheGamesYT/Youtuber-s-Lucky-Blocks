@@ -2,12 +2,13 @@ package thvardhan.ytluckyblocks;
 
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import thvardhan.ytluckyblocks.entity.*;
-//import thvardhan.ytluckyblocks.entity.model.*;
+import thvardhan.ytluckyblocks.entity.model.*;
 import thvardhan.ytluckyblocks.entity.render.*;
-/*import thvardhan.ytluckyblocks.handler.YTEventHandler;
+import thvardhan.ytluckyblocks.handler.YTEventHandler;
 import thvardhan.ytluckyblocks.init.ModItems;
 import thvardhan.ytluckyblocks.init.ModTabs;
 import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;*/
@@ -24,7 +25,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-//import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
+import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
 
 
 @Mod(Main.MODID)
@@ -42,7 +43,7 @@ public class Main {
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         // Register ourselves for server and other game events we are interested in
-        //MinecraftForge.EVENT_BUS.register(new YTEventHandler());
+        MinecraftForge.EVENT_BUS.register(new YTEventHandler());
         ModRegistry.init();
     }
 
@@ -92,6 +93,7 @@ public class Main {
             GlobalEntityTypeAttributes.put(ModRegistry.TEWITY.get(), EntityTewity.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModRegistry.THNXCYA.get(), EntityThnxCya.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModRegistry.LOGDOTZIP.get(), EntityLogDotZip.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.POPULARMMOS.get(), EntityPopularMMO.getAttributes().create());
 
         });
     }
@@ -139,6 +141,8 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SSUNDEE.get(), EntitySsundeeRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.STAMPYLONGHEAD.get(), EntityStampylongheadRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LOGDOTZIP.get(), EntityLogDotZipRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.POPULARMMOS.get(), PopularmmosRender::new);
+
         registerEntities();
     }
 
@@ -162,8 +166,6 @@ public class Main {
 
 
     private void registerEntities() {
-       /* registerModEntityWithEgg(EntityLogDotZip.class, "logdotzip", 0xff3333, 0xffaa00);
-        registerModEntityWithEgg(EntityPopularMMO.class, "popularmmo", 0x262626, 0x005580);
         registerModEntityWithEgg(EntityGhost.class, "ghost", 0x4d0000, 0x000000);
         registerModEntityWithEgg(EntitySerialPlayer.class, "thvardhan", 0xcc9900, 0xffff66);
         registerModEntityWithEgg(EntitySuperGirlyGamer.class, "supergirlygamer", 0xff33cc, 0xe6005c);
@@ -172,6 +174,6 @@ public class Main {
         registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0);
 
         BlockRenderRegister.registerBlockRenderer();
-        ItemRenderRegistry.registerItemRender(); */
+        ItemRenderRegistry.registerItemRender();
     }
 }
