@@ -284,6 +284,25 @@ public class ModRegistry {
                             .size(0.5F, 1F)
                             .build(new ResourceLocation(Main.MODID, "serial_player").toString()));
 
+    public static final RegistryObject<EntityType<EntitySuperGirlyGamer>> SUPERGIRLYGAMER = ENTITIES
+            .register("super_girly_gamer",
+                    () -> EntityType.Builder.<EntitySuperGirlyGamer>create(EntitySuperGirlyGamer::new, EntityClassification.CREATURE)
+                            .size(0.6F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "super_girly_gamer").toString()));
+
+    public static final RegistryObject<EntityType<EntitySkyDoesMinecraft>> SKYDOESMINECRAFT = ENTITIES
+            .register("sky_does_minecraft",
+                    () -> EntityType.Builder.<EntitySkyDoesMinecraft>create(EntitySkyDoesMinecraft::new, EntityClassification.CREATURE)
+                            .size(0.6F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "sky_does_minecraft").toString()));
+
+    public static final RegistryObject<EntityType<EntityTruemu>> TRUEMU = ENTITIES
+            .register("truemu",
+                    () -> EntityType.Builder.<EntityTruemu>create(EntityTruemu::new, EntityClassification.CREATURE)
+                            .size(0.6F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "truemu").toString()));
+
+
     public static final RegistryObject<Item> ALEXIRCRAFT_SPAWN_EGG = ITEMS.register("alexircraft_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.ALEXIRCRAFT, 0xcc00cc, 0x330033, new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> ANTVENOM_SPAWN_EGG = ITEMS.register("antvenom_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.ANTVENNOM, 0x77b300, 0x111a00, new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> SCUBA_STEVE_SPAWN_EGG = ITEMS.register("scuba_steve_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.SCUBA_STEVE, 0xffcc00, 0xffff00, new Item.Properties().group(ItemGroup.MISC)));
@@ -327,6 +346,9 @@ public class ModRegistry {
     public static final RegistryObject<Item> LOGDOTZIP_SPAWN_EGG = ITEMS.register( "logdotzip_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.LOGDOTZIP, 0xff3333, 0xffaa00,new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> POPULARMMOS_SPAWN_EGG = ITEMS.register( "popularmmos_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.POPULARMMOS,  0x262626, 0x005580,new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> SERIALPLAYER_SPAWN_EGG = ITEMS.register( "thvardhan_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.SERIALPLAYER,  0xcc9900, 0xffff66,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> SKYDOESMINECRAFT_SPAWN_EGG = ITEMS.register( "skythekidrs_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.SKYDOESMINECRAFT,  0xffff33, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> SUPERGIRLYGAMER_SPAWN_EGG = ITEMS.register( "jen_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.SUPERGIRLYGAMER,  0xff33cc, 0xe6005c,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> TRUEMU_SPAWN_EGG = ITEMS.register( "truemu_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.TRUEMU,  0x0066ff, 0xff9933,new Item.Properties().group(ItemGroup.MISC)));
 
     public static final RegistryObject<Item> MASTER_SWORD = ITEMS.register("m_sword", () -> new M_sword( MSWORD, 3, 0, new Item.Properties().group(ItemGroup.MISC)));
 

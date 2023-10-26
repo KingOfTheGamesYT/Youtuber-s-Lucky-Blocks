@@ -6,12 +6,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import thvardhan.ytluckyblocks.entity.*;
-import thvardhan.ytluckyblocks.entity.model.*;
+//import thvardhan.ytluckyblocks.entity.model.*;
 import thvardhan.ytluckyblocks.entity.render.*;
-import thvardhan.ytluckyblocks.handler.YTEventHandler;
+/*import thvardhan.ytluckyblocks.handler.YTEventHandler;
 import thvardhan.ytluckyblocks.init.ModItems;
 import thvardhan.ytluckyblocks.init.ModTabs;
-import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;
+import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;*/
 
 
 import net.minecraftforge.fml.common.Mod;
@@ -25,7 +25,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
+//import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
 
 
 @Mod(Main.MODID)
@@ -43,14 +43,14 @@ public class Main {
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(new YTEventHandler());
+       // MinecraftForge.EVENT_BUS.register(new YTEventHandler());
         ModRegistry.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("Creating mod tabs");
-       ModTabs.createTabs();
+       //ModTabs.createTabs();
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(ModRegistry.SCUBA_STEVE.get(), EntityScubaSteve.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModRegistry.ALEXIRCRAFT.get(), EntityAlexirCraft.getAttributes().create());
@@ -95,6 +95,9 @@ public class Main {
             GlobalEntityTypeAttributes.put(ModRegistry.LOGDOTZIP.get(), EntityLogDotZip.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModRegistry.POPULARMMOS.get(), EntityPopularMMO.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModRegistry.SERIALPLAYER.get(), EntitySerialPlayer.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.SKYDOESMINECRAFT.get(), EntitySkyDoesMinecraft.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.SUPERGIRLYGAMER.get(), EntitySuperGirlyGamer.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.TRUEMU.get(), EntityTruemu.getAttributes().create());
 
 
         });
@@ -145,6 +148,9 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LOGDOTZIP.get(), EntityLogDotZipRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.POPULARMMOS.get(), PopularmmosRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SERIALPLAYER.get(), EntitySerialPlayerRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SKYDOESMINECRAFT.get(), EntitySkyDoesMinecraftRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SUPERGIRLYGAMER.get(), EntitySuperGirlyGamerRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.TRUEMU.get(), EntityTruemuRender::new);
 
         registerEntities();
     }
@@ -169,13 +175,9 @@ public class Main {
 
 
     private void registerEntities() {
-        registerModEntityWithEgg(EntityGhost.class, "ghost", 0x4d0000, 0x000000);
-        registerModEntityWithEgg(EntitySuperGirlyGamer.class, "supergirlygamer", 0xff33cc, 0xe6005c);
-        registerModEntityWithEgg(EntitySkyDoesMinecraft.class, "skydoesminecraft", 0xffff33, 0x000000);
-        registerModEntityWithEgg(EntityTruemu.class, "truemu", 0x0066ff, 0xff9933);
-        registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0);
-
+       /*registerModEntityWithEgg(EntityGhost.class, "ghost", 0x4d0000, 0x000000);
+       registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0);
         BlockRenderRegister.registerBlockRenderer();
-        ItemRenderRegistry.registerItemRender();
+        ItemRenderRegistry.registerItemRender();*/
     }
 }
