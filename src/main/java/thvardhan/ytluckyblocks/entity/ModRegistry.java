@@ -2,6 +2,7 @@ package thvardhan.ytluckyblocks.entity;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
@@ -12,8 +13,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import thvardhan.ytluckyblocks.Main;
+import thvardhan.ytluckyblocks.items.M_sword;
 
-public class ModEntites {
+import static thvardhan.ytluckyblocks.items.ModItemTier.MSWORD;
+
+public class ModRegistry {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Main.MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Main.MODID);
 
@@ -262,45 +266,55 @@ public class ModEntites {
                             .size(0.6F, 2.0F)
                             .build(new ResourceLocation(Main.MODID, "thnxcya").toString()));
 
-    public static final RegistryObject<Item> ALEXIRCRAFT_SPAWN_EGG = ITEMS.register("alexircraft_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.ALEXIRCRAFT, 0xcc00cc, 0x330033, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> ANTVENOM_SPAWN_EGG = ITEMS.register("antvenom_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.ANTVENNOM, 0x77b300, 0x111a00, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> SCUBA_STEVE_SPAWN_EGG = ITEMS.register("scuba_steve_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.SCUBA_STEVE, 0xffcc00, 0xffff00, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> LITTLE_ROPO_SPAWN_EGG = ITEMS.register( "littleropo_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.LITTLEROPO, 0xcc00cc, 0xffffb3, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> MRCRAINER_SPAWN_EGG = ITEMS.register( "mrcrainer_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.MRCRAINER, 0x000000, 0xff944d, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> BABY_ANGEL_SPAWN_EGG = ITEMS.register("babyangel_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.BABY_ANGEL, 0x999999, 0xe6e6e6, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> APHMAU_SPAWN_EGG = ITEMS.register( "aphmau_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.APHMAU, 0x000000, 0xff944d, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> BABY_DUCK_SPAWN_EGG = ITEMS.register("babyduck_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.BABY_DUCK, 0xffcc00, 0xffff00, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> BABY_LEAH_SPAWN_EGG = ITEMS.register( "babyleah_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.BABY_LEAH, 0xcc00cc, 0xffffb3, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> BABY_MAX_SPAWN_EGG = ITEMS.register( "babymax_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.BABY_MAX, 0x000000, 0xff944d, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> CASSIE_THE_CAT_SPAWN_EGG = ITEMS.register( "cassiethecat_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.CASSIE_THE_CAT, 0x999999, 0xe6e6e6, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> DONUT_THE_DOG_SPAWN_EGG = ITEMS.register( "donutthedog_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.DONUT_THE_DOG, 0x000000, 0xff944d, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> EVIL_LITTLE_KELLY_SPAWN_EGG = ITEMS.register( "evillittlekelly_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.EVIL_LITTLE_KELLY, 0xff1a1a, 0xffffb3, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> LITTLE_ALLY_SPAWN_EGG = ITEMS.register( "littleally_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.LITTLEALLY, 0xff8566, 0xffffb3, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> LITTLE_CARLY_SPAWN_EGG = ITEMS.register( "littlecarly_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.LITTLECARLYMC,  0x66ccff, 0xffffb3, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> LITTLE_DONNY_SPAWN_EGG = ITEMS.register( "littledonny_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.LITTLEDONNY, 0x1ab2ff, 0xff8c1a, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> LITTLE_KELLY_SPAWN_EGG = ITEMS.register("littlekelly_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.LITTLEKELLYMC, 0xff99ff, 0x99ff66, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> LITTLE_LIZARD_GAMING_SPAWN_EGG = ITEMS.register("littlelizardgaming_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.LITTLELIZARDGAMING, 0x009933, 0xccffcc, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> MAX_THE_MONKEY_SPAWN_EGG = ITEMS.register( "maxthemonkey_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.MAXTHEMONKEY, 0xcc6600, 0xffcc99, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> EXPLOADINGTNT_SPAWN_EGG = ITEMS.register( "explodingtnt_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.EXPLODING_TNT, 0xff0000, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> MR_WOOFLESS_SPAWN_EGG = ITEMS.register("mrwoofless_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.MRWOOFLESS, 0x3366ff, 0xffaa80,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> LACHLAN_SPAWN_EGG = ITEMS.register( "lachlan_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.LACHLAN,0xff944d, 0xffcc99,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> PEETAZAHUTT_SPAWN_EGG = ITEMS.register( "petazahhutt_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.PETEZAHHUTT, 0xccff99, 0x66ff66,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> PINK_SHEEP_SPAWN_EGG = ITEMS.register( "pinksheep_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.PINKSHEEP, 0xff00ff, 0x330033,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> PRESTON_PLAYZ_SPAWN_EGG = ITEMS.register( "prestonplayz_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.PRESTONPLAYZ, 0xff0000, 0xff6600,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> LSDHADOWLADY_SPAWN_EGG = ITEMS.register( "ldshadowlady_spawn_egg", () -> new ForgeSpawnEggItem(ModEntites.LDSHADOWLADY,0xcc99ff, 0x000066,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> IHASCUPQUAKE_SPAWN_EGG = ITEMS.register( "ihascupquake_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.IHASCUPQUAKE, 0xff66ff, 0x66ff66,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> FRIZZLEANDPOP_SPAWN_EGG = ITEMS.register( "frizzleandpop_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.FRIZZLEANDPOP, 0xffcc00, 0x86b300,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> BAJANCANADIAN_SPAWN_EGG = ITEMS.register( "bajancanadian_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.BABJANCANADIAN, 0xe60000, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> JEROMEASF_SPAWN_EGG = ITEMS.register( "jerome_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.JEROMEASF, 0xb37700, 0xffad33,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> CAPTAINSPARKLEZ_SPAWN_EGG = ITEMS.register( "captainsparklez_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.CAPTAIN_SPARKLEZ, 0xff4d4d, 0xffffcc,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> ISQUID_SPAWN_EGG = ITEMS.register( "iballisticsquid_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.ISQUID, 0x000066, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> DANTDM_SPAWN_EGG = ITEMS.register( "dantdm_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.DANTDM, 0x000066, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> SHARKY_SPAWN_EGG = ITEMS.register( "sharky_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.SHARKY, 0x6666ff, 0x00ccff,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> TINYTURTLE_SPAWN_EGG = ITEMS.register( "tinyturtle_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.TINYTURTLE, 0x006600, 0x994d00,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> VICKSTAR_SPAWN_EGG = ITEMS.register( "vikkstar_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.VIKKSTAR123, 0x005ce6, 0xffcc00,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> SSUNDEE_SPAWN_EGG = ITEMS.register( "ssundee_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.SSUNDEE, 0x000000, 0xcc6600,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> STAMPYLONGHEAD_SPAWN_EGG = ITEMS.register( "stampylonghead_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.STAMPYLONGHEAD, 0xffcc00, 0xff9933,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> TEWTIY_SPAWN_EGG = ITEMS.register( "tewity_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.TEWITY, 0xffcc00, 0xffff1a,new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> THNXCYA_SPAWN_EGG = ITEMS.register( "thnxcya_spawn_egg",() -> new ForgeSpawnEggItem(ModEntites.THNXCYA, 0x00cc66, 0x333300,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<EntityType<EntityLogDotZip>> LOGDOTZIP = ENTITIES
+            .register("logdotzip",
+                    () -> EntityType.Builder.<EntityLogDotZip>create(EntityLogDotZip::new, EntityClassification.CREATURE)
+                            .size(0.6F, 1.95F)
+                            .build(new ResourceLocation(Main.MODID, "logdotzip").toString()));
+
+
+    public static final RegistryObject<Item> ALEXIRCRAFT_SPAWN_EGG = ITEMS.register("alexircraft_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.ALEXIRCRAFT, 0xcc00cc, 0x330033, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> ANTVENOM_SPAWN_EGG = ITEMS.register("antvenom_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.ANTVENNOM, 0x77b300, 0x111a00, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> SCUBA_STEVE_SPAWN_EGG = ITEMS.register("scuba_steve_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.SCUBA_STEVE, 0xffcc00, 0xffff00, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> LITTLE_ROPO_SPAWN_EGG = ITEMS.register( "littleropo_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.LITTLEROPO, 0xcc00cc, 0xffffb3, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> MRCRAINER_SPAWN_EGG = ITEMS.register( "mrcrainer_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.MRCRAINER, 0x000000, 0xff944d, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> BABY_ANGEL_SPAWN_EGG = ITEMS.register("babyangel_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.BABY_ANGEL, 0x999999, 0xe6e6e6, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> APHMAU_SPAWN_EGG = ITEMS.register( "aphmau_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.APHMAU, 0x000000, 0xff944d, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> BABY_DUCK_SPAWN_EGG = ITEMS.register("babyduck_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.BABY_DUCK, 0xffcc00, 0xffff00, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> BABY_LEAH_SPAWN_EGG = ITEMS.register( "babyleah_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.BABY_LEAH, 0xcc00cc, 0xffffb3, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> BABY_MAX_SPAWN_EGG = ITEMS.register( "babymax_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.BABY_MAX, 0x000000, 0xff944d, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> CASSIE_THE_CAT_SPAWN_EGG = ITEMS.register( "cassiethecat_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.CASSIE_THE_CAT, 0x999999, 0xe6e6e6, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> DONUT_THE_DOG_SPAWN_EGG = ITEMS.register( "donutthedog_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.DONUT_THE_DOG, 0x000000, 0xff944d, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> EVIL_LITTLE_KELLY_SPAWN_EGG = ITEMS.register( "evillittlekelly_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.EVIL_LITTLE_KELLY, 0xff1a1a, 0xffffb3, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> LITTLE_ALLY_SPAWN_EGG = ITEMS.register( "littleally_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.LITTLEALLY, 0xff8566, 0xffffb3, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> LITTLE_CARLY_SPAWN_EGG = ITEMS.register( "littlecarly_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.LITTLECARLYMC,  0x66ccff, 0xffffb3, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> LITTLE_DONNY_SPAWN_EGG = ITEMS.register( "littledonny_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.LITTLEDONNY, 0x1ab2ff, 0xff8c1a, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> LITTLE_KELLY_SPAWN_EGG = ITEMS.register("littlekelly_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.LITTLEKELLYMC, 0xff99ff, 0x99ff66, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> LITTLE_LIZARD_GAMING_SPAWN_EGG = ITEMS.register("littlelizardgaming_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.LITTLELIZARDGAMING, 0x009933, 0xccffcc, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> MAX_THE_MONKEY_SPAWN_EGG = ITEMS.register( "maxthemonkey_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.MAXTHEMONKEY, 0xcc6600, 0xffcc99, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> EXPLOADINGTNT_SPAWN_EGG = ITEMS.register( "explodingtnt_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.EXPLODING_TNT, 0xff0000, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> MR_WOOFLESS_SPAWN_EGG = ITEMS.register("mrwoofless_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.MRWOOFLESS, 0x3366ff, 0xffaa80,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> LACHLAN_SPAWN_EGG = ITEMS.register( "lachlan_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.LACHLAN,0xff944d, 0xffcc99,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> PEETAZAHUTT_SPAWN_EGG = ITEMS.register( "petazahhutt_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.PETEZAHHUTT, 0xccff99, 0x66ff66,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> PINK_SHEEP_SPAWN_EGG = ITEMS.register( "pinksheep_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.PINKSHEEP, 0xff00ff, 0x330033,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> PRESTON_PLAYZ_SPAWN_EGG = ITEMS.register( "prestonplayz_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.PRESTONPLAYZ, 0xff0000, 0xff6600,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> LSDHADOWLADY_SPAWN_EGG = ITEMS.register( "ldshadowlady_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.LDSHADOWLADY,0xcc99ff, 0x000066,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> IHASCUPQUAKE_SPAWN_EGG = ITEMS.register( "ihascupquake_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.IHASCUPQUAKE, 0xff66ff, 0x66ff66,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> FRIZZLEANDPOP_SPAWN_EGG = ITEMS.register( "frizzleandpop_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.FRIZZLEANDPOP, 0xffcc00, 0x86b300,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> BAJANCANADIAN_SPAWN_EGG = ITEMS.register( "bajancanadian_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.BABJANCANADIAN, 0xe60000, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> JEROMEASF_SPAWN_EGG = ITEMS.register( "jerome_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.JEROMEASF, 0xb37700, 0xffad33,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> CAPTAINSPARKLEZ_SPAWN_EGG = ITEMS.register( "captainsparklez_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.CAPTAIN_SPARKLEZ, 0xff4d4d, 0xffffcc,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> ISQUID_SPAWN_EGG = ITEMS.register( "iballisticsquid_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.ISQUID, 0x000066, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> DANTDM_SPAWN_EGG = ITEMS.register( "dantdm_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.DANTDM, 0x000066, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> SHARKY_SPAWN_EGG = ITEMS.register( "sharky_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.SHARKY, 0x6666ff, 0x00ccff,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> TINYTURTLE_SPAWN_EGG = ITEMS.register( "tinyturtle_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.TINYTURTLE, 0x006600, 0x994d00,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> VICKSTAR_SPAWN_EGG = ITEMS.register( "vikkstar_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.VIKKSTAR123, 0x005ce6, 0xffcc00,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> SSUNDEE_SPAWN_EGG = ITEMS.register( "ssundee_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.SSUNDEE, 0x000000, 0xcc6600,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> STAMPYLONGHEAD_SPAWN_EGG = ITEMS.register( "stampylonghead_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.STAMPYLONGHEAD, 0xffcc00, 0xff9933,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> TEWTIY_SPAWN_EGG = ITEMS.register( "tewity_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.TEWITY, 0xffcc00, 0xffff1a,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> THNXCYA_SPAWN_EGG = ITEMS.register( "thnxcya_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.THNXCYA, 0x00cc66, 0x333300,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> LOGDOTZIP_SPAWN_EGG = ITEMS.register( "logdotzip_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.LOGDOTZIP, 0xff3333, 0xffaa00,new Item.Properties().group(ItemGroup.MISC)));
+
+    public static final RegistryObject<Item> MASTER_SWORD = ITEMS.register("m_sword", () -> new M_sword( MSWORD, 3, 0, new Item.Properties().group(ItemGroup.MISC)));
 
 }

@@ -1,15 +1,16 @@
 package thvardhan.ytluckyblocks;
 
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import thvardhan.ytluckyblocks.entity.*;
-import thvardhan.ytluckyblocks.entity.model.*;
+//import thvardhan.ytluckyblocks.entity.model.*;
 import thvardhan.ytluckyblocks.entity.render.*;
-import thvardhan.ytluckyblocks.handler.YTEventHandler;
+/*import thvardhan.ytluckyblocks.handler.YTEventHandler;
 import thvardhan.ytluckyblocks.init.ModItems;
 import thvardhan.ytluckyblocks.init.ModTabs;
-import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;
+import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;*/
 
 
 import net.minecraftforge.fml.common.Mod;
@@ -23,7 +24,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
+//import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
 
 
 @Mod(Main.MODID)
@@ -42,7 +43,7 @@ public class Main {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         // Register ourselves for server and other game events we are interested in
         //MinecraftForge.EVENT_BUS.register(new YTEventHandler());
-        ModEntites.init();
+        ModRegistry.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -50,93 +51,94 @@ public class Main {
         LOGGER.info("Creating mod tabs");
        //ModTabs.createTabs();
         DeferredWorkQueue.runLater(() -> {
-            GlobalEntityTypeAttributes.put(ModEntites.SCUBA_STEVE.get(), EntityScubaSteve.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.ALEXIRCRAFT.get(), EntityAlexirCraft.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.ANTVENNOM.get(), EntityAntVenom.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.APHMAU.get(), EntityAphmau.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.BABY_ANGEL.get(), EntityBabyAngel.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.BABY_DUCK.get(), EntityBabyDuck.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.BABY_LEAH.get(), EntityBabyLeah.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.BABY_MAX.get(), EntityBabyMax.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.BABJANCANADIAN.get(), EntityBajanCanadian.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.CAPTAIN_SPARKLEZ.get(), EntityCaptainSparklez.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.CASSIE_THE_CAT.get(), EntityCassieTheCat.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.DONUT_THE_DOG.get(), EntityDonutTheDog.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.DANTDM.get(), EntityDanTDM.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.EVIL_LITTLE_KELLY.get(), EntityEvilLittleKelly.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.EXPLODING_TNT.get(), EntityExplodingTNT.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.FRIZZLEANDPOP.get(), EntityFrizzleandpop.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.IHASCUPQUAKE.get(), EntityIhasCupquake.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.ISQUID.get(), EntityISquid.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.JEROMEASF.get(), EntityJeromeASF.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.LACHLAN.get(), EntityLachlan.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.LDSHADOWLADY.get(), EntityLDShadowLady.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.LITTLEALLY.get(), EntityLittleAlly.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.LITTLECARLYMC.get(), EntityLittleCarlyMC.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.LITTLEDONNY.get(), EntityLittleDonny.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.LITTLEKELLYMC.get(), EntityLittleKellyMC.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.LITTLELIZARDGAMING.get(), EntityLittleLizardGaming.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.LITTLEROPO.get(), EntityLittleRopo.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.MAXTHEMONKEY.get(), EntityMaxTheMonkey.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.MRCRAINER.get(), EntityMrCrainer.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.MRWOOFLESS.get(), EntityMrWoofless.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.PETEZAHHUTT.get(), EntityPeteZahHutt.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.PINKSHEEP.get(), EntityPinkSheep.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.PRESTONPLAYZ.get(), EntityPrestonPlayz.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.SHARKY.get(), EntitySharky.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.TINYTURTLE.get(), EntityTinyTurtle.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.VIKKSTAR123.get(), EntityVikkstar123.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.SSUNDEE.get(), EntitySSundee.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.STAMPYLONGHEAD.get(), EntityStampylonghead.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.TEWITY.get(), EntityTewity.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntites.THNXCYA.get(), EntityThnxCya.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.SCUBA_STEVE.get(), EntityScubaSteve.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.ALEXIRCRAFT.get(), EntityAlexirCraft.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.ANTVENNOM.get(), EntityAntVenom.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.APHMAU.get(), EntityAphmau.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.BABY_ANGEL.get(), EntityBabyAngel.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.BABY_DUCK.get(), EntityBabyDuck.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.BABY_LEAH.get(), EntityBabyLeah.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.BABY_MAX.get(), EntityBabyMax.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.BABJANCANADIAN.get(), EntityBajanCanadian.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.CAPTAIN_SPARKLEZ.get(), EntityCaptainSparklez.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.CASSIE_THE_CAT.get(), EntityCassieTheCat.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.DONUT_THE_DOG.get(), EntityDonutTheDog.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.DANTDM.get(), EntityDanTDM.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.EVIL_LITTLE_KELLY.get(), EntityEvilLittleKelly.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.EXPLODING_TNT.get(), EntityExplodingTNT.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.FRIZZLEANDPOP.get(), EntityFrizzleandpop.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.IHASCUPQUAKE.get(), EntityIhasCupquake.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.ISQUID.get(), EntityISquid.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.JEROMEASF.get(), EntityJeromeASF.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.LACHLAN.get(), EntityLachlan.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.LDSHADOWLADY.get(), EntityLDShadowLady.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.LITTLEALLY.get(), EntityLittleAlly.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.LITTLECARLYMC.get(), EntityLittleCarlyMC.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.LITTLEDONNY.get(), EntityLittleDonny.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.LITTLEKELLYMC.get(), EntityLittleKellyMC.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.LITTLELIZARDGAMING.get(), EntityLittleLizardGaming.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.LITTLEROPO.get(), EntityLittleRopo.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.MAXTHEMONKEY.get(), EntityMaxTheMonkey.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.MRCRAINER.get(), EntityMrCrainer.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.MRWOOFLESS.get(), EntityMrWoofless.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.PETEZAHHUTT.get(), EntityPeteZahHutt.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.PINKSHEEP.get(), EntityPinkSheep.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.PRESTONPLAYZ.get(), EntityPrestonPlayz.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.SHARKY.get(), EntitySharky.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.TINYTURTLE.get(), EntityTinyTurtle.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.VIKKSTAR123.get(), EntityVikkstar123.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.SSUNDEE.get(), EntitySSundee.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.STAMPYLONGHEAD.get(), EntityStampylonghead.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.TEWITY.get(), EntityTewity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.THNXCYA.get(), EntityThnxCya.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModRegistry.LOGDOTZIP.get(), EntityLogDotZip.getAttributes().create());
 
         });
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.SCUBA_STEVE.get(), EntityScubaSteveRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.ALEXIRCRAFT.get(), EntityAlexircraftRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.ANTVENNOM.get(), EntityAntVenomRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.APHMAU.get(), EntityAphmauRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.BABY_ANGEL.get(), EntityBabyAngelRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.BABY_DUCK.get(), EntityBabyDuckRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.BABY_LEAH.get(), EntityBabyLeahRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.BABY_MAX.get(), EntityBabyMaxRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.BABJANCANADIAN.get(), EntityBajanCanadianRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.CAPTAIN_SPARKLEZ.get(), EntityCaptainSparklezRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.CASSIE_THE_CAT.get(), EntityCassieTheCatRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.DONUT_THE_DOG.get(), EntityDonutTheDogRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.DANTDM.get(), EntityDanTDMRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.EVIL_LITTLE_KELLY.get(), EntityEvilLittleKellyRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.EXPLODING_TNT.get(), EntityExplodingTNTRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.FRIZZLEANDPOP.get(), EntityFrizzleandPopRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.IHASCUPQUAKE.get(), EntityIhascupquakeRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.ISQUID.get(), EntityISquidRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.JEROMEASF.get(), EntityJeromeASFRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LACHLAN.get(), EntityLachlanRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LDSHADOWLADY.get(), EntityLDShadowLadyRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLEALLY.get(), EntityLittleAllyRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLECARLYMC.get(), EntityLittleCarlyRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLEDONNY.get(), EntityLittleDonnyRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLEKELLYMC.get(), EntityLittleKellyMCRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLELIZARDGAMING.get(), EntityLittleLizardGamingRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.LITTLEROPO.get(), EntityLittleRopoRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.MAXTHEMONKEY.get(), EntityMaxTheMonkeyRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.MRCRAINER.get(), EntityMRCrainerRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.MRWOOFLESS.get(), EntityMRWooflessRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.PETEZAHHUTT.get(), EntityPetaRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.PINKSHEEP.get(), EntityPinkSheepRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.PRESTONPLAYZ.get(), EntityPrestonRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.SHARKY.get(), EntitySharkyRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.TINYTURTLE.get(), EntityTinyTurtleRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.VIKKSTAR123.get(), EntityVikkstar123Render::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.TEWITY.get(), EntityTewityRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.THNXCYA.get(), EntityThnxcyaRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.SSUNDEE.get(), EntitySsundeeRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(ModEntites.STAMPYLONGHEAD.get(), EntityStampylongheadRender::new);
-
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SCUBA_STEVE.get(), EntityScubaSteveRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.ALEXIRCRAFT.get(), EntityAlexircraftRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.ANTVENNOM.get(), EntityAntVenomRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.APHMAU.get(), EntityAphmauRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.BABY_ANGEL.get(), EntityBabyAngelRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.BABY_DUCK.get(), EntityBabyDuckRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.BABY_LEAH.get(), EntityBabyLeahRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.BABY_MAX.get(), EntityBabyMaxRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.BABJANCANADIAN.get(), EntityBajanCanadianRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.CAPTAIN_SPARKLEZ.get(), EntityCaptainSparklezRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.CASSIE_THE_CAT.get(), EntityCassieTheCatRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.DONUT_THE_DOG.get(), EntityDonutTheDogRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.DANTDM.get(), EntityDanTDMRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.EVIL_LITTLE_KELLY.get(), EntityEvilLittleKellyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.EXPLODING_TNT.get(), EntityExplodingTNTRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.FRIZZLEANDPOP.get(), EntityFrizzleandPopRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.IHASCUPQUAKE.get(), EntityIhascupquakeRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.ISQUID.get(), EntityISquidRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.JEROMEASF.get(), EntityJeromeASFRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LACHLAN.get(), EntityLachlanRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LDSHADOWLADY.get(), EntityLDShadowLadyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LITTLEALLY.get(), EntityLittleAllyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LITTLECARLYMC.get(), EntityLittleCarlyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LITTLEDONNY.get(), EntityLittleDonnyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LITTLEKELLYMC.get(), EntityLittleKellyMCRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LITTLELIZARDGAMING.get(), EntityLittleLizardGamingRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LITTLEROPO.get(), EntityLittleRopoRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.MAXTHEMONKEY.get(), EntityMaxTheMonkeyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.MRCRAINER.get(), EntityMRCrainerRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.MRWOOFLESS.get(), EntityMRWooflessRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.PETEZAHHUTT.get(), EntityPetaRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.PINKSHEEP.get(), EntityPinkSheepRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.PRESTONPLAYZ.get(), EntityPrestonRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SHARKY.get(), EntitySharkyRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.TINYTURTLE.get(), EntityTinyTurtleRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.VIKKSTAR123.get(), EntityVikkstar123Render::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.TEWITY.get(), EntityTewityRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.THNXCYA.get(), EntityThnxcyaRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SSUNDEE.get(), EntitySsundeeRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.STAMPYLONGHEAD.get(), EntityStampylongheadRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LOGDOTZIP.get(), EntityLogDotZipRender::new);
         registerEntities();
     }
 
@@ -160,7 +162,7 @@ public class Main {
 
 
     private void registerEntities() {
-        registerModEntityWithEgg(EntityLogDotZip.class, "logdotzip", 0xff3333, 0xffaa00);
+       /* registerModEntityWithEgg(EntityLogDotZip.class, "logdotzip", 0xff3333, 0xffaa00);
         registerModEntityWithEgg(EntityPopularMMO.class, "popularmmo", 0x262626, 0x005580);
         registerModEntityWithEgg(EntityGhost.class, "ghost", 0x4d0000, 0x000000);
         registerModEntityWithEgg(EntitySerialPlayer.class, "thvardhan", 0xcc9900, 0xffff66);
@@ -170,6 +172,6 @@ public class Main {
         registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0);
 
         BlockRenderRegister.registerBlockRenderer();
-        ItemRenderRegistry.registerItemRender();
+        ItemRenderRegistry.registerItemRender(); */
     }
 }
