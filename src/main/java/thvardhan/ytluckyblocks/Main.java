@@ -98,8 +98,7 @@ public class Main {
             GlobalEntityTypeAttributes.put(ModRegistry.SKYDOESMINECRAFT.get(), EntitySkyDoesMinecraft.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModRegistry.SUPERGIRLYGAMER.get(), EntitySuperGirlyGamer.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModRegistry.TRUEMU.get(), EntityTruemu.getAttributes().create());
-
-
+            GlobalEntityTypeAttributes.put(ModRegistry.GHOST.get(), EntityGhost.getAttributes().create());
         });
     }
 
@@ -151,6 +150,7 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SKYDOESMINECRAFT.get(), EntitySkyDoesMinecraftRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SUPERGIRLYGAMER.get(), EntitySuperGirlyGamerRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.TRUEMU.get(), EntityTruemuRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.GHOST.get(), EntityGhostRender::new);
 
         registerEntities();
     }
@@ -175,8 +175,7 @@ public class Main {
 
 
     private void registerEntities() {
-       /*registerModEntityWithEgg(EntityGhost.class, "ghost", 0x4d0000, 0x000000);
-       registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0);
+      /* registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0);
         BlockRenderRegister.registerBlockRenderer();
         ItemRenderRegistry.registerItemRender();*/
     }

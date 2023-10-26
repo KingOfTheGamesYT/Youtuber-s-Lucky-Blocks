@@ -302,6 +302,11 @@ public class ModRegistry {
                             .size(0.6F, 2.0F)
                             .build(new ResourceLocation(Main.MODID, "truemu").toString()));
 
+    public static final RegistryObject<EntityType<EntityGhost>> GHOST = ENTITIES
+            .register("ghost",
+                    () -> EntityType.Builder.<EntityGhost>create(EntityGhost::new, EntityClassification.CREATURE)
+                            .size(0.8F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "ghost").toString()));
 
     public static final RegistryObject<Item> ALEXIRCRAFT_SPAWN_EGG = ITEMS.register("alexircraft_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.ALEXIRCRAFT, 0xcc00cc, 0x330033, new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> ANTVENOM_SPAWN_EGG = ITEMS.register("antvenom_spawn_egg", () -> new ForgeSpawnEggItem(ModRegistry.ANTVENNOM, 0x77b300, 0x111a00, new Item.Properties().group(ItemGroup.MISC)));
@@ -349,6 +354,7 @@ public class ModRegistry {
     public static final RegistryObject<Item> SKYDOESMINECRAFT_SPAWN_EGG = ITEMS.register( "skythekidrs_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.SKYDOESMINECRAFT,  0xffff33, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> SUPERGIRLYGAMER_SPAWN_EGG = ITEMS.register( "jen_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.SUPERGIRLYGAMER,  0xff33cc, 0xe6005c,new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> TRUEMU_SPAWN_EGG = ITEMS.register( "truemu_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.TRUEMU,  0x0066ff, 0xff9933,new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> GHOST_SPAWN_EGG = ITEMS.register( "ghost_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.GHOST,  0x4d0000, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
 
     public static final RegistryObject<Item> MASTER_SWORD = ITEMS.register("m_sword", () -> new M_sword( MSWORD, 3, 0, new Item.Properties().group(ItemGroup.MISC)));
 

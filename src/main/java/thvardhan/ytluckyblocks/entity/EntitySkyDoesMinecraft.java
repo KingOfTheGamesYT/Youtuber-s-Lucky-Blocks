@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 public class EntitySkyDoesMinecraft extends CreatureEntity {
 
-    private String name = "TrueMU";
+    private String name = "SkythekidRS";
 
     public EntitySkyDoesMinecraft(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
