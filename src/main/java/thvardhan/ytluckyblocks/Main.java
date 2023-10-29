@@ -156,6 +156,7 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.TRUEMU.get(), EntityTruemuRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.GHOST.get(), EntityGhostRender::new);
         RenderTypeLookup.setRenderLayer(ModRegistry.DIAMOND_PLAY_BUTTON.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModRegistry.MIC_BLOCK.get(), RenderType.getCutout());
         registerEntities();
     }
 

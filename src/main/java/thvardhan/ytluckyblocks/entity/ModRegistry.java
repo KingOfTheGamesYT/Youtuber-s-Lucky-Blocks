@@ -17,6 +17,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.blocks.BlockItemBase;
 import thvardhan.ytluckyblocks.blocks.DiamondButton;
+import thvardhan.ytluckyblocks.blocks.MicBlock;
 import thvardhan.ytluckyblocks.items.M_sword;
 
 import static thvardhan.ytluckyblocks.items.ModItemTier.MSWORD;
@@ -371,5 +372,7 @@ public class ModRegistry {
     public static final RegistryObject<Item> GOLD_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("gold_button_block", () -> new BlockItemBase(GOLD_PLAY_BUTTON.get()));
     public static final RegistryObject<Block> IRON_PLAY_BUTTON = BLOCKS.register("iron_button_block", DiamondButton::new);
     public static final RegistryObject<Item> IRON_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("iron_button_block", () -> new BlockItemBase(IRON_PLAY_BUTTON.get()));
+    public static final RegistryObject<Block> MIC_BLOCK = BLOCKS.register("mic_block", MicBlock::new);
+    public static final RegistryObject<Item> MIC_BLOCKITEM = ITEMS.register("mic_block", () -> new BlockItemBase(MIC_BLOCK.get()));
 
 }
