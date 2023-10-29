@@ -1,10 +1,14 @@
 package thvardhan.ytluckyblocks;
 
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 import thvardhan.ytluckyblocks.entity.*;
 //import thvardhan.ytluckyblocks.entity.model.*;
 import thvardhan.ytluckyblocks.entity.render.*;
@@ -151,7 +155,7 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.SUPERGIRLYGAMER.get(), EntitySuperGirlyGamerRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.TRUEMU.get(), EntityTruemuRender::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.GHOST.get(), EntityGhostRender::new);
-
+        RenderTypeLookup.setRenderLayer(ModRegistry.DIAMOND_PLAY_BUTTON.get(), RenderType.getCutout());
         registerEntities();
     }
 
@@ -172,7 +176,6 @@ public class Main {
             LOGGER.info("HELLO from Register Block");
         }
     }
-
 
     private void registerEntities() {
       /* registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0);

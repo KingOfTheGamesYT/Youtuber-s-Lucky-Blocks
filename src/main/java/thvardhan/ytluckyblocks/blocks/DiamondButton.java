@@ -1,48 +1,31 @@
 package thvardhan.ytluckyblocks.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import thvardhan.ytluckyblocks.init.ModTabs;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.IBlockReader;
 
 public class DiamondButton extends Block {
 
+    public DiamondButton() {
+        super(Properties.create(Material.ROCK)
+                        .hardnessAndResistance(20, 10000)
+                        .setLightLevel(state -> 12));
 
-    public DiamondButton(String unlocalizedName, Material material, float hardness, float resistance) {
-        super(material);
-        this.setUnlocalizedName(unlocalizedName);
-        this.setRegistryName(unlocalizedName);
-        this.setCreativeTab(ModTabs.tabYTStuffMod);
-        this.setHardness(hardness);
-        this.setResistance(resistance);
         //  this.setBlockBounds(0, 0.1F, 0.5F, 1, 0.8F, 0.6F);
-        this.setLightLevel(1F);
-    }
 
-    public DiamondButton(String unlocalizedName, float hardness, float resistance) {
-        this(unlocalizedName, Material.ROCK, 20, 10000);
-    }
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return new AxisAlignedBB(0,0.1,0.5,1,0.8,0.6);
-    }
-
-    public DiamondButton(String unlocalizedName) {
-        this(unlocalizedName, 2.0f, 10.0f);
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    public Item createItemBlock() {
-        return new ItemBlock(this).setRegistryName(getRegistryName());
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return VoxelShapes.create(0, 0.1, 0.5, 1, 0.8, 0.6);
     }
 
 }

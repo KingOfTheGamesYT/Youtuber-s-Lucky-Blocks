@@ -1,5 +1,6 @@
 package thvardhan.ytluckyblocks.entity;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.IItemTier;
@@ -12,19 +13,24 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import net.minecraftforge.registries.IForgeRegistry;
 import thvardhan.ytluckyblocks.Main;
+import thvardhan.ytluckyblocks.blocks.BlockItemBase;
+import thvardhan.ytluckyblocks.blocks.DiamondButton;
 import thvardhan.ytluckyblocks.items.M_sword;
 
 import static thvardhan.ytluckyblocks.items.ModItemTier.MSWORD;
 
 public class ModRegistry {
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Main.MODID);
+
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Main.MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Main.MODID);
 
     public static void init() {
         ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-
+        BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     public static final RegistryObject<EntityType<EntityScubaSteve>> SCUBA_STEVE = ENTITIES
@@ -357,5 +363,13 @@ public class ModRegistry {
     public static final RegistryObject<Item> GHOST_SPAWN_EGG = ITEMS.register( "ghost_spawn_egg",() -> new ForgeSpawnEggItem(ModRegistry.GHOST,  0x4d0000, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
 
     public static final RegistryObject<Item> MASTER_SWORD = ITEMS.register("m_sword", () -> new M_sword( MSWORD, 3, 0, new Item.Properties().group(ItemGroup.MISC)));
+
+
+    public static final RegistryObject<Block> DIAMOND_PLAY_BUTTON = BLOCKS.register("diamond_button_block", DiamondButton::new);
+    public static final RegistryObject<Item> DIAMOND_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("diamond_button_block", () -> new BlockItemBase(DIAMOND_PLAY_BUTTON.get()));
+    public static final RegistryObject<Block> GOLD_PLAY_BUTTON = BLOCKS.register("gold_button_block", DiamondButton::new);
+    public static final RegistryObject<Item> GOLD_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("gold_button_block", () -> new BlockItemBase(GOLD_PLAY_BUTTON.get()));
+    public static final RegistryObject<Block> IRON_PLAY_BUTTON = BLOCKS.register("iron_button_block", DiamondButton::new);
+    public static final RegistryObject<Item> IRON_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("iron_button_block", () -> new BlockItemBase(IRON_PLAY_BUTTON.get()));
 
 }
