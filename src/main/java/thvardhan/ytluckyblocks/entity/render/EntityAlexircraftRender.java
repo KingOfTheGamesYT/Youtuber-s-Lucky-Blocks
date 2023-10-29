@@ -4,9 +4,9 @@ import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.util.ResourceLocation;
+
 import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.entity.EntityAlexirCraft;
-import thvardhan.ytluckyblocks.entity.EntityScubaSteve;
 
 public class EntityAlexircraftRender extends BipedRenderer<EntityAlexirCraft, BipedModel<EntityAlexirCraft>> {
     protected ResourceLocation texture = new ResourceLocation(Main.MODID + ":textures/entity/alex_skin.png");

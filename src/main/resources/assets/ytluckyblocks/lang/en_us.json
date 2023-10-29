@@ -1,4 +1,6 @@
 {
+
+  "_comment": "Weapons",
   "item.ytluckyblocks.yt_sword": "YT Hammer",
   "item.ytluckyblocks.nasty_sword": "Nasty Sword",
   "item.ytluckyblocks.m_sword": "Master Sword",
@@ -6,14 +8,16 @@
   "item.ytluckyblocks.logdotzip_sword": "Logdotzip Sword",
   "item.ytluckyblocks.devil_sword": "Devil Sword",
   "item.ytluckyblocks.levin_sword": "One Hit Sword",
-  "block.ytluckyblocks.youtube_block": "YT Block",
-  "item.ytluckyblocks.mic": "Mic",
-  "item.ytluckyblocks.yticon": "YT Icon",
-
   "item.ytluckyblocks.snow_sword": "Snow Sword",
   "item.ytluckyblocks.mega_sword": "Mega Sword",
   "item.ytluckyblocks.battle_axe": "Battle Axe",
   "item.ytluckyblocks.rainbow_blade": "Rainbow Blade",
+
+  "_comment": "Misc Items",
+  "item.ytluckyblocks.mic": "Mic",
+  "item.ytluckyblocks.yticon": "YT Icon",
+
+  "_comment": "Armor",
   "item.ytluckyblocks.aphmauhelmet": "Aphmau Helmet",
   "item.ytluckyblocks.aphmauchestplate": "Aphmau Chestplate",
   "item.ytluckyblocks.aphmauleggings": "Aphmau Leggings",
@@ -203,6 +207,8 @@
   "item.ytluckyblocks.turtlechestplate": "Tiny Turtle Chestplate",
   "item.ytluckyblocks.turtleleggings": "Tiny Turtle Leggings",
   "item.ytluckyblocks.turtleboots": "Tiny Turtle Boots",
+
+  "_comment": "Spawn Eggs",
   "item.ytluckyblocks.alexircraft_spawn_egg": "Spawn Alexircraft",
   "item.ytluckyblocks.antvenom_spawn_egg": "Spawn AntVenom",
   "item.ytluckyblocks.aphmau_spawn_egg": "Spawn Aphmau",
@@ -252,7 +258,8 @@
   "item.ytluckyblocks.ghost_spawn_egg": "Spawn Ghost",
 
 
-
+  "_comment": "Blocks",
+  "block.ytluckyblocks.youtube_block": "YT Block",
   "block.ytluckyblocks.lucky_pressure_plate": "Lucky Plate Button",
   "block.ytluckyblocks.mrcrainer_lucky_block": "MrCrainer Lucky Block",
   "block.ytluckyblocks.little_ropo_lucky_block": "Little Ropo Lucky Block",
@@ -305,6 +312,7 @@
   "block.ytluckyblocks.petazahhutt_lucky_block": "PeteZahHutt Lucky Block",
   "block.ytluckyblocks.pinksheep_lucky_block": "PinkSheep Lucky Block",
 
+  "_comment": "Entities",
   "entity.ytluckyblocks.popularmmo": "PopularMMOS",
   "entity.ytluckyblocks.logdotzip": "Logdotzip",
   "entity.ytluckyblocks.antvenom": "AntVenom",
