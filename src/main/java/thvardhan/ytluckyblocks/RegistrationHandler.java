@@ -1,4 +1,4 @@
-package thvardhan.ytluckyblocks.entity;
+package thvardhan.ytluckyblocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityClassification;
@@ -12,12 +12,14 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.blocks.BlockItemBase;
 import thvardhan.ytluckyblocks.blocks.DiamondButton;
 import thvardhan.ytluckyblocks.blocks.MicBlock;
+import thvardhan.ytluckyblocks.entity.*;
+import thvardhan.ytluckyblocks.items.BattleAxe;
 import thvardhan.ytluckyblocks.items.M_sword;
 
+import static thvardhan.ytluckyblocks.items.ModItemTier.BATTLE;
 import static thvardhan.ytluckyblocks.items.ModItemTier.MSWORD;
 
 public class RegistrationHandler {
@@ -361,7 +363,8 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> TRUEMU_SPAWN_EGG = ITEMS.register( "truemu_spawn_egg",() -> new ForgeSpawnEggItem(RegistrationHandler.TRUEMU,  0x0066ff, 0xff9933,new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> GHOST_SPAWN_EGG = ITEMS.register( "ghost_spawn_egg",() -> new ForgeSpawnEggItem(RegistrationHandler.GHOST,  0x4d0000, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
 
-    public static final RegistryObject<Item> MASTER_SWORD = ITEMS.register("m_sword", () -> new M_sword( MSWORD, 3, 0, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> MASTER_SWORD = ITEMS.register("m_sword", () -> new M_sword( MSWORD, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> BATTLE_AXE = ITEMS.register("battle_axe", () -> new BattleAxe( BATTLE, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
 
 
     public static final RegistryObject<Block> DIAMOND_PLAY_BUTTON = BLOCKS.register("diamond_button_block", DiamondButton::new);

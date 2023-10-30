@@ -1,18 +1,14 @@
 package thvardhan.ytluckyblocks.items;
 
-import net.minecraft.item.ItemSword;
-import thvardhan.ytluckyblocks.init.ModTabs;
-import thvardhan.ytluckyblocks.proxy.CommonProxy;
-
-public class BattleAxe extends ItemSword {
-
-    public BattleAxe(String u, ToolMaterial material) {
-        super(material);
-        this.setUnlocalizedName(u);
-        this.setRegistryName(u);
-        this.setCreativeTab(ModTabs.tabYTStuffMod);
+import net.minecraft.item.IItemTier;
+import net.minecraft.item.Item;
+import net.minecraft.item.SwordItem;
 
 
+public class BattleAxe extends SwordItem {
+
+    public BattleAxe(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder) {
+        super(tier, attackDamageIn, attackSpeedIn, builder);
     }
 
 }

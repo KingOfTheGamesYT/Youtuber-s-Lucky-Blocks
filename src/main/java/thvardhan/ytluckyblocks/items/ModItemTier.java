@@ -4,7 +4,8 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 
 public enum ModItemTier implements IItemTier {
-    MSWORD( 0, 1000, 0, 3F, 0);
+    MSWORD( 0, 1000, 0, 3F, 0),
+    BATTLE( 0, 2000, 0, 2F, 100);
 
     private final int harvestLevel;
     private final int maxUses;

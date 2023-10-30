@@ -16,6 +16,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import thvardhan.ytluckyblocks.RegistrationHandler;
 
 public class EntityLogDotZip extends CreatureEntity {
 
