@@ -13,7 +13,8 @@ public enum ModItemTier implements IItemTier {
     SNOW(0, 150, 0, 0.5F, 0),
     BLACK_NEON(0, 2005, 0, 1F, 22),
     HAMMER(0, 1000, 0, 5F, 0),
-    NASTY(0, 20, 0, 0F, 0);
+    NASTY(0, 20, 0, 0F, 0),
+    LOG(0, 4000, 0, 1.5F, 40);
 
     private final int harvestLevel;
     private final int maxUses;
