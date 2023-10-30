@@ -17,6 +17,7 @@ import thvardhan.ytluckyblocks.blocks.DiamondButton;
 import thvardhan.ytluckyblocks.blocks.MicBlock;
 import thvardhan.ytluckyblocks.entity.*;
 import thvardhan.ytluckyblocks.items.M_sword;
+import thvardhan.ytluckyblocks.items.Nasty_sword;
 
 import static thvardhan.ytluckyblocks.items.ModItemTier.*;
 
@@ -370,7 +371,7 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> SNOW_SWORD = ITEMS.register("snow_sword", () -> new M_sword( SNOW, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> BLACK_NEON_SWORD = ITEMS.register("black_sword", () -> new M_sword( BLACK_NEON, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> YT_HAMMER = ITEMS.register("yt_sword", () -> new M_sword( HAMMER, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
-
+    public static final RegistryObject<Item> NASTY_SWORD = ITEMS.register("nasty_sword", () -> new Nasty_sword( NASTY, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
 
     public static final RegistryObject<Block> DIAMOND_PLAY_BUTTON = BLOCKS.register("diamond_button_block", DiamondButton::new);
     public static final RegistryObject<Item> DIAMOND_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("diamond_button_block", () -> new BlockItemBase(DIAMOND_PLAY_BUTTON.get()));
