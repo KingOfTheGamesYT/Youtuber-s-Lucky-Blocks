@@ -16,11 +16,9 @@ import thvardhan.ytluckyblocks.blocks.BlockItemBase;
 import thvardhan.ytluckyblocks.blocks.DiamondButton;
 import thvardhan.ytluckyblocks.blocks.MicBlock;
 import thvardhan.ytluckyblocks.entity.*;
-import thvardhan.ytluckyblocks.items.BattleAxe;
 import thvardhan.ytluckyblocks.items.M_sword;
 
-import static thvardhan.ytluckyblocks.items.ModItemTier.BATTLE;
-import static thvardhan.ytluckyblocks.items.ModItemTier.MSWORD;
+import static thvardhan.ytluckyblocks.items.ModItemTier.*;
 
 public class RegistrationHandler {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Main.MODID);
@@ -364,7 +362,14 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> GHOST_SPAWN_EGG = ITEMS.register( "ghost_spawn_egg",() -> new ForgeSpawnEggItem(RegistrationHandler.GHOST,  0x4d0000, 0x000000,new Item.Properties().group(ItemGroup.MISC)));
 
     public static final RegistryObject<Item> MASTER_SWORD = ITEMS.register("m_sword", () -> new M_sword( MSWORD, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
-    public static final RegistryObject<Item> BATTLE_AXE = ITEMS.register("battle_axe", () -> new BattleAxe( BATTLE, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> BATTLE_AXE = ITEMS.register("battle_axe", () -> new M_sword( BATTLE, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> DEVIL_SWORD = ITEMS.register("devil_sword", () -> new M_sword( DEVIL, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> LEVIN_SWORD = ITEMS.register("levin_sword", () -> new M_sword( LEVIN, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> MEGA_SWORD = ITEMS.register("mega_sword", () -> new M_sword( MEGA, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> RAINBOW_SWORD = ITEMS.register("rainbow_blade", () -> new M_sword( RAINBOW, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> SNOW_SWORD = ITEMS.register("snow_sword", () -> new M_sword( SNOW, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> BLACK_NEON_SWORD = ITEMS.register("black_sword", () -> new M_sword( BLACK_NEON, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> YT_HAMMER = ITEMS.register("yt_sword", () -> new M_sword( HAMMER, 3, -2.4F, new Item.Properties().group(ItemGroup.MISC)));
 
 
     public static final RegistryObject<Block> DIAMOND_PLAY_BUTTON = BLOCKS.register("diamond_button_block", DiamondButton::new);
