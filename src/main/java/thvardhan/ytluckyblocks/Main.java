@@ -3,6 +3,8 @@ package thvardhan.ytluckyblocks;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import thvardhan.ytluckyblocks.entity.*;
@@ -156,6 +158,13 @@ public class Main {
         registerEntities();
     }
 
+    public static final ItemGroup MAIN = new ItemGroup("main") {
+
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(RegistrationHandler.ICON.get());
+        }
+    };
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
