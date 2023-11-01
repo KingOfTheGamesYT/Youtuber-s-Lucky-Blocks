@@ -3,6 +3,7 @@ package thvardhan.ytluckyblocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
@@ -16,11 +17,9 @@ import thvardhan.ytluckyblocks.blocks.BlockItemBase;
 import thvardhan.ytluckyblocks.blocks.DiamondButton;
 import thvardhan.ytluckyblocks.blocks.MicBlock;
 import thvardhan.ytluckyblocks.entity.*;
-import thvardhan.ytluckyblocks.items.M_sword;
-import thvardhan.ytluckyblocks.items.Nasty_sword;
-import thvardhan.ytluckyblocks.items.SwordLogDotZip;
-import thvardhan.ytluckyblocks.items.YtIcon;
+import thvardhan.ytluckyblocks.items.*;
 
+import static thvardhan.ytluckyblocks.items.ModArmorMaterial.YOUTUBE;
 import static thvardhan.ytluckyblocks.items.ModItemTier.*;
 
 public class RegistrationHandler {
@@ -383,7 +382,13 @@ public class RegistrationHandler {
     public static final RegistryObject<Block> IRON_PLAY_BUTTON = BLOCKS.register("iron_button_block", DiamondButton::new);
     public static final RegistryObject<Item> IRON_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("iron_button_block", () -> new BlockItemBase(IRON_PLAY_BUTTON.get()));
     public static final RegistryObject<Block> MIC_BLOCK = BLOCKS.register("mic_block", MicBlock::new);
+
     public static final RegistryObject<Item> MIC_BLOCKITEM = ITEMS.register("mic_block", () -> new BlockItemBase(MIC_BLOCK.get()));
     public static final RegistryObject<YtIcon> ICON = ITEMS.register("yticon", YtIcon::new);
+
+    public static final RegistryObject<Item> YT_HELM = ITEMS.register("yt_helmet", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.HEAD, new Item.Properties().group(Main.MAIN)));
+    public static final RegistryObject<Item> YT_CHEST = ITEMS.register("yt_chestplate", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.CHEST, new Item.Properties().group(Main.MAIN)));
+    public static final RegistryObject<Item> YT_BOOTS = ITEMS.register("yt_boots", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.LEGS, new Item.Properties().group(Main.MAIN)));
+    public static final RegistryObject<Item> YT_LEGS = ITEMS.register("yt_leggings", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.FEET, new Item.Properties().group(Main.MAIN)));
 
 }
