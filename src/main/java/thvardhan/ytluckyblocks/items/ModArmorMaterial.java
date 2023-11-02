@@ -57,7 +57,22 @@ public enum ModArmorMaterial implements IArmorMaterial {
             SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
 
     TINY_TURTLE(Main.MODID + ":tinyturtulearmor", 80, new int[] { 4, 8, 6, 4}, 1,
-            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F);
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+
+    AP_HMAU(Main.MODID + ":aphmauarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+
+    ROPO(Main.MODID + ":ropoarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+
+    SCUBA(Main.MODID + ":scubaarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+
+    CRAINER(Main.MODID + ":crainerarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+
+    ANGEL(Main.MODID + ":angelarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F);
     private static final int[] MAX_DAMAGE_ARRAY = new int[] {11, 16, 15, 13};
     private final String name;
     private final int maxDamageFactor;

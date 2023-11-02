@@ -11,7 +11,7 @@ public class ItemModArmor extends ArmorItem {
 
     public ItemModArmor(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
 
-        super(materialIn, slot, new Properties().group(Main.MAIN));
+        super(materialIn, slot, new Properties().group(Main.ARMOR));
     }
 
 
