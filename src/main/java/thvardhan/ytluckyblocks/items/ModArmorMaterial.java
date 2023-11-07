@@ -61,18 +61,39 @@ public enum ModArmorMaterial implements IArmorMaterial {
 
     AP_HMAU(Main.MODID + ":aphmauarmor", 80, new int[] { 4, 8, 6, 4}, 1,
     SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
-
     ROPO(Main.MODID + ":ropoarmor", 80, new int[] { 4, 8, 6, 4}, 1,
     SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
-
     SCUBA(Main.MODID + ":scubaarmor", 80, new int[] { 4, 8, 6, 4}, 1,
     SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
-
     CRAINER(Main.MODID + ":crainerarmor", 80, new int[] { 4, 8, 6, 4}, 1,
     SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
-
     ANGEL(Main.MODID + ":angelarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    TNT(Main.MODID + ":tnt", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    LAC(Main.MODID + ":lac", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    MR(Main.MODID + ":mr", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    PETA(Main.MODID + ":peta", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    PINK(Main.MODID + ":pink", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    VIK(Main.MODID + ":vik", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    IHAS(Main.MODID + ":ihasarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    LD(Main.MODID + ":ldarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    PRESTON(Main.MODID + ":prestonarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    S(Main.MODID + ":sarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    STAMPY(Main.MODID + ":stampyarmor", 80, new int[] { 4, 8, 6, 4}, 1,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    THNX(Main.MODID + ":thnxarmor", 80, new int[] { 4, 8, 6, 4}, 1,
     SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F);
+
     private static final int[] MAX_DAMAGE_ARRAY = new int[] {11, 16, 15, 13};
     private final String name;
     private final int maxDamageFactor;
