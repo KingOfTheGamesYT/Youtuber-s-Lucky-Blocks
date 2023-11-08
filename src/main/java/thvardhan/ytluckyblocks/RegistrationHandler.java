@@ -518,5 +518,9 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> ANT_CHEST = ITEMS.register("ant_chestplate", () -> new ItemModArmor( ANT, EquipmentSlotType.CHEST, new Item.Properties()));
     public static final RegistryObject<Item> ANT_LEGS = ITEMS.register("ant_leggings", () -> new ItemModArmor( ANT, EquipmentSlotType.LEGS, new Item.Properties()));
     public static final RegistryObject<Item> ANT_BOOTS = ITEMS.register("ant_boots", () -> new ItemModArmor( ANT, EquipmentSlotType.FEET, new Item.Properties()));
+    public static final RegistryObject<Item> CAP_HELM = ITEMS.register("cap_helmet", () -> new ItemModArmor( CAP, EquipmentSlotType.HEAD, new Item.Properties()));
+    public static final RegistryObject<Item> CAP_CHEST = ITEMS.register("cap_chestplate", () -> new ItemModArmor( CAP, EquipmentSlotType.CHEST, new Item.Properties()));
+    public static final RegistryObject<Item> CAP_LEGS = ITEMS.register("cap_leggings", () -> new ItemModArmor( CAP, EquipmentSlotType.LEGS, new Item.Properties()));
+    public static final RegistryObject<Item> CAP_BOOTS = ITEMS.register("cap_boots", () -> new ItemModArmor( CAP, EquipmentSlotType.FEET, new Item.Properties()));
 
 }
