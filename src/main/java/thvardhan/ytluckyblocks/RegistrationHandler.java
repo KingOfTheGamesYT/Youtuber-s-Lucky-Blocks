@@ -522,5 +522,8 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> CAP_CHEST = ITEMS.register("cap_chestplate", () -> new ItemModArmor( CAP, EquipmentSlotType.CHEST, new Item.Properties()));
     public static final RegistryObject<Item> CAP_LEGS = ITEMS.register("cap_leggings", () -> new ItemModArmor( CAP, EquipmentSlotType.LEGS, new Item.Properties()));
     public static final RegistryObject<Item> CAP_BOOTS = ITEMS.register("cap_boots", () -> new ItemModArmor( CAP, EquipmentSlotType.FEET, new Item.Properties()));
-
+    public static final RegistryObject<Item> DAN_HELM = ITEMS.register("dan_helmet", () -> new ItemModArmor( DAN, EquipmentSlotType.HEAD, new Item.Properties()));
+    public static final RegistryObject<Item> DAN_CHEST = ITEMS.register("dan_chestplate", () -> new ItemModArmor( DAN, EquipmentSlotType.CHEST, new Item.Properties()));
+    public static final RegistryObject<Item> DAN_LEGS = ITEMS.register("dan_leggings", () -> new ItemModArmor( DAN, EquipmentSlotType.LEGS, new Item.Properties()));
+    public static final RegistryObject<Item> DAN_BOOTS = ITEMS.register("dan_boots", () -> new ItemModArmor( DAN, EquipmentSlotType.FEET, new Item.Properties()));
 }

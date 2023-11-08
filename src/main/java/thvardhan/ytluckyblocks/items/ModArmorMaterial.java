@@ -96,6 +96,8 @@ public enum ModArmorMaterial implements IArmorMaterial {
     ANT(Main.MODID + ":antarmor", 80, new int[] { 7, 4, 5, 4}, 25,
     SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
     CAP(Main.MODID + ":caparmor", 80, new int[] { 4, 8, 5, 4}, 25,
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    DAN(Main.MODID + ":danarmor", 80, new int[] { 4, 7, 5, 4}, 25,
     SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F);
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[] {11, 16, 15, 13};
