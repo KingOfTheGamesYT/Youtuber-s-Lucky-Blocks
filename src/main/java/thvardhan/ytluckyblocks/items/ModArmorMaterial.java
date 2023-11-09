@@ -98,7 +98,31 @@ public enum ModArmorMaterial implements IArmorMaterial {
     CAP(Main.MODID + ":caparmor", 80, new int[] { 4, 8, 5, 4}, 25,
     SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
     DAN(Main.MODID + ":danarmor", 80, new int[] { 4, 7, 5, 4}, 25,
-    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F);
+    SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    SQUID(Main.MODID + ":squidarmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    LO_G(Main.MODID + ":logarmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    POP(Main.MODID + ":poparmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    SP(Main.MODID + ":sparmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    SKY(Main.MODID + ":skyarmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    SUPER(Main.MODID + ":superarmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    TRUE(Main.MODID + ":truearmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    ALEX(Main.MODID + ":alexarmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    BAJAN(Main.MODID + ":bajanarmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    FRIZZ(Main.MODID + ":frizzarmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    JEROME(Main.MODID + ":jeromearmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F),
+    TEW_ITY(Main.MODID + ":tewityarmor", 80, new int[] { 4, 8, 6, 4}, 25,
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.5F);
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[] {11, 16, 15, 13};
     private final String name;
