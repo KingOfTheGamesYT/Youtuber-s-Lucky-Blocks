@@ -385,6 +385,8 @@ public class RegistrationHandler {
 
     public static final RegistryObject<Item> MIC_BLOCKITEM = ITEMS.register("mic_block", () -> new BlockItemBase(MIC_BLOCK.get()));
     public static final RegistryObject<YtIcon> ICON = ITEMS.register("yticon", YtIcon::new);
+    public static final RegistryObject<Mic> MIC = ITEMS.register("mic", Mic::new);
+
 
     public static final RegistryObject<Item> YT_HELM = ITEMS.register("yt_helmet", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.HEAD, new Item.Properties()));
     public static final RegistryObject<Item> YT_CHEST = ITEMS.register("yt_chestplate", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.CHEST, new Item.Properties()));
