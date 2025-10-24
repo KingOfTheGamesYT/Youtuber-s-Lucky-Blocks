@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class SwordLogDotZip extends SwordItem {
-    public SwordLogDotZip(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder) {
+public class SwordLogdotzip extends SwordItem {
+    public SwordLogdotzip(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder) {
         super(tier, attackDamageIn, attackSpeedIn, builder);
     }
 

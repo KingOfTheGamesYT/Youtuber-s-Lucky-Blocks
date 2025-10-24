@@ -8,10 +8,10 @@ import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.entity.EntityThnxCya;
 import thvardhan.ytluckyblocks.entity.EntityVikkstar123;
 
-public class EntityThnxcyaRender extends BipedRenderer<EntityThnxCya, BipedModel<EntityThnxCya>> {
+public class EntityThnxCyaRender extends BipedRenderer<EntityThnxCya, BipedModel<EntityThnxCya>> {
     protected ResourceLocation texture = new ResourceLocation(Main.MODID + ":textures/entity/thnx_skin.png");
 
-    public EntityThnxcyaRender(EntityRendererManager renderManager) {
+    public EntityThnxCyaRender(EntityRendererManager renderManager) {
         super(renderManager, new BipedModel<>(0.0F), 0.5F);
     }
 

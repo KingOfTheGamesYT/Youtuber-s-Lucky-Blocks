@@ -7,10 +7,10 @@ import net.minecraft.util.ResourceLocation;
 import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.entity.EntityMrWoofless;
 
-public class EntityMRWooflessRender extends BipedRenderer<EntityMrWoofless, BipedModel<EntityMrWoofless>> {
+public class EntityMrWooflessRender extends BipedRenderer<EntityMrWoofless, BipedModel<EntityMrWoofless>> {
     protected ResourceLocation texture = new ResourceLocation(Main.MODID + ":textures/entity/mr_skin.png");
 
-    public EntityMRWooflessRender(EntityRendererManager renderManager) {
+    public EntityMrWooflessRender(EntityRendererManager renderManager) {
         super(renderManager, new BipedModel<>(0.0F), 0.5F);
     }
 

@@ -8,10 +8,10 @@ import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.entity.EntitySSundee;
 import thvardhan.ytluckyblocks.entity.EntityVikkstar123;
 
-public class EntitySsundeeRender extends BipedRenderer<EntitySSundee, BipedModel<EntitySSundee>> {
+public class EntitySSundeeRender extends BipedRenderer<EntitySSundee, BipedModel<EntitySSundee>> {
     protected ResourceLocation texture = new ResourceLocation(Main.MODID + ":textures/entity/s_skin.png");
 
-    public EntitySsundeeRender(EntityRendererManager renderManager) {
+    public EntitySSundeeRender(EntityRendererManager renderManager) {
         super(renderManager, new BipedModel<>(0.0F), 0.5F);
     }
 

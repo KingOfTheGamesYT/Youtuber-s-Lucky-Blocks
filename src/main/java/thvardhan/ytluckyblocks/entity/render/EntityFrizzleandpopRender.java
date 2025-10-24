@@ -8,10 +8,10 @@ import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.entity.EntityEvilLittleKelly;
 import thvardhan.ytluckyblocks.entity.EntityFrizzleandpop;
 
-public class EntityFrizzleandPopRender extends BipedRenderer<EntityFrizzleandpop, BipedModel<EntityFrizzleandpop>> {
+public class EntityFrizzleandpopRender extends BipedRenderer<EntityFrizzleandpop, BipedModel<EntityFrizzleandpop>> {
     protected ResourceLocation texture = new ResourceLocation(Main.MODID + ":textures/entity/frizz_skin.png");
 
-    public EntityFrizzleandPopRender(EntityRendererManager renderManager) {
+    public EntityFrizzleandpopRender(EntityRendererManager renderManager) {
         super(renderManager, new BipedModel<>(0.0F), 0.5F);
     }
 

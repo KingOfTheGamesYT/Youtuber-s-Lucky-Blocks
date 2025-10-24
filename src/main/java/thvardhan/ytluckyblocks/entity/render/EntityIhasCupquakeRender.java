@@ -8,10 +8,10 @@ import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.entity.EntityEvilLittleKelly;
 import thvardhan.ytluckyblocks.entity.EntityIhasCupquake;
 
-public class EntityIhascupquakeRender extends BipedRenderer<EntityIhasCupquake, BipedModel<EntityIhasCupquake>> {
+public class EntityIhasCupquakeRender extends BipedRenderer<EntityIhasCupquake, BipedModel<EntityIhasCupquake>> {
     protected ResourceLocation texture = new ResourceLocation(Main.MODID + ":textures/entity/ihas_skin.png");
 
-    public EntityIhascupquakeRender(EntityRendererManager renderManager) {
+    public EntityIhasCupquakeRender(EntityRendererManager renderManager) {
         super(renderManager, new BipedModel<>(0.0F), 0.5F);
     }
 

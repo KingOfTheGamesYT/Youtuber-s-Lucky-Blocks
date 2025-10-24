@@ -8,10 +8,10 @@ import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.entity.EntityLittleLizardGaming;
 import thvardhan.ytluckyblocks.entity.EntityMrCrainer;
 
-public class EntityMRCrainerRender extends BipedRenderer<EntityMrCrainer, BipedModel<EntityMrCrainer>> {
+public class EntityMrCrainerRender extends BipedRenderer<EntityMrCrainer, BipedModel<EntityMrCrainer>> {
     protected ResourceLocation texture = new ResourceLocation(Main.MODID + ":textures/entity/mrcrainer.png");
 
-    public EntityMRCrainerRender(EntityRendererManager renderManager) {
+    public EntityMrCrainerRender(EntityRendererManager renderManager) {
         super(renderManager, new BipedModel<>(0.0F), 0.5F);
     }
 
