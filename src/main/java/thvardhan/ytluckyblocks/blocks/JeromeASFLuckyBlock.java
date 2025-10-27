@@ -125,7 +125,11 @@ public class JeromeASFLuckyBlock extends Block {
             }
             case 10: {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 //                player.setDead();
+=======
+                player.setDead();
+>>>>>>> Stashed changes
 =======
                 player.setDead();
 >>>>>>> Stashed changes
