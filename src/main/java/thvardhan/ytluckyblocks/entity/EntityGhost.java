@@ -28,11 +28,11 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class EntityGhost extends CreatureEntity {
+public class EntityGhost extends MonsterEntity {
 
     private String name = "Ghost";
 
-    public EntityGhost(EntityType<? extends CreatureEntity> type, World worldIn) {
+    public EntityGhost(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
         ((PathNavigator) this.getNavigator()).setCanSwim(true);
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Blocks.CARVED_PUMPKIN));
