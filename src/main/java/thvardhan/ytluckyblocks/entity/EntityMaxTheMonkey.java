@@ -5,6 +5,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,11 +16,11 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
-public class EntityMaxTheMonkey extends CreatureEntity {
+public class EntityMaxTheMonkey extends MonsterEntity {
 
     private String name = "Max The Monkey";
 
-    public EntityMaxTheMonkey(EntityType<? extends CreatureEntity> type, World worldIn) {
+    public EntityMaxTheMonkey(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
         ((PathNavigator) this.getNavigator()).setCanSwim(true);
         this.goalSelector.addGoal(0, new SwimGoal(this));
