@@ -121,8 +121,8 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.DANTDM.get(), EntityDanTDMRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.EVIL_LITTLE_KELLY.get(), EntityEvilLittleKellyRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.EXPLODING_TNT.get(), EntityExplodingTNTRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.FRIZZLEANDPOP.get(), EntityFrizzleandPopRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.IHASCUPQUAKE.get(), EntityIhascupquakeRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.FRIZZLEANDPOP.get(), EntityFrizzleandpopRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.IHASCUPQUAKE.get(), EntityIhasCupquakeRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.ISQUID.get(), EntityISquidRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.JEROMEASF.get(), EntityJeromeASFRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.LACHLAN.get(), EntityLachlanRender::new);
@@ -134,8 +134,8 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.LITTLELIZARDGAMING.get(), EntityLittleLizardGamingRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.LITTLEROPO.get(), EntityLittleRopoRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.MAXTHEMONKEY.get(), EntityMaxTheMonkeyRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.MRCRAINER.get(), EntityMRCrainerRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.MRWOOFLESS.get(), EntityMRWooflessRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.MRCRAINER.get(), EntityMrCrainerRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.MRWOOFLESS.get(), EntityMrWooflessRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.PETEZAHHUTT.get(), EntityPetaRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.PINKSHEEP.get(), EntityPinkSheepRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.PRESTONPLAYZ.get(), EntityPrestonRender::new);
@@ -143,8 +143,8 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.TINYTURTLE.get(), EntityTinyTurtleRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.VIKKSTAR123.get(), EntityVikkstar123Render::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.TEWITY.get(), EntityTewityRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.THNXCYA.get(), EntityThnxcyaRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.SSUNDEE.get(), EntitySsundeeRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.THNXCYA.get(), EntityThnxCyaRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.SSUNDEE.get(), EntitySSundeeRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.STAMPYLONGHEAD.get(), EntityStampylongheadRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.LOGDOTZIP.get(), EntityLogDotZipRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.POPULARMMOS.get(), PopularmmosRender::new);
@@ -196,4 +196,6 @@ public class Main {
         BlockRenderRegister.registerBlockRenderer();
         ItemRenderRegistry.registerItemRender();*/
     }
+
+
 }

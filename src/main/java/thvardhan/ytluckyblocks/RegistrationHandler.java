@@ -13,6 +13,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import thvardhan.ytluckyblocks.blocks.AlexircraftLuckyBlock;
 import thvardhan.ytluckyblocks.blocks.BlockItemBase;
 import thvardhan.ytluckyblocks.blocks.DiamondButton;
 import thvardhan.ytluckyblocks.blocks.MicBlock;
@@ -373,7 +374,7 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> BLACK_NEON_SWORD = ITEMS.register("black_sword", () -> new M_sword( BLACK_NEON, 3, -2.4F, new Item.Properties().group(Main.MAIN)));
     public static final RegistryObject<Item> YT_HAMMER = ITEMS.register("yt_sword", () -> new M_sword( HAMMER, 3, -2.4F, new Item.Properties().group(Main.MAIN)));
     public static final RegistryObject<Item> NASTY_SWORD = ITEMS.register("nasty_sword", () -> new Nasty_sword( NASTY, 3, -2.4F, new Item.Properties().group(Main.MAIN)));
-    public static final RegistryObject<Item> LOG_SWORD = ITEMS.register("logdotzip_sword", () -> new SwordLogDotZip( LOG, 3, -2.4F, new Item.Properties().group(Main.MAIN)));
+    public static final RegistryObject<Item> LOG_SWORD = ITEMS.register("logdotzip_sword", () -> new SwordLogdotzip( LOG, 3, -2.4F, new Item.Properties().group(Main.MAIN)));
 
     public static final RegistryObject<Block> DIAMOND_PLAY_BUTTON = BLOCKS.register("diamond_button_block", DiamondButton::new);
     public static final RegistryObject<Item> DIAMOND_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("diamond_button_block", () -> new BlockItemBase(DIAMOND_PLAY_BUTTON.get()));
@@ -382,10 +383,12 @@ public class RegistrationHandler {
     public static final RegistryObject<Block> IRON_PLAY_BUTTON = BLOCKS.register("iron_button_block", DiamondButton::new);
     public static final RegistryObject<Item> IRON_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("iron_button_block", () -> new BlockItemBase(IRON_PLAY_BUTTON.get()));
     public static final RegistryObject<Block> MIC_BLOCK = BLOCKS.register("mic_block", MicBlock::new);
+    public static final RegistryObject<AlexircraftLuckyBlock> ALEXIRCRAFT_LUCKY_BLOCK = BLOCKS.register("alexircraft_lucky_block", AlexircraftLuckyBlock::new);
 
     public static final RegistryObject<Item> MIC_BLOCKITEM = ITEMS.register("mic_block", () -> new BlockItemBase(MIC_BLOCK.get()));
     public static final RegistryObject<YtIcon> ICON = ITEMS.register("yticon", YtIcon::new);
     public static final RegistryObject<Mic> MIC = ITEMS.register("mic", Mic::new);
+    public static final RegistryObject<Item> ALEXIRCRAFT_LUCKY_ITEM = ITEMS.register("alexircraft_lucky_block", () -> new BlockItemBase(ALEXIRCRAFT_LUCKY_BLOCK.get()));
 
 
     public static final RegistryObject<Item> YT_HELM = ITEMS.register("yt_helmet", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.HEAD, new Item.Properties()));
