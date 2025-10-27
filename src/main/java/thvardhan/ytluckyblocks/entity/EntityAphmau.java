@@ -23,23 +23,28 @@ public class EntityAphmau extends MonsterEntity {
     public EntityAphmau(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
         ((PathNavigator) this.getNavigator()).setCanSwim(true);
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(5, new MoveTowardsRestrictionGoal(this, 1.0D));
-        this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-        this.applyEntityAI();
         this.setCustomName(new StringTextComponent(name));
     }
 
-    protected void applyEntityAI() {
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
-        // this.goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1.0D, false, 10, this::isBreakDoorsTaskSet));
-        this.goalSelector.addGoal(1, new HurtByTargetGoal(this, ZombifiedPiglinEntity.class));
-        this.goalSelector.addGoal(2, new NearestAttackableTargetGoal(this, PlayerEntity.class, true));
-        this.goalSelector.addGoal(3, new NearestAttackableTargetGoal(this, VillagerEntity.class, false));
-        this.goalSelector.addGoal(3, new NearestAttackableTargetGoal(this, IronGolemEntity.class, true));
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+
+        // Movement / behavior goals
+        this.goalSelector.addGoal(0, new SwimGoal(this));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(5, new MoveTowardsRestrictionGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(9, new LookRandomlyGoal(this));
+
+        // Target goals — these belong in targetSelector, not goalSelector
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ZombifiedPiglinEntity.class));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, false));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
     }
+
     public static AttributeModifierMap.MutableAttribute getAttributes() {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 75D)
