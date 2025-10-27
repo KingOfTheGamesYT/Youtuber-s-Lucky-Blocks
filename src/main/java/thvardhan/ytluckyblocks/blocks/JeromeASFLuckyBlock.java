@@ -124,7 +124,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 10: {
-                player.setDead();
+//                player.setDead();
                 break;
             }
             case 11: {
@@ -216,7 +216,7 @@ public class JeromeASFLuckyBlock extends Block {
                 ExtraFunctions.trollDiamondTrapWithChanceOfNotTroll(worldIn, pos, true);
                 break;
             }
-            case 32: {
+            case 33: {
                 ExtraFunctions.materialKit(worldIn, pos, rand);
                 break;
             }
