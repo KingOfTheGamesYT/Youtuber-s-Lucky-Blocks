@@ -1,6 +1,6 @@
 package thvardhan.ytluckyblocks.entity;
 
-import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -30,8 +30,8 @@ public class EntityPopularMMO extends MonsterEntity {
         super(type, worldIn);
         ((PathNavigator) this.getNavigator()).setCanSwim(true);
         this.setCustomName(new StringTextComponent(name));
-        ItemStack stackHold = new ItemStack(Items.IRON_SWORD);
-        stackHold.addEnchantment(Enchantment.getEnchantmentByID(17), 5);
+        ItemStack stackHold = new ItemStack(Items.STONE_SWORD);
+        stackHold.addEnchantment(Enchantments.FIRE_ASPECT, 5);
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, stackHold);
     }
 
