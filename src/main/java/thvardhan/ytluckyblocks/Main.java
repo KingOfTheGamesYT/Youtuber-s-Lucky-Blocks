@@ -5,35 +5,29 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.DeferredWorkQueue;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import thvardhan.ytluckyblocks.entity.*;
-//import thvardhan.ytluckyblocks.entity.model.*;
-import thvardhan.ytluckyblocks.entity.render.*;
-/*import thvardhan.ytluckyblocks.handler.YTEventHandler;
-import thvardhan.ytluckyblocks.init.ModItems;
-import thvardhan.ytluckyblocks.init.ModTabs;
-import thvardhan.ytluckyblocks.items.render.ItemRenderRegistry;*/
+import net.minecraft.block.Block;
 
+import thvardhan.ytluckyblocks.entity.*;
+import thvardhan.ytluckyblocks.entity.render.*;
+import thvardhan.ytluckyblocks.misc.RegistrationHandler;
 
 import net.minecraftforge.fml.common.Mod;
-
-import net.minecraft.block.Block;
+import net.minecraftforge.fml.DeferredWorkQueue;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-//import thvardhan.ytluckyblocks.render.blocks.BlockRenderRegister;
-
 
 @Mod(Main.MODID)
 public class Main {
     public static final String MODID = "ytluckyblocks";
-    public static final String VERSION = "6.1.2";
+    public static final String VERSION = "6.1.4";
     public static final String NAME = "YouTuber's Lucky Blocks Mod";
     private static final Logger LOGGER = LogManager.getLogger();
     public static Main instance;
@@ -51,8 +45,7 @@ public class Main {
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
-        LOGGER.info("Creating mod tabs");
-       //ModTabs.createTabs();
+        LOGGER.info("Registering Attributes");
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(RegistrationHandler.SCUBA_STEVE.get(), EntityScubaSteve.getAttributes().create());
             GlobalEntityTypeAttributes.put(RegistrationHandler.ALEXIRCRAFT.get(), EntityAlexirCraft.getAttributes().create());
@@ -155,7 +148,6 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.GHOST.get(), EntityGhostRender::new);
         RenderTypeLookup.setRenderLayer(RegistrationHandler.DIAMOND_PLAY_BUTTON.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(RegistrationHandler.MIC_BLOCK.get(), RenderType.getCutout());
-        registerEntities();
     }
 
     public static final ItemGroup MAIN = new ItemGroup("main") {
@@ -173,29 +165,4 @@ public class Main {
             return new ItemStack(RegistrationHandler.YT_CHEST.get());
         }
     };
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) {
-        // do something when the server starts
-        LOGGER.info("HELLO from server starting");
-    }
-
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            // register a new block here
-            LOGGER.info("HELLO from Register Block");
-        }
-    }
-
-    private void registerEntities() {
-      /* registerModEntityWithEgg(EntityLuckyMob.class, "luckymob", 0x0, 0x0);
-        BlockRenderRegister.registerBlockRenderer();
-        ItemRenderRegistry.registerItemRender();*/
-    }
-
-
 }
