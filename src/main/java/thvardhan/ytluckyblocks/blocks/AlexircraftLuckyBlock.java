@@ -182,7 +182,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 24: {
-            // ExtraFunctions.luckyBlockTower(worldIn, pos);
+             ExtraFunctions.luckyBlockTower(worldIn, pos);
                 break;
             }
             case 25: {
