@@ -94,6 +94,7 @@ public class Main {
             GlobalEntityTypeAttributes.put(RegistrationHandler.SUPERGIRLYGAMER.get(), EntitySuperGirlyGamer.getAttributes().create());
             GlobalEntityTypeAttributes.put(RegistrationHandler.TRUEMU.get(), EntityTruemu.getAttributes().create());
             GlobalEntityTypeAttributes.put(RegistrationHandler.GHOST.get(), EntityGhost.getAttributes().create());
+            GlobalEntityTypeAttributes.put(RegistrationHandler.LUCKY_MOB.get(), EntityLuckyMob.getAttributes().create());
         });
     }
 
@@ -146,6 +147,7 @@ public class Main {
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.SUPERGIRLYGAMER.get(), EntitySuperGirlyGamerRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.TRUEMU.get(), EntityTruemuRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.GHOST.get(), EntityGhostRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.LUCKY_MOB.get(), EntityLuckyMobRender::new);
         RenderTypeLookup.setRenderLayer(RegistrationHandler.DIAMOND_PLAY_BUTTON.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(RegistrationHandler.MIC_BLOCK.get(), RenderType.getCutout());
     }

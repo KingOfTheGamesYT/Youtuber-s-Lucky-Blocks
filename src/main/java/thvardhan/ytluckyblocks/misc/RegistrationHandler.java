@@ -316,6 +316,12 @@ public class RegistrationHandler {
                             .size(0.8F, 2.0F)
                             .build(new ResourceLocation(Main.MODID, "ghost").toString()));
 
+    public static final RegistryObject<EntityType<EntityLuckyMob>> LUCKY_MOB = ENTITIES
+            .register("lucky_mob",
+                    () -> EntityType.Builder.<EntityLuckyMob>create(EntityLuckyMob::new, EntityClassification.MONSTER)
+                            .size(0.6F, 2.0F)
+                            .build(new ResourceLocation(Main.MODID, "ghost").toString()));
+
     public static final RegistryObject<Item> ALEXIRCRAFT_SPAWN_EGG = ITEMS.register("alexircraft_spawn_egg", () -> new ForgeSpawnEggItem(RegistrationHandler.ALEXIRCRAFT, 0xcc00cc, 0x330033, new Item.Properties().group(Main.MAIN)));
     public static final RegistryObject<Item> ANTVENOM_SPAWN_EGG = ITEMS.register("antvenom_spawn_egg", () -> new ForgeSpawnEggItem(RegistrationHandler.ANTVENNOM, 0x77b300, 0x111a00, new Item.Properties().group(Main.MAIN)));
     public static final RegistryObject<Item> SCUBA_STEVE_SPAWN_EGG = ITEMS.register("scuba_steve_spawn_egg", () -> new ForgeSpawnEggItem(RegistrationHandler.SCUBA_STEVE, 0xffcc00, 0xffff00, new Item.Properties().group(Main.MAIN)));
@@ -363,6 +369,7 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> SUPERGIRLYGAMER_SPAWN_EGG = ITEMS.register( "jen_spawn_egg",() -> new ForgeSpawnEggItem(RegistrationHandler.SUPERGIRLYGAMER,  0xff33cc, 0xe6005c,new Item.Properties().group(Main.MAIN)));
     public static final RegistryObject<Item> TRUEMU_SPAWN_EGG = ITEMS.register( "truemu_spawn_egg",() -> new ForgeSpawnEggItem(RegistrationHandler.TRUEMU,  0x0066ff, 0xff9933,new Item.Properties().group(Main.MAIN)));
     public static final RegistryObject<Item> GHOST_SPAWN_EGG = ITEMS.register( "ghost_spawn_egg",() -> new ForgeSpawnEggItem(RegistrationHandler.GHOST,  0x4d0000, 0x000000,new Item.Properties().group(Main.MAIN)));
+    public static final RegistryObject<Item> LUCKY_MOB_SPAWN_EGG = ITEMS.register("lucky_mob_spawn_egg", () -> new ForgeSpawnEggItem(RegistrationHandler.LUCKY_MOB, 0x0, 0x0, new Item.Properties().group(Main.MAIN)));
 
     public static final RegistryObject<Item> MASTER_SWORD = ITEMS.register("m_sword", () -> new M_sword( MSWORD, 3, -2.4F, new Item.Properties().group(Main.MAIN)));
     public static final RegistryObject<Item> BATTLE_AXE = ITEMS.register("battle_axe", () -> new M_sword( BATTLE, 3, -2.4F, new Item.Properties().group(Main.MAIN)));

@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import net.minecraftforge.server.command.TextComponentHelper;
+import thvardhan.ytluckyblocks.entity.EntityLuckyMob;
 
 //import thvardhan.ytluckyblocks.entity.EntityLuckyMob;
 
@@ -802,11 +803,7 @@ public class ExtraFunctions {
         worldIn.setBlockState(new BlockPos(player.getPosX() - 1, player.getPosY() - 1, player.getPosZ() - 1), Blocks.SLIME_BLOCK.getDefaultState());
         worldIn.setBlockState(new BlockPos(player.getPosX() - 1, player.getPosY() - 1, player.getPosZ() + 1), Blocks.SLIME_BLOCK.getDefaultState());
         worldIn.setBlockState(new BlockPos(player.getPosX() + 1, player.getPosY() - 1, player.getPosZ() - 1), Blocks.SLIME_BLOCK.getDefaultState());
-
-        //	for(int i=0;i<4;i++)
-        //		for(int j=0;j<3;j++)
-        //			worldIn.setBlockState(new BlockPos(player.posX,player.posY-1,player.posZ), Blocks.SLIME_BLOCK.getDefaultState());
-    }
+        }
 
     /*
      * summons 40 blocks in each dir.
@@ -841,7 +838,7 @@ public class ExtraFunctions {
     }
 
 
-    /*public static void luckyBlockBox(World worldIn, BlockPos pos, Random r) {
+    public static void luckyBlockBox(World worldIn, BlockPos pos, Random r) {
 
         for (int k = 0; k < 4; k++)
             for (int i = -1; i < 4; i++)
@@ -855,7 +852,7 @@ public class ExtraFunctions {
                     ExtraFunctions.setOneBlock(worldIn, new BlockPos(pos.getX() - 1 + j, pos.getY() + k, pos.getZ() + i), b[r.nextInt(b.length)]);
 
 
-    }*/
+    }
 
 
     //TODO fake apple
@@ -871,7 +868,6 @@ public class ExtraFunctions {
 
         for (int i = 1; i < (int) y; i++) {
             setOneBlock(worldIn, new BlockPos(x, y - i, z), Blocks.COBWEB);
-
         }
     }
     /*
@@ -879,12 +875,12 @@ public class ExtraFunctions {
 	 */
  /*   public static void tornadoStruct(World worldIn, BlockPos pos, Random r) {
         summonItemAsDrop(pos, worldIn, new ItemStack(b[r.nextInt(b.length)]));
-    }
+    }*/
 
     public static Item randomBlock() {
         Random rand = new Random();
         return Item.getItemFromBlock(b[rand.nextInt(b.length)]);
-    } */
+    }
 
     public static void fireCamp(World worldIn, PlayerEntity player) {
         setOneBlock(worldIn, new BlockPos(player.getPosX(), player.getPosY() - 1, player.getPosZ()), Blocks.NETHERRACK);
@@ -995,20 +991,13 @@ public class ExtraFunctions {
         }
     }
 
-   /* public static void summonLuckyMobs(World worldIn, int loop, BlockPos pos) {
-
+    public static void summonLuckyMobs(World worldIn, int loop, BlockPos pos) {
 
         for (int i = 0; i <= loop - 1; i++) {
 
-            EntityLuckyMob w = new EntityLuckyMob(worldIn);
+            EntityLuckyMob w = new EntityLuckyMob(RegistrationHandler.LUCKY_MOB.get(), worldIn);
             w.setPosition(pos.getX(), pos.getY(), pos.getZ());
             worldIn.addEntity(w);
         }
-    }*/
-
-
+    }
 }//CLASS END HERE
-		
-		
-		
-
