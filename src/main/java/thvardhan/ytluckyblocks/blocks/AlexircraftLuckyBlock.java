@@ -7,43 +7,26 @@ import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.boss.WitherEntity;
-import net.minecraft.entity.monster.BlazeEntity;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.common.extensions.IForgeFluidState;
-import net.minecraftforge.common.util.FakePlayer;
 
-import thvardhan.ytluckyblocks.ExtraFunctions;
-import thvardhan.ytluckyblocks.RegistrationHandler;
-import thvardhan.ytluckyblocks.entity.EntityAlexirCraft;
-import thvardhan.ytluckyblocks.entity.EntityGhost;
-import thvardhan.ytluckyblocks.entity.EntitySerialPlayer;
+import thvardhan.ytluckyblocks.misc.ExtraFunctions;
+import thvardhan.ytluckyblocks.misc.RegistrationHandler;
 
 import java.util.Random;
 
@@ -98,7 +81,6 @@ public class AlexircraftLuckyBlock extends Block {
         e[2] = Enchantments.POWER;
         e[3] = Enchantments.THORNS;
         e[1] = Enchantments.LOOTING;
-
 
         switch (rand.nextInt(102)) {
 
@@ -352,7 +334,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 58: {
-                ExtraFunctions.summonMobsNearby(new ZombieEntity(worldIn), 14, worldIn, pos, rand);
+                ExtraFunctions.summonMobsNearby((EntityType.ZOMBIE), 14, worldIn, pos, rand);
                 break;
             }
             case 59: {
@@ -497,7 +479,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 93: {
-                  ExtraFunctions.summonMobsNearby(new EntityAlexirCraft(RegistrationHandler.ALEXIRCRAFT.get(), worldIn), 14, worldIn, pos, rand);
+                  ExtraFunctions.summonMobsNearby((RegistrationHandler.ALEXIRCRAFT.get()), 14, worldIn, pos, rand);
                 break;
             }
             case 94: {
