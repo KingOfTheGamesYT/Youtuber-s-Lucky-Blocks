@@ -1,19 +1,40 @@
 {
-    "textures": {
-	 "2": "ytluckyblocks:blocks/BaseLine",
-        "particle": "ytluckyblocks:blocks/baseline"
-    },
-    "elements": [
-        {   "from": [ 1, 0, 1 ],
-            "to": [ 15, 2, 15 ],
-            "faces": {
-                "down":  { "uv": [ 1,  1, 15, 15 ], "texture": "#2", "cullface": "down" },
-                "up":    { "uv": [ 2,  1, 15, 15 ], "texture": "#2" },
-                "north": { "uv": [ 2, 15, 15, 16 ], "texture": "#2" },
-                "south": { "uv": [ 2, 15, 15, 16 ], "texture": "#2" },
-                "west":  { "uv": [ 2, 15, 15, 16 ], "texture": "#2" },
-                "east":  { "uv": [ 2, 15, 15, 16 ], "texture": "#2" }
-            }
-        }
-    ]
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"2": "ytluckyblocks:blocks/base_line",
+		"particle": "ytluckyblocks:blocks/base_line_2a"
+	},
+	"elements": [
+		{
+			"from": [1, 0, 1],
+			"to": [15, 2, 15],
+			"faces": {
+				"north": {"uv": [2, 15, 15, 16], "texture": "#2"},
+				"east": {"uv": [2, 15, 15, 16], "texture": "#2"},
+				"south": {"uv": [2, 15, 15, 16], "texture": "#2"},
+				"west": {"uv": [2, 15, 15, 16], "texture": "#2"},
+				"up": {"uv": [2, 1, 15, 15], "texture": "#2"},
+				"down": {"uv": [1, 1, 15, 15], "texture": "#2", "cullface": "down"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 1, -2.75],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 1, -2.75],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"translation": [0, 2.25, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [20, 20, 0],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
 }

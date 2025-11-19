@@ -437,7 +437,7 @@ public class ExtraFunctions {
 
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < 3; j++) {
-                worldIn.setBlockState(new BlockPos(pos.getX() + j, pos.getY() + i, pos.getZ() + j), Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
+                worldIn.setBlockState(new BlockPos(pos.getX() + 1+ j, pos.getY() + i, pos.getZ() + j), Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
 
 
             }
