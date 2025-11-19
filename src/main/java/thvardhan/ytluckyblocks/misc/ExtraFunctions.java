@@ -41,11 +41,11 @@ public class ExtraFunctions {
             RegistrationHandler.JEROMEASF_LUCKY_BLOCK.get(),
             //ModBlocks.lachlanLuckyBlock, ModBlocks.lDShadowLadyLuckyBlock, ModBlocks.youtubeLuckyBlock, ModBlocks.vikkstar123LuckyBlock, ModBlocks.trueMuLuckyBlock, ModBlocks.thnxCyaLuckyBlock,
             //ModBlocks.tewityLuckyBlock, ModBlocks.stampylongheadLuckyBlock, ModBlocks.sSundeeLuckyBlock, ModBlocks.skyDoesMinecraftLuckyBlock, ModBlocks.serialPlayerLuckyBlock, ModBlocks.prestonPlayzLuckyBlock, ModBlocks.mrwooflessLuckyBlock, ModBlocks.petaZahHuttLuckyBlock,
-           // ModBlocks.pinkSheepYTLuckyBlock, ModBlocks.popularMMOLuckyBlock, ModBlocks.babyDuckLuckyBlock, ModBlocks.babyLeahLuckyBlock, ModBlocks.babyMaxLuckyBlock, ModBlocks.donutTheDogLuckyBlock, ModBlocks.evilLittleKellyLuckyBlock, ModBlocks.littleAllyLuckyBlock, ModBlocks.littleCarlyMcLuckyBlock
+           // ModBlocks.pinkSheepYTLuckyBlock, ModBlocks.popularMMOLuckyBlock,
+            RegistrationHandler.BABY_DUCK_LUCKY_BLOCK.get(), //ModBlocks.babyLeahLuckyBlock, ModBlocks.babyMaxLuckyBlock, ModBlocks.donutTheDogLuckyBlock, ModBlocks.evilLittleKellyLuckyBlock, ModBlocks.littleAllyLuckyBlock, ModBlocks.littleCarlyMcLuckyBlock
           //  , ModBlocks.littleDonnyLuckyBlock, ModBlocks.littleKellyMcLuckyBlock, ModBlocks.littleLizardGamingLuckyBlock, ModBlocks.maxTheMonkeyLuckyBlock, ModBlocks.sharkyLuckyBlock, ModBlocks.tinyTurtleLuckyBlock, ModBlocks.aphmauLuckyBlock, ModBlocks.scubaSteveLuckyBlock, ModBlocks.littleRopoLuckyBlock,
           //  ModBlocks.mrCrainerLuckyBlock, ModBlocks.littleAngelLuckyBlock
       };
-
 
     /**
      * Summon Blocks As Drop With Loops
@@ -70,7 +70,6 @@ public class ExtraFunctions {
                 worldIn.addEntity(entityitem1);
             }
         }
-
     }
 
     /**
@@ -872,8 +871,8 @@ public class ExtraFunctions {
     }
     /*
 	 * IT SAYS SOMETHING AND DOES SOMETHING
-	 */
- /*   public static void tornadoStruct(World worldIn, BlockPos pos, Random r) {
+
+    public static void tornadoStruct(World worldIn, BlockPos pos, Random r) {
         summonItemAsDrop(pos, worldIn, new ItemStack(b[r.nextInt(b.length)]));
     }*/
 

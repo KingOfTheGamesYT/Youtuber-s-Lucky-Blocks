@@ -391,6 +391,8 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> IRON_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("iron_button_block", () -> new BlockItemBase(IRON_PLAY_BUTTON.get()));
     public static final RegistryObject<Block> LUCKY_PRESSURE_PLATE = BLOCKS.register("lucky_pressure_plate", LuckyPressurePlate::new);
     public static final RegistryObject<Item> LUCKY_PRESSURE_PLATE_ITEM = ITEMS.register("lucky_pressure_plate", () -> new BlockItemBase(LUCKY_PRESSURE_PLATE.get()));
+    public static final RegistryObject<Block> YOUTUBE_BLOCK = BLOCKS.register("youtube_block", YoutubeBlock::new);
+    public static final RegistryObject<Item> YOUTUBE_ITEM = ITEMS.register("youtube_block", () -> new BlockItemBase(YOUTUBE_BLOCK.get()));
 
     public static final RegistryObject<Block> MIC_BLOCK = BLOCKS.register("mic_block", MicBlock::new);
     public static final RegistryObject<Block> ALEXIRCRAFT_LUCKY_BLOCK = BLOCKS.register("alexircraft_lucky_block", AlexircraftLuckyBlock::new);
