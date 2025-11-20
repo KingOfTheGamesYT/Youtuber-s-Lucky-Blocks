@@ -398,6 +398,7 @@ public class RegistrationHandler {
     public static final RegistryObject<Block> ALEXIRCRAFT_LUCKY_BLOCK = BLOCKS.register("alexircraft_lucky_block", AlexircraftLuckyBlock::new);
     public static final RegistryObject<Block> JEROMEASF_LUCKY_BLOCK = BLOCKS.register("jeromeasf_lucky_block", JeromeASFLuckyBlock::new);
     public static final RegistryObject<Block> BABY_DUCK_LUCKY_BLOCK = BLOCKS.register("baby_duck_lucky_block", BabyDuckLuckyBlock::new);
+    public static final RegistryObject<Block> GAMING_WITH_JEN_LUCKY_BLOCK = BLOCKS.register("jen_lucky_block", GammingWithJenLuckyBlock::new);
 
     public static final RegistryObject<Item> MIC_BLOCKITEM = ITEMS.register("mic_block", () -> new BlockItemBase(MIC_BLOCK.get()));
     public static final RegistryObject<YtIcon> ICON = ITEMS.register("yticon", YtIcon::new);
@@ -405,6 +406,7 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> ALEXIRCRAFT_LUCKY_ITEM = ITEMS.register("alexircraft_lucky_block", () -> new BlockItemBase(ALEXIRCRAFT_LUCKY_BLOCK.get()));
     public static final RegistryObject<Item> JEROMEASF_LUCKY_ITEM = ITEMS.register("jeromeasf_lucky_block", () -> new BlockItemBase(JEROMEASF_LUCKY_BLOCK.get()));
     public static final RegistryObject<Item> BABY_DUCK_LUCKY_ITEM = ITEMS.register("baby_duck_lucky_block", () -> new BlockItemBase(BABY_DUCK_LUCKY_BLOCK.get()));
+    public static final RegistryObject<Item> GAMING_WITH_JEN_LUCKY_ITEM = ITEMS.register("jen_lucky_block", () -> new BlockItemBase(GAMING_WITH_JEN_LUCKY_BLOCK.get()));
 
     public static final RegistryObject<Item> YT_HELM = ITEMS.register("yt_helmet", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.HEAD, new Item.Properties()));
     public static final RegistryObject<Item> YT_CHEST = ITEMS.register("yt_chestplate", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.CHEST, new Item.Properties()));

@@ -65,6 +65,7 @@ public class AlexircraftLuckyBlock extends Block {
 
         // ✅ Run only on the logical server
         if (!world.isRemote) {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
             drops(world, pos, player);
         }
     }
@@ -311,7 +312,6 @@ public class AlexircraftLuckyBlock extends Block {
                ExtraFunctions.chat("Dont Die...", player);
                 break;
             }
-
             case 53: {
                   ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Blocks.EMERALD_BLOCK), 64, 0, 0);
                 break;
@@ -424,7 +424,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 80: {
-              // ExtraFunctions.setOneBlock(worldIn, pos, RegistrationHandler.youtube);
+               ExtraFunctions.setOneBlock(worldIn, pos, RegistrationHandler.YOUTUBE_BLOCK.get());
                 break;
             }
             case 81: {
@@ -459,7 +459,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 88: {
-              //  ExtraFunctions.setOneBlock(worldIn, pos, ModBlocks.gamingWithJenLuckyBlock);
+                ExtraFunctions.setOneBlock(worldIn, pos, RegistrationHandler.GAMING_WITH_JEN_LUCKY_BLOCK.get());
                 break;
             }
             case 89: {
@@ -517,7 +517,6 @@ public class AlexircraftLuckyBlock extends Block {
                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.DIAMOND_SWORD));
                 break;
             }
-
         }//switch ends
     }//method end
 }
