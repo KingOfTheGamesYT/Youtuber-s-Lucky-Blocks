@@ -36,7 +36,8 @@ import java.util.function.Consumer;
 
 public class ExtraFunctions {
 
-    private static Block[] b = {RegistrationHandler.ALEXIRCRAFT_LUCKY_BLOCK.get(), //ModBlocks.antVenomLuckyBlock, ModBlocks.bajanCanadianLuckyBlock, ModBlocks.captainSparkelzLuckyBlock, ModBlocks.danTDMLuckyBlock, ModBlocks.exploadingTNTLuckyBlock, ModBlocks.frizzleandpopLuckyBlock, ModBlocks.gamingWithJenLuckyBlock,
+    private static Block[] b = {RegistrationHandler.ALEXIRCRAFT_LUCKY_BLOCK.get(), //ModBlocks.antVenomLuckyBlock, ModBlocks.bajanCanadianLuckyBlock, ModBlocks.captainSparkelzLuckyBlock, ModBlocks.danTDMLuckyBlock, ModBlocks.exploadingTNTLuckyBlock, ModBlocks.frizzleandpopLuckyBlock,
+             RegistrationHandler.GAMING_WITH_JEN_LUCKY_BLOCK.get(),
            // ModBlocks.iBallisticSquidLuckyBlock, ModBlocks.iHasCupcakeLuckyBlock,
             RegistrationHandler.JEROMEASF_LUCKY_BLOCK.get(),
             //ModBlocks.lachlanLuckyBlock, ModBlocks.lDShadowLadyLuckyBlock, ModBlocks.youtubeLuckyBlock, ModBlocks.vikkstar123LuckyBlock, ModBlocks.trueMuLuckyBlock, ModBlocks.thnxCyaLuckyBlock,
@@ -84,7 +85,6 @@ public class ExtraFunctions {
         ItemEntity entityitem = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(block));
         entityitem.setDefaultPickupDelay();
         worldIn.addEntity(entityitem);
-
     }
 
 
@@ -101,7 +101,6 @@ public class ExtraFunctions {
         ItemEntity entityitem = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, stack);
         entityitem.setDefaultPickupDelay();
         worldIn.addEntity(entityitem);
-
     }
 
     /**
@@ -110,7 +109,6 @@ public class ExtraFunctions {
      */
 
     public static void setTntWithBlock(World worldIn, BlockPos pos, Random rand) {
-
         // Pick a random base block from this list
         Block[] possibleBlocks = {
                 Blocks.DIAMOND_BLOCK,
@@ -139,8 +137,6 @@ public class ExtraFunctions {
             BlockPos a = new BlockPos(pos.getX() + 2 - i, pos.getY(), pos.getZ() - 5);
             setBlocksForTNT(worldIn, random, a);
         }
-
-
     }
 
     private static void setBlocksForTNT(World worldIn, Block random, BlockPos a) {
@@ -152,8 +148,7 @@ public class ExtraFunctions {
     }
 
 
-    public static void summonEnchantedItemAsDrop(World worldIn, BlockPos pos,
-                                                 Item i, String name, Enchantment e, int amp) {
+    public static void summonEnchantedItemAsDrop(World worldIn, BlockPos pos, Item i, String name, Enchantment e, int amp) {
         ItemStack itemE = new ItemStack(i);
         itemE.addEnchantment(e, amp);
         itemE.setDisplayName(new StringTextComponent(name));
@@ -176,7 +171,6 @@ public class ExtraFunctions {
             if (newY > world.getHeight()) {
                 newY = world.getHeight() - 1;
             }
-
             double x = sp.getPosX();
             double z = sp.getPosZ();
 
@@ -238,7 +232,6 @@ public class ExtraFunctions {
             } else {
                 entityItem = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, stackCopy);
             }
-
             entityItem.setDefaultPickupDelay();
             worldIn.addEntity(entityItem);
         }
@@ -263,7 +256,6 @@ public class ExtraFunctions {
             BlockPos AIR = new BlockPos(pos.getX(), pos.getY() - i, pos.getZ());
             worldIn.setBlockState(AIR, Blocks.AIR.getDefaultState(), 2);
         }
-
     }
 
     /**
@@ -271,12 +263,10 @@ public class ExtraFunctions {
      */
 
     public static void redstoneKit(World worldIn, BlockPos pos) {
-
         summonItemWithLoop(worldIn, pos, Items.REDSTONE, 64, 0, 0);
         summonBlockWithLoop(worldIn, pos, Blocks.STICKY_PISTON, 20, 0, 0);
         summonItemWithLoop(worldIn, pos, Items.SLIME_BALL, 40, 1, 5);
         summonItemWithLoop(worldIn, pos, Items.REPEATER, 10, 0, 0);
-
     }
 
     public static void hellWellStructure(World worldIn, BlockPos pos, Random rand) {
@@ -366,7 +356,6 @@ public class ExtraFunctions {
         for (Enchantment anE : e) {
             stack.addEnchantment(anE, amp);
         }
-
         summonItemAsDrop(pos, worldIn, stack);
     }
 
@@ -411,14 +400,12 @@ public class ExtraFunctions {
             } else if (y == z && z > 0) {
                 z -= 1;
             }
-
             for (int j = z; j < y && j < ench.length; j++) {
                 if (rand.nextInt(3) != 0) { // about 66% chance to apply each potential enchant
                     int n = rand.nextInt(ench.length);
                     stack[i].addEnchantment(ench[n], rand.nextInt(ampUpperLimit) + 1);
                 }
             }
-
             summonItemStackWithLoop(worldIn, pos, stack[i], 1, 0, 0);
         }
     }
@@ -437,8 +424,6 @@ public class ExtraFunctions {
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < 3; j++) {
                 worldIn.setBlockState(new BlockPos(pos.getX() + 1+ j, pos.getY() + i, pos.getZ() + j), Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
-
-
             }
         }
     }
@@ -458,26 +443,22 @@ public class ExtraFunctions {
     }
 
     public static void foodKit(World worldIn, BlockPos pos) {
-
         summonBlockAsDrop(pos, worldIn, Blocks.CAKE);
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1), 10, 1, 30);
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BREAD), 16, 1, 10);
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.APPLE), 5, 0, 0);
         summonItemAsDrop(pos, worldIn, new ItemStack(Items.GOLDEN_APPLE));
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.COOKED_BEEF), 34, 0, 0);
-
     }
 
     public static void chat(String chat, PlayerEntity player) {
 
         if (!player.world.isRemote) { // Only send from server side
             player.sendMessage(new StringTextComponent(chat), player.getUniqueID());
-
         }
     }
 
     public static void materialKit(World worldIn, BlockPos pos, Random rand) {
-
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.DIAMOND), rand.nextInt(50) + 1, 1, rand.nextInt(5));
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.GOLD_INGOT), rand.nextInt(50) + 1, 1, rand.nextInt(15));
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.IRON_INGOT), rand.nextInt(30) + 1, 1, rand.nextInt(10));
@@ -485,7 +466,6 @@ public class ExtraFunctions {
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.COAL), rand.nextInt(10) + 1, 1, rand.nextInt(30));
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.CHEST_MINECART), rand.nextInt(10) + 1, 0, 0);
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BLAZE_POWDER), rand.nextInt(64) + 1, 1, rand.nextInt(15));
-
     }
 
     public static void burgerStruct(World worldIn, BlockPos pos) {
@@ -589,7 +569,6 @@ public class ExtraFunctions {
         double z = p.getPosZ();
 
         setOneBlock(w, new BlockPos(x, y + 10, z), Blocks.ANVIL);
-
     }
 
     public static void tntFix(World worldIn, BlockPos pos, int amOfTNT, PlayerEntity player) {
@@ -598,7 +577,6 @@ public class ExtraFunctions {
             TNTEntity entityTNTprimed = new TNTEntity(worldIn, (double) ((float) pos.getX() + 0.5F), (double) pos.getY(), (double) ((float) pos.getZ() + 0.5F), player);
             entityTNTprimed.setFuse(worldIn.rand.nextInt(entityTNTprimed.getFuse() / 4) + entityTNTprimed.getFuse() / 8);
             worldIn.addEntity(entityTNTprimed);
-
         }
     }
 
@@ -607,7 +585,6 @@ public class ExtraFunctions {
             TNTEntity entityTNTprimed = new TNTEntity(worldIn, (double) ((float) pos.getX() + 0.5F) + rand.nextInt(20), (double) pos.getY() + rand.nextInt(20), (double) ((float) pos.getZ() + 0.5F) + rand.nextInt(20), player);
             entityTNTprimed.setFuse(worldIn.rand.nextInt(entityTNTprimed.getFuse() / 4) + entityTNTprimed.getFuse() / 8);
             worldIn.addEntity(entityTNTprimed);
-
         }
     }
 
@@ -617,7 +594,6 @@ public class ExtraFunctions {
             TNTEntity entityTNTprimed = new TNTEntity(worldIn, (double) ((float) pos.getX() + 0.5F), (double) pos.getY() + (skip * i), (double) ((float) pos.getZ() + 0.5F), player);
             entityTNTprimed.setFuse(worldIn.rand.nextInt(entityTNTprimed.getFuse() / 4) + entityTNTprimed.getFuse() / 8);
             worldIn.addEntity(entityTNTprimed);
-
         }
     }
 
@@ -634,7 +610,6 @@ public class ExtraFunctions {
         ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.NETHER_WART), rand.nextInt(50) + 1, 0, 0);
         ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.GLASS_BOTTLE), rand.nextInt(50) + 1, 0, 0);
         ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BLAZE_ROD), rand.nextInt(50) + 1, 0, 0);
-
     }
 
     public static void musicKit(World worldIn, BlockPos pos) {
@@ -652,7 +627,6 @@ public class ExtraFunctions {
         ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_WAIT));
         ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_WARD));
         ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_PIGSTEP));
-
     }
 
     public static void towerStruct(World worldIn, BlockPos pos) {
@@ -769,7 +743,6 @@ public class ExtraFunctions {
         worldIn.setBlockState(new BlockPos(x + 1, y - 2, z + 1), Blocks.AIR.getDefaultState());
 
         ExtraFunctions.summonMobsOnBreakBlock(EntityType.ENDERMITE, 50, worldIn, new BlockPos(x, y, z), null);
-
     }
 
     public static void sandRain(World worldIn, PlayerEntity player) {
@@ -833,9 +806,7 @@ public class ExtraFunctions {
         for (int i = 0; i < amOfTNT; i++) {
             worldIn.setBlockState(new BlockPos(pos.getX() + rand.nextInt(30), pos.getY() + rand.nextInt(30), pos.getZ() + rand.nextInt(30)), Blocks.TNT.getDefaultState(), 2);
         }
-
     }
-
 
     public static void luckyBlockBox(World worldIn, BlockPos pos, Random r) {
 
@@ -853,12 +824,10 @@ public class ExtraFunctions {
 
     }
 
-
     //TODO fake apple
     //TODO Invisible set
     //TODO armr--ghst
     //
-
 
     public static void deathHole(World worldIn, PlayerEntity player) {
         double x = player.getPosX();
