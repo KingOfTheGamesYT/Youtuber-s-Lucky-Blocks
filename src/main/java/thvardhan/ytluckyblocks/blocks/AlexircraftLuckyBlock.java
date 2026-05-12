@@ -63,7 +63,7 @@ public class AlexircraftLuckyBlock extends Block {
     public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBlockHarvested(world, pos, state, player);
 
-        // ✅ Run only on the logical server
+        //Run only on the server
         if (!world.isRemote) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
             drops(world, pos, player);
@@ -280,7 +280,7 @@ public class AlexircraftLuckyBlock extends Block {
             }
             case 47: {
                 ExtraFunctions.summonMobsOnBreakBlock(EntityType.RABBIT, 50, worldIn, pos, rabbit -> {
-                   rabbit.setRabbitType(99); // customize the rabbit
+                   rabbit.setRabbitType(99); // killer rabbit
                });
                 break;
             }

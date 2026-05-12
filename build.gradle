@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.+', changing: true
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -74,8 +74,16 @@ minecraft {
     }
 }
 
+repositories {
+    mavenCentral()
+    maven { url 'https://www.cursemaven.com'}
+}
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.20'
+
+//project name, project id, file id
+    implementation fg.deobf("curse.maven:jei-238222:3189632")
 }
 
 jar {

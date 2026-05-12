@@ -944,7 +944,6 @@ public class ExtraFunctions {
         }
     }
 
-
     public static void summonTammedWolfs(World worldIn, PlayerEntity player, int loop, BlockPos pos) {
 
 

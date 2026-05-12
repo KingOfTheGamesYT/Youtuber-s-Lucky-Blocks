@@ -80,31 +80,31 @@ public class GammingWithJenLuckyBlock extends Block {
         Random rand = new Random();
 
         switch (rand.nextInt(1)) {
-            case 99: {
-               //✅  ExtraFunctions.lookUp(worldIn, player);
+            case 0: {
+               ExtraFunctions.lookUp(worldIn, player);
                 break;
             }
             case 1: {
-                //✅  ExtraFunctions.lookUp(worldIn, player);
+                ExtraFunctions.lookUp(worldIn, player);
                 break;
             }
             case 2: {
-                //✅  ExtraFunctions.foodKit(worldIn, pos);
+                ExtraFunctions.foodKit(worldIn, pos);
                 break;
             }
             case 3: {
-                //✅  ExtraFunctions.burgerStructOne(worldIn, pos);
+                ExtraFunctions.burgerStructOne(worldIn, pos);
                 break;
             }
             case 4: {
-                //✅    ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.SUPERGIRLYGAMER.get(), 5, worldIn, pos, null);
+                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.SUPERGIRLYGAMER.get(), 5, worldIn, pos, null);
                 break;
             }
             case 5: {
-                //✅    ExtraFunctions.summonMobsNearby(EntityType.SKELETON, 5, worldIn, pos, rand);
+                ExtraFunctions.summonMobsNearby(EntityType.SKELETON, 5, worldIn, pos, rand);
                 break;
             }
-            case 0: {
+            case 6: {
                 ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.SUPERGIRLYGAMER.get(), rand.nextInt(30) + 1, worldIn, pos, null);
                 break;
             }
@@ -129,9 +129,9 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 12: {
-                ExtraFunctions.summonTammedWolfs(worldIn, player, 25, pos);
-                ExtraFunctions.chat("Tame Them If You Want Them.", player);
-                ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BONE), 64, 0, 0);
+             ExtraFunctions.summonMobsNearby(EntityType.WOLF, 25, worldIn, pos, rand);
+             ExtraFunctions.chat("Tame Them If You Want Them.", player);
+             ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BONE), 64, 0, 0);
                 ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BONE), 64, 1, 10);
                 break;
             }
@@ -148,7 +148,7 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 16: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.COMMAND_BLOCK));
+               ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.COMMAND_BLOCK));
                 ExtraFunctions.chat("If You Are On Creative Then Nice Else Its Waste.", player);
                 break;
             }
@@ -292,7 +292,7 @@ public class GammingWithJenLuckyBlock extends Block {
             }
             case 51: {
                 ExtraFunctions.summonMobsOnBreakBlock(EntityType.RABBIT, 50, worldIn, pos, rabbit -> {
-                    rabbit.setRabbitType(99); // customize the rabbit
+                    rabbit.setRabbitType(99); //Killer rabbit
                 });
                 break;
             }

@@ -389,7 +389,7 @@ public class JeromeASFLuckyBlock extends Block {
             }
             case 74: {
                  ExtraFunctions.summonMobsOnBreakBlock(EntityType.RABBIT, 60, worldIn, pos, rabbit -> {
-                   rabbit.setRabbitType(99); // customize the rabbit
+                   rabbit.setRabbitType(99); //killer rabbit
                });
                 break;
             }
