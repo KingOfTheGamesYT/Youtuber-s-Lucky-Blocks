@@ -63,7 +63,7 @@ public class BabyDuckLuckyBlock extends Block {
     public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBlockHarvested(world, pos, state, player);
 
-        // ✅ Run only on the logical server
+        //Run only on the logical server
         if (!world.isRemote) {
             drops(world, pos, player);
         }
