@@ -27,14 +27,13 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.server.command.TextComponentHelper;
 import thvardhan.ytluckyblocks.entity.EntityLuckyMob;
 
-//import thvardhan.ytluckyblocks.entity.EntityLuckyMob;
-
 import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.UUID;
 import java.util.function.Consumer;
 
 public class ExtraFunctions {
+    int flags = 3;
 
     private static Block[] b = {RegistrationHandler.ALEXIRCRAFT_LUCKY_BLOCK.get(), //ModBlocks.antVenomLuckyBlock, ModBlocks.bajanCanadianLuckyBlock, ModBlocks.captainSparkelzLuckyBlock, ModBlocks.danTDMLuckyBlock, ModBlocks.exploadingTNTLuckyBlock, ModBlocks.frizzleandpopLuckyBlock,
              RegistrationHandler.GAMING_WITH_JEN_LUCKY_BLOCK.get(),
@@ -630,20 +629,19 @@ public class ExtraFunctions {
     }
 
     public static void towerStruct(World worldIn, BlockPos pos) {
-        int flags = 2;
 
         // Shift the entire tower 1 block east (positive X)
         BlockPos base = pos.add(1, 0, 0);
 
-        worldIn.setBlockState(base, Blocks.REDSTONE_BLOCK.getDefaultState(), flags);
-        worldIn.setBlockState(base.up(1), Blocks.LAPIS_BLOCK.getDefaultState(), flags);
-        worldIn.setBlockState(base.up(2), Blocks.COAL_BLOCK.getDefaultState(), flags);
-        worldIn.setBlockState(base.up(3), Blocks.GOLD_BLOCK.getDefaultState(), flags);
-        worldIn.setBlockState(base.up(4), Blocks.IRON_BLOCK.getDefaultState(), flags);
-        worldIn.setBlockState(base.up(5), Blocks.EMERALD_BLOCK.getDefaultState(), flags);
-        worldIn.setBlockState(base.up(6), Blocks.DIAMOND_BLOCK.getDefaultState(), flags);
-        worldIn.setBlockState(base.up(7), Blocks.OBSIDIAN.getDefaultState(), flags);
-        worldIn.setBlockState(base.up(8), Blocks.DRAGON_EGG.getDefaultState(), flags);
+        worldIn.setBlockState(base, Blocks.REDSTONE_BLOCK.getDefaultState(), 3);
+        worldIn.setBlockState(base.up(1), Blocks.LAPIS_BLOCK.getDefaultState(), 3);
+        worldIn.setBlockState(base.up(2), Blocks.COAL_BLOCK.getDefaultState(), 3);
+        worldIn.setBlockState(base.up(3), Blocks.GOLD_BLOCK.getDefaultState(), 3);
+        worldIn.setBlockState(base.up(4), Blocks.IRON_BLOCK.getDefaultState(), 3);
+        worldIn.setBlockState(base.up(5), Blocks.EMERALD_BLOCK.getDefaultState(), 3);
+        worldIn.setBlockState(base.up(6), Blocks.DIAMOND_BLOCK.getDefaultState(), 3);
+        worldIn.setBlockState(base.up(7), Blocks.OBSIDIAN.getDefaultState(), 3);
+        worldIn.setBlockState(base.up(8), Blocks.DRAGON_EGG.getDefaultState(), 3);
     }
 
     public static void randomSixtyFourTower(World worldIn, BlockPos pos, Random rand) {
@@ -656,48 +654,49 @@ public class ExtraFunctions {
 
             switch (r) {
                 case 0:
-                    worldIn.setBlockState(blockPos, Blocks.IRON_BLOCK.getDefaultState(), 2);
+                    worldIn.setBlockState(blockPos, Blocks.IRON_BLOCK.getDefaultState(), 3);
                     break;
                 case 1:
-                    worldIn.setBlockState(blockPos, Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
+                    worldIn.setBlockState(blockPos, Blocks.DIAMOND_BLOCK.getDefaultState(), 3);
                     break;
                 case 2:
-                    worldIn.setBlockState(blockPos, Blocks.GOLD_BLOCK.getDefaultState(), 2);
+                    worldIn.setBlockState(blockPos, Blocks.GOLD_BLOCK.getDefaultState(), 3);
                     break;
                 case 3:
-                    worldIn.setBlockState(blockPos, Blocks.EMERALD_BLOCK.getDefaultState(), 2);
+                    worldIn.setBlockState(blockPos, Blocks.EMERALD_BLOCK.getDefaultState(), 3);
                     break;
                 case 4:
-                    worldIn.setBlockState(blockPos, Blocks.BEACON.getDefaultState(), 2);
+                    worldIn.setBlockState(blockPos, Blocks.BEACON.getDefaultState(), 3);
                     break;
                 case 5:
-                    worldIn.setBlockState(blockPos, Blocks.COAL_BLOCK.getDefaultState(), 2);
+                    worldIn.setBlockState(blockPos, Blocks.COAL_BLOCK.getDefaultState(), 3);
                     break;
                 case 6:
-                    worldIn.setBlockState(blockPos, Blocks.REDSTONE_BLOCK.getDefaultState(), 2);
+                    worldIn.setBlockState(blockPos, Blocks.REDSTONE_BLOCK.getDefaultState(), 3);
                     break;
                 case 7:
-                    worldIn.setBlockState(blockPos, Blocks.DRAGON_EGG.getDefaultState(), 2);
+                    worldIn.setBlockState(blockPos, Blocks.DRAGON_EGG.getDefaultState(), 3);
                     break;
             }
         }
     }
 
     public static void trollDiamondTrapWithChanceOfNotTroll(World worldIn, BlockPos pos, boolean isTrap) {
+
         if (isTrap) {
             setBlocksForTrollTrap(worldIn, pos);
-            worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - 4, pos.getZ()), Blocks.LAVA.getDefaultState(), 2);
+            worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - 4, pos.getZ()), Blocks.LAVA.getDefaultState(), 3);
 
         } else {
             setBlocksForTrollTrap(worldIn, pos);
-            worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - 4, pos.getZ()), Blocks.WATER.getDefaultState(), 2);
+            worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - 4, pos.getZ()), Blocks.WATER.getDefaultState(), 3);
         }
     }
 
     private static void setBlocksForTrollTrap(World worldIn, BlockPos pos) {
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ()), Blocks.DIAMOND_ORE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - 2, pos.getZ()), Blocks.DIAMOND_ORE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - 3, pos.getZ()), Blocks.DIAMOND_ORE.getDefaultState(), 2);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ()), Blocks.DIAMOND_ORE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - 2, pos.getZ()), Blocks.DIAMOND_ORE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - 3, pos.getZ()), Blocks.DIAMOND_ORE.getDefaultState(), 3);
     }
 
     public static void summonCowNearby(World worldIn, BlockPos pos, int loop, Random rand) {
@@ -753,7 +752,7 @@ public class ExtraFunctions {
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++)
-                worldIn.setBlockState(new BlockPos(pos.getX() + i, pos.getY() + 40, pos.getZ() + j), Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
+                worldIn.setBlockState(new BlockPos(pos.getX() + i, pos.getY() + 40, pos.getZ() + j), Blocks.DIAMOND_BLOCK.getDefaultState(), 3);
         }
     }
 
@@ -867,7 +866,6 @@ public class ExtraFunctions {
         }
 
         tntFix(worldIn, new BlockPos(x, y, z), 1, player);
-
     }
 
     public static void tpPlayerInGround(PlayerEntity player) {
@@ -912,7 +910,7 @@ public class ExtraFunctions {
             double offsetX = (serverWorld.rand.nextDouble() - 0.5) * 4.0;
             double offsetZ = (serverWorld.rand.nextDouble() - 0.5) * 4.0;
 
-            // Always spawn slightly above the block
+            //Always spawn slightly above the block
             double spawnY = pos.getY() + 1.1D;
 
             // Check for solid blocks above, and move up if needed
@@ -924,7 +922,7 @@ public class ExtraFunctions {
             mob.setLocationAndAngles(spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5,
                     serverWorld.rand.nextFloat() * 360F, 0F);
 
-            // Ensure mob spawns fully on ground if it's a ground mob
+            //Ensure mob spawns fully on ground if it's a ground mob
             mob.onInitialSpawn(serverWorld, serverWorld.getDifficultyForLocation(spawnPos),
                     SpawnReason.EVENT, null, null);
 
@@ -945,7 +943,6 @@ public class ExtraFunctions {
     }
 
     public static void summonTammedWolfs(World worldIn, PlayerEntity player, int loop, BlockPos pos) {
-
 
         for (int i = 0; i <= loop - 1; i++) {
 
