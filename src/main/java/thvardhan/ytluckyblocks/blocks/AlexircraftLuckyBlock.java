@@ -25,7 +25,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
-import thvardhan.ytluckyblocks.misc.ExtraFunctions;
+import thvardhan.ytluckyblocks.functions.ExtraFunctions;
 import thvardhan.ytluckyblocks.misc.RegistrationHandler;
 
 import java.util.Random;
@@ -90,7 +90,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 1: {
-              ExtraFunctions.summonMobsOnBreakBlock(EntityType.ZOMBIE, rand.nextInt(50), worldIn, pos, null);
+              ExtraFunctions.summonMobs(EntityType.ZOMBIE, rand.nextInt(50), worldIn, pos, 0, null);
                 break;
             }
             case 2: {
@@ -115,7 +115,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 7: {
-                 ExtraFunctions.lookUp(worldIn, player);
+                ExtraFunctions.blockRain(worldIn, player.getPosition(), Blocks.ANVIL, 0, 10);
                 break;
             }
             case 8: {
@@ -127,7 +127,17 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 10: {
-                  ExtraFunctions.randomSixtyFourTower(worldIn, pos, rand);
+                ExtraFunctions.buildTower(worldIn, pos, null,
+                        new Block[] {
+                                Blocks.IRON_BLOCK,
+                                Blocks.DIAMOND_BLOCK,
+                                Blocks.GOLD_BLOCK,
+                                Blocks.EMERALD_BLOCK,
+                                Blocks.BEACON,
+                                Blocks.COAL_BLOCK,
+                                Blocks.REDSTONE_BLOCK,
+                                Blocks.DRAGON_EGG},
+                        64);
                 break;
             }
             case 11: {
@@ -135,15 +145,15 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 12: {
-                   ExtraFunctions.burgerStruct(worldIn, pos);
+                   ExtraFunctions.burgerStruct(worldIn, pos, Blocks.EMERALD_BLOCK.getDefaultState(), Blocks.DIAMOND_BLOCK.getDefaultState(), Blocks.IRON_BLOCK.getDefaultState());
                 break;
             }
             case 13: {
-                 ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.ALEXIRCRAFT.get(), 40, worldIn, pos, null);
+                 ExtraFunctions.summonMobs(RegistrationHandler.ALEXIRCRAFT.get(), 40, worldIn, pos, 0, null);
                 break;
             }
             case 14: {
-                ExtraFunctions.holeDeathTrap(worldIn, pos);
+                ExtraFunctions.createHole(worldIn, pos, false);
                 break;
             }
             case 15: {
@@ -151,7 +161,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 16: {
-                  ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.SERIALPLAYER.get(), 2, worldIn, pos, null);
+                  ExtraFunctions.summonMobs(RegistrationHandler.SERIALPLAYER.get(), 2, worldIn, pos, 0, null);
                 break;
             }
             case 17: {
@@ -200,7 +210,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 28: {
-                ExtraFunctions.summonMobsOnBreakBlock(EntityType.BLAZE, 5, worldIn, pos, null);
+                ExtraFunctions.summonMobs(EntityType.BLAZE, 5, worldIn, pos, 0, null);
                 break;
             }
             case 29: {
@@ -228,11 +238,11 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 35: {
-               ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.ALEXIRCRAFT.get(),50, worldIn, pos, null);
+               ExtraFunctions.summonMobs(RegistrationHandler.ALEXIRCRAFT.get(),50, worldIn, pos, 0, null);
                 break;
             }
             case 36: {
-                  ExtraFunctions.summonMobsOnBreakBlock(EntityType.IRON_GOLEM, 50, worldIn, pos, null);
+                  ExtraFunctions.summonMobs(EntityType.IRON_GOLEM, 50, worldIn, pos, 0, null);
                 break;
             }
             case 37: {
@@ -242,7 +252,7 @@ public class AlexircraftLuckyBlock extends Block {
             case 38: {
                Random rand = worldIn.getRandom();
                int golemCount = rand.nextInt(5); // 0–4
-                  ExtraFunctions.summonMobsOnBreakBlock(EntityType.IRON_GOLEM, golemCount, worldIn, pos, null);
+                  ExtraFunctions.summonMobs(EntityType.IRON_GOLEM, golemCount, worldIn, pos, 0, null);
                 break;
             }
             case 39: {
@@ -255,7 +265,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 41: {
-               ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.GHOST.get(), 50, worldIn, pos, null);
+               ExtraFunctions.summonMobs(RegistrationHandler.GHOST.get(), 50, worldIn, pos, 0, null);
                 break;
             }
             case 42: {
@@ -275,12 +285,12 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 46: {
-               ExtraFunctions.tntRain(worldIn, pos, 50, 0, player);
+               ExtraFunctions.spawnTNT(worldIn, pos, 50, player, 0, true, 10);
                 break;
             }
             case 47: {
-                ExtraFunctions.summonMobsOnBreakBlock(EntityType.RABBIT, 50, worldIn, pos, rabbit -> {
-                   rabbit.setRabbitType(99); // killer rabbit
+                ExtraFunctions.summonMobs(EntityType.RABBIT, 50, worldIn, pos, 0, rabbit -> {
+                   rabbit.setRabbitType(99); //Killer rabbit
                });
                 break;
             }
@@ -307,9 +317,9 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 52: {
-                  ExtraFunctions.endWellStruct(worldIn, new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 2), rand);
-                ExtraFunctions.lookUp(worldIn, player);
-               ExtraFunctions.chat("Dont Die...", player);
+                ExtraFunctions.endWellStruct(worldIn, new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 2), rand);
+                ExtraFunctions.blockRain(worldIn, player.getPosition(), Blocks.ANVIL, 0, 10);
+                ExtraFunctions.chat("Dont Die...", player);
                 break;
             }
             case 53: {
@@ -334,15 +344,25 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 58: {
-                ExtraFunctions.summonMobsNearby((EntityType.ZOMBIE), 14, worldIn, pos, rand);
+                ExtraFunctions.summonMobs((EntityType.ZOMBIE), 14, worldIn, pos, 30, null);
                 break;
             }
             case 59: {
-                 ExtraFunctions.randomSixtyFourTower(worldIn, pos, rand);
+                 ExtraFunctions.buildTower(worldIn, pos, null,
+                         new Block[] {
+                                 Blocks.IRON_BLOCK,
+                                 Blocks.DIAMOND_BLOCK,
+                                 Blocks.GOLD_BLOCK,
+                                 Blocks.EMERALD_BLOCK,
+                                 Blocks.BEACON,
+                                 Blocks.COAL_BLOCK,
+                                 Blocks.REDSTONE_BLOCK,
+                                 Blocks.DRAGON_EGG},
+                         64);
                 break;
             }
             case 60: {
-                 ExtraFunctions.summonMobsOnBreakBlock(EntityType.WITHER, 2, worldIn, pos, null);
+                 ExtraFunctions.summonMobs(EntityType.WITHER, 2, worldIn, pos, 0, null);
                 break;
             }
             case 61: {
@@ -350,7 +370,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 62: {
-                 ExtraFunctions.chat("You May Want To Craft Anything :3", player);
+               ExtraFunctions.chat("You May Want To Craft Anything :3", player);
                ExtraFunctions.setOneBlock(worldIn, pos, Blocks.CRAFTING_TABLE);
                 break;
             }
@@ -395,7 +415,12 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 73: {
-                ExtraFunctions.summonTammedWolfs(worldIn, player, 10, pos);
+                ExtraFunctions.summonMobs(EntityType.WOLF, 10, worldIn, pos,0,
+                        wolf -> {
+                            wolf.setTamed(true);
+                            wolf.setSitting(true);
+                            wolf.setOwnerId(player.getUniqueID());
+                        });
                 break;
             }
             case 74: {
@@ -404,7 +429,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 75: {
-                 ExtraFunctions.toVoid(worldIn, pos);
+                 ExtraFunctions.createHole(worldIn, pos, true);
                 break;
             }
             case 76: {
@@ -412,11 +437,27 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 77: {
-                 ExtraFunctions.summonTammedWolfs(worldIn, player, 15, pos);
+                ExtraFunctions.summonMobs(EntityType.WOLF, 15, worldIn, pos, 0,
+                        wolf -> {
+                            wolf.setTamed(true);
+                            wolf.setSitting(true);
+                            wolf.setOwnerId(player.getUniqueID());
+                        });
                 break;
             }
             case 78: {
-                 ExtraFunctions.towerStruct(worldIn, pos);
+                 ExtraFunctions.buildTower(worldIn, pos,
+                         new Block[] {
+                                 Blocks.REDSTONE_BLOCK,
+                                 Blocks.LAPIS_BLOCK,
+                                 Blocks.COAL_BLOCK,
+                                 Blocks.GOLD_BLOCK,
+                                 Blocks.IRON_BLOCK,
+                                 Blocks.EMERALD_BLOCK,
+                                 Blocks.DIAMOND_BLOCK,
+                                 Blocks.OBSIDIAN,
+                                 Blocks.DRAGON_EGG},
+                         null, 9);
                 break;
             }
             case 79: {
@@ -432,7 +473,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 82: {
-                  ExtraFunctions.setOneBlock(worldIn, pos, Blocks.ANVIL);
+              ExtraFunctions.setOneBlock(worldIn, pos, Blocks.ANVIL);
               ExtraFunctions.chat(TextFormatting.DARK_BLUE + "You Should Be Happy It Dint Fell On Ya", player);
                 break;
             }
@@ -451,11 +492,11 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 86: {
-                  ExtraFunctions.tntFix(worldIn, pos, 5, player);
+                ExtraFunctions.spawnTNT(worldIn, pos, 5, player, 0, false, 0);
                 break;
             }
             case 87: {
-                 ExtraFunctions.holeDeathTrap(worldIn, pos);
+                 ExtraFunctions.createHole(worldIn, pos, false);
                 break;
             }
             case 88: {
@@ -479,15 +520,15 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 93: {
-                  ExtraFunctions.summonMobsNearby((RegistrationHandler.ALEXIRCRAFT.get()), 14, worldIn, pos, rand);
+                  ExtraFunctions.summonMobs((RegistrationHandler.ALEXIRCRAFT.get()), 14, worldIn, pos, 30, null);
                 break;
             }
             case 94: {
-                   ExtraFunctions.burgerStruct(worldIn, pos);
+                ExtraFunctions.burgerStruct(worldIn, pos, Blocks.EMERALD_BLOCK.getDefaultState(), Blocks.DIAMOND_BLOCK.getDefaultState(), Blocks.IRON_BLOCK.getDefaultState());
                 break;
             }
             case 95: {
-                   ExtraFunctions.burgerStructOne(worldIn, pos);
+                ExtraFunctions.burgerStruct(worldIn, pos, Blocks.BEACON.getDefaultState(), Blocks.DRAGON_EGG.getDefaultState(), Blocks.GLOWSTONE.getDefaultState());
                 break;
             }
             case 96: {
@@ -495,13 +536,12 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 97: {
-                   ExtraFunctions.tntFix(worldIn, pos, 50, player);
+                ExtraFunctions.spawnTNT(worldIn, pos, 50, player, 0, false, 0);
                 break;
             }
             case 98: {
                 ItemStack waterBottle = new ItemStack(Items.POTION);
                 waterBottle.getOrCreateTag().putString("Potion", "minecraft:water");
-
                 ExtraFunctions.summonItemAsDrop(pos, worldIn, waterBottle);
                 break;
             }

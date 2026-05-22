@@ -39,5 +39,4 @@ public class DiamondButton extends Block {
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return VoxelShapes.create(0, 0.1, 0.5, 1, 0.8, 0.6);
     }
-
 }

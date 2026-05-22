@@ -1,4 +1,4 @@
-package thvardhan.ytluckyblocks.misc;
+package thvardhan.ytluckyblocks.functions;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -34,12 +34,12 @@ public class TooltipRomanFix {
                 int level = entry.getValue();
                 String roman = toRoman(level);
 
-                // Build proper display line (like vanilla does)
+                //Build proper display line (like vanilla does)
                 IFormattableTextComponent enchText = new TranslationTextComponent(enchant.getName());
                 enchText.appendString(" ").appendString(roman);
                 enchText.mergeStyle(TextFormatting.GRAY);
 
-                // Replace the vanilla "enchantment.level.x" line
+                //Replace the vanilla "enchantment.level.x" line
                 if (index + 1 < tooltip.size()) {
                     tooltip.set(index + 1, enchText);
                 }

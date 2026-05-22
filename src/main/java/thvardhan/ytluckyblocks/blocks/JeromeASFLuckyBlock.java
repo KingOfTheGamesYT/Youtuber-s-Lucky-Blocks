@@ -25,7 +25,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
-import thvardhan.ytluckyblocks.misc.ExtraFunctions;
+import thvardhan.ytluckyblocks.functions.ExtraFunctions;
 import thvardhan.ytluckyblocks.misc.RegistrationHandler;
 
 import java.util.Random;
@@ -120,7 +120,7 @@ public class JeromeASFLuckyBlock extends Block {
             }
             case 8: {
             ExtraFunctions.effectPlayer(player, new EffectInstance(Effects.JUMP_BOOST, 100, 200, true, true));
-             ExtraFunctions.chat(TextFormatting.RED + "Hurry! JUMP! here will be lava in 2 seconds", player);
+            ExtraFunctions.chat(TextFormatting.RED + "Hurry! JUMP! here will be lava in 2 seconds", player);
                 break;
             }
             case 9: {
@@ -132,15 +132,15 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 11: {
-                 ExtraFunctions.burgerStruct(worldIn, pos);
+                ExtraFunctions.burgerStruct(worldIn, pos, Blocks.EMERALD_BLOCK.getDefaultState(), Blocks.DIAMOND_BLOCK.getDefaultState(), Blocks.IRON_BLOCK.getDefaultState());
                 break;
             }
             case 12: {
-                 ExtraFunctions.burgerStructOne(worldIn, pos);
+                ExtraFunctions.burgerStruct(worldIn, pos, Blocks.BEACON.getDefaultState(), Blocks.DRAGON_EGG.getDefaultState(), Blocks.GLOWSTONE.getDefaultState());
                 break;
             }
             case 13: {
-              ExtraFunctions.holeDeathTrap(worldIn, pos);
+              ExtraFunctions.createHole(worldIn, pos, false);
                 break;
             }
             case 14: {
@@ -176,11 +176,11 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 22: {
-                 ExtraFunctions.toVoid(worldIn, pos);
+                 ExtraFunctions.createHole(worldIn, pos, true);
                 break;
             }
             case 23: {
-               ExtraFunctions.tntNearby(worldIn, pos, 400, player, rand);
+               ExtraFunctions.spawnTNT(worldIn, pos, 400, player, 20, false, 0);
                 break;
             }
             case 24: {
@@ -188,7 +188,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 25: {
-                  ExtraFunctions.summonMobsOnBreakBlock(EntityType.GHAST, 5, worldIn, pos, null);
+                  ExtraFunctions.summonMobs(EntityType.GHAST, 5, worldIn, pos, 0, null);
                 break;
             }
             case 26: {
@@ -208,7 +208,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 30: {
-                 ExtraFunctions.summonMobsNearby((EntityType.IRON_GOLEM), 50, worldIn, pos, rand);
+                 ExtraFunctions.summonMobs((EntityType.IRON_GOLEM), 50, worldIn, pos, 30, null);
                 break;
             }
 
@@ -237,7 +237,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 37: {
-                  ExtraFunctions.summonMobsNearby((EntityType.SKELETON), 23, worldIn, pos, rand);
+                  ExtraFunctions.summonMobs((EntityType.SKELETON), 23, worldIn, pos, 30, null);
                 break;
             }
             case 38: {
@@ -249,16 +249,26 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 40: {
-                 ExtraFunctions.summonMobsOnBreakBlock(EntityType.WITHER,rand.nextInt(5) + 1, worldIn, pos, null);
+                 ExtraFunctions.summonMobs(EntityType.WITHER,rand.nextInt(5) + 1, worldIn, pos, 0, null);
                 break;
             }
             case 41: {
-                  ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.APPLE), 40, 0, 0);
+               ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.APPLE), 40, 0, 0);
                ExtraFunctions.chat(TextFormatting.GOLD + "Normal Apples ^^", player);
                 break;
             }
             case 42: {
-                  ExtraFunctions.randomSixtyFourTower(worldIn, pos, rand);
+                ExtraFunctions.buildTower(worldIn, pos, null,
+                        new Block[] {
+                                Blocks.IRON_BLOCK,
+                                Blocks.DIAMOND_BLOCK,
+                                Blocks.GOLD_BLOCK,
+                                Blocks.EMERALD_BLOCK,
+                                Blocks.BEACON,
+                                Blocks.COAL_BLOCK,
+                                Blocks.REDSTONE_BLOCK,
+                                Blocks.DRAGON_EGG},
+                        64);
                 break;
             }
             case 43: {
@@ -266,15 +276,15 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 44: {
-                  ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.ISQUID.get(), rand.nextInt(10) + 1, worldIn, pos, null);
+                  ExtraFunctions.summonMobs(RegistrationHandler.ISQUID.get(), rand.nextInt(10) + 1, worldIn, pos, 0, null);
                 break;
             }
             case 45: {
-                  ExtraFunctions.summonMobsNearby((RegistrationHandler.POPULARMMOS.get()), 6, worldIn, pos, rand);
+                  ExtraFunctions.summonMobs((RegistrationHandler.POPULARMMOS.get()), 6, worldIn, pos, 30, null);
                 break;
             }
             case 46: {
-                 ExtraFunctions.summonMobsNearby((EntityType.CREEPER), 200, worldIn, pos, rand);
+                 ExtraFunctions.summonMobs((EntityType.CREEPER), 200, worldIn, pos, 30, null);
                 break;
             }
             case 47: {
@@ -282,7 +292,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 48: {
-                 ExtraFunctions.lookUp(worldIn, player);
+                ExtraFunctions.blockRain(worldIn, player.getPosition(), Blocks.ANVIL, 0, 10);
                 break;
             }
             case 49: {
@@ -290,7 +300,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 50: {
-                  ExtraFunctions.summonMobsOnBreakBlock(EntityType.GHAST, 60, worldIn, pos, null);
+                  ExtraFunctions.summonMobs(EntityType.GHAST, 60, worldIn, pos, 0, null);
                 break;
             }
             case 51: {
@@ -330,7 +340,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 60: {
-                 ExtraFunctions.mountainOne(worldIn, pos, rand);
+                 ExtraFunctions.mountain(worldIn, pos, Blocks.EMERALD_BLOCK, rand);
                 break;
             }
             case 61: {
@@ -339,15 +349,20 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 62: {
-                ExtraFunctions.tntFix(worldIn, pos, 5, player);
+                ExtraFunctions.spawnTNT(worldIn, pos, 5, player, 0, false, 0);
                 break;
             }
             case 63: {
-                  ExtraFunctions.summonTammedWolfs(worldIn, player, 5, pos);
+                ExtraFunctions.summonMobs(EntityType.WOLF, 5, worldIn, pos, 0,
+                        wolf -> {
+                            wolf.setTamed(true);
+                            wolf.setSitting(true);
+                            wolf.setOwnerId(player.getUniqueID());
+                        });
                 break;
             }
             case 64: {
-                 ExtraFunctions.summonMobsNearby((RegistrationHandler.JEROMEASF.get()), 60, worldIn, pos, rand);
+                 ExtraFunctions.summonMobs((RegistrationHandler.JEROMEASF.get()), 60, worldIn, pos, 30, null);
                 break;
             }
             case 65: {
@@ -384,21 +399,21 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 73: {
-                 ExtraFunctions.holeDeathTrap(worldIn, pos);
+                 ExtraFunctions.createHole(worldIn, pos, false);
                 break;
             }
             case 74: {
-                 ExtraFunctions.summonMobsOnBreakBlock(EntityType.RABBIT, 60, worldIn, pos, rabbit -> {
-                   rabbit.setRabbitType(99); //killer rabbit
+                 ExtraFunctions.summonMobs(EntityType.RABBIT, 60, worldIn, pos, 0, rabbit -> {
+                   rabbit.setRabbitType(99); //Killer rabbit
                });
                 break;
             }
             case 75: {
-                ExtraFunctions.summonMobsNearby((EntityType.CREEPER), 50, worldIn, pos, rand);
+                ExtraFunctions.summonMobs((EntityType.CREEPER), 50, worldIn, pos, 30, null);
                 break;
             }
             case 76: {
-                 ExtraFunctions.summonMobsNearby((EntityType.IRON_GOLEM), 25, worldIn, pos, rand);
+                 ExtraFunctions.summonMobs((EntityType.IRON_GOLEM), 25, worldIn, pos, 30, null);
                 break;
             }
             case 77: {
@@ -410,11 +425,11 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 79: {
-                    ExtraFunctions.summonMobsNearby((EntityType.BLAZE), 15, worldIn, pos, rand);
+                    ExtraFunctions.summonMobs((EntityType.BLAZE), 15, worldIn, pos, 30, null);
                 break;
             }
             case 80: {
-                   ExtraFunctions.summonMobsNearby((EntityType.ZOMBIE), 5, worldIn, pos, rand);
+                   ExtraFunctions.summonMobs((EntityType.ZOMBIE), 5, worldIn, pos, 30, null);
                 break;
             }
             case 81: {
@@ -434,7 +449,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 85: {
-                  ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.CAPTAIN_SPARKLEZ.get(), 10, worldIn, pos, null);
+                  ExtraFunctions.summonMobs(RegistrationHandler.CAPTAIN_SPARKLEZ.get(), 10, worldIn, pos, 0, null);
                 break;
             }
             case 86: {
@@ -446,12 +461,12 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 88: {
-                     ExtraFunctions.summonMobsOnBreakBlock(EntityType.GHAST, 60, worldIn, pos, null);
+                     ExtraFunctions.summonMobs(EntityType.GHAST, 60, worldIn, pos, 0, null);
                 break;
             }
             case 89: {
-                    ExtraFunctions.summonCowNearby(worldIn, pos, 50, rand);
-                 ExtraFunctions.chat("KILL THE COW", player);
+                ExtraFunctions.summonCowNearby(worldIn, pos, 50, rand);
+                ExtraFunctions.chat("KILL THE COW", player);
                 break;
             }
             case 90: {
@@ -459,12 +474,12 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 91: {
-                   ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Blocks.TNT), 64, 1, 5);
+               ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Blocks.TNT), 64, 1, 5);
                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
                 break;
             }
             case 92: {
-                     ExtraFunctions.lookUp(worldIn, player);
+                ExtraFunctions.blockRain(worldIn, player.getPosition(), Blocks.ANVIL, 0, 10);
                 break;
             }
             case 93: {
@@ -492,15 +507,15 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 99: {
-                   ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.ANTVENNOM.get(), 1, worldIn, pos, null);
+                   ExtraFunctions.summonMobs(RegistrationHandler.ANTVENNOM.get(), 1, worldIn, pos, 0, null);
                 break;
             }
             case 100: {
-                   ExtraFunctions.summonMobsNearby((RegistrationHandler.JEROMEASF.get()), 15, worldIn, pos, rand);
+                   ExtraFunctions.summonMobs((RegistrationHandler.JEROMEASF.get()), 15, worldIn, pos, 30, null);
                 break;
             }
             case 101: {
-                ExtraFunctions.sandRain(worldIn, player);
+                ExtraFunctions.blockRain(worldIn, player.getPosition(), Blocks.SAND, 0, 2);
                 break;
             }
         }//switch ends

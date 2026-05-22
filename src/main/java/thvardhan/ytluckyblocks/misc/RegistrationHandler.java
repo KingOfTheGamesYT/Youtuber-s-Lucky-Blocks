@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
@@ -15,17 +16,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import thvardhan.ytluckyblocks.Main;
 import thvardhan.ytluckyblocks.blocks.*;
-import thvardhan.ytluckyblocks.blocks.BlockItemBase;
-import thvardhan.ytluckyblocks.blocks.DiamondButton;
-import thvardhan.ytluckyblocks.blocks.MicBlock;
 import thvardhan.ytluckyblocks.entity.*;
 import thvardhan.ytluckyblocks.items.*;
+
+import java.util.function.Supplier;
+
 import static thvardhan.ytluckyblocks.items.ModArmorMaterial.*;
 import static thvardhan.ytluckyblocks.items.ModItemTier.*;
 
 public class RegistrationHandler {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Main.MODID);
-
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, Main.MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Main.MODID);
 
@@ -383,30 +383,21 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> NASTY_SWORD = ITEMS.register("nasty_sword", () -> new Nasty_sword( NASTY, 3, -2.4F, new Item.Properties().group(Main.MAIN)));
     public static final RegistryObject<Item> LOG_SWORD = ITEMS.register("logdotzip_sword", () -> new SwordLogdotzip( LOG, 3, -2.4F, new Item.Properties().group(Main.MAIN)));
 
-    public static final RegistryObject<Block> DIAMOND_PLAY_BUTTON = BLOCKS.register("diamond_button_block", DiamondButton::new);
-    public static final RegistryObject<Item> DIAMOND_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("diamond_button_block", () -> new BlockItemBase(DIAMOND_PLAY_BUTTON.get()));
-    public static final RegistryObject<Block> GOLD_PLAY_BUTTON = BLOCKS.register("gold_button_block", DiamondButton::new);
-    public static final RegistryObject<Item> GOLD_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("gold_button_block", () -> new BlockItemBase(GOLD_PLAY_BUTTON.get()));
-    public static final RegistryObject<Block> IRON_PLAY_BUTTON = BLOCKS.register("iron_button_block", DiamondButton::new);
-    public static final RegistryObject<Item> IRON_PLAY_BUTTON_BLOCK_ITEM = ITEMS.register("iron_button_block", () -> new BlockItemBase(IRON_PLAY_BUTTON.get()));
-    public static final RegistryObject<Block> LUCKY_PRESSURE_PLATE = BLOCKS.register("lucky_pressure_plate", LuckyPressurePlate::new);
-    public static final RegistryObject<Item> LUCKY_PRESSURE_PLATE_ITEM = ITEMS.register("lucky_pressure_plate", () -> new BlockItemBase(LUCKY_PRESSURE_PLATE.get()));
-    public static final RegistryObject<Block> YOUTUBE_BLOCK = BLOCKS.register("youtube_block", YoutubeBlock::new);
-    public static final RegistryObject<Item> YOUTUBE_ITEM = ITEMS.register("youtube_block", () -> new BlockItemBase(YOUTUBE_BLOCK.get()));
+    public static final RegistryObject<Block> DIAMOND_PLAY_BUTTON = registerNormalBlock("diamond_button_block", DiamondButton::new);
+    public static final RegistryObject<Block> GOLD_PLAY_BUTTON = registerNormalBlock("gold_button_block", DiamondButton::new);
+    public static final RegistryObject<Block> IRON_PLAY_BUTTON = registerNormalBlock("iron_button_block", DiamondButton::new);
+    public static final RegistryObject<Block> LUCKY_PRESSURE_PLATE = registerNormalBlock("lucky_pressure_plate", LuckyPressurePlate::new);
+    public static final RegistryObject<Block> YOUTUBE_BLOCK = registerNormalBlock("youtube_block", YoutubeBlock::new);
 
-    public static final RegistryObject<Block> MIC_BLOCK = BLOCKS.register("mic_block", MicBlock::new);
-    public static final RegistryObject<Block> ALEXIRCRAFT_LUCKY_BLOCK = BLOCKS.register("alexircraft_lucky_block", AlexircraftLuckyBlock::new);
-    public static final RegistryObject<Block> JEROMEASF_LUCKY_BLOCK = BLOCKS.register("jeromeasf_lucky_block", JeromeASFLuckyBlock::new);
-    public static final RegistryObject<Block> BABY_DUCK_LUCKY_BLOCK = BLOCKS.register("baby_duck_lucky_block", BabyDuckLuckyBlock::new);
-    public static final RegistryObject<Block> GAMING_WITH_JEN_LUCKY_BLOCK = BLOCKS.register("jen_lucky_block", GammingWithJenLuckyBlock::new);
+    public static final RegistryObject<Block> MIC_BLOCK = registerNormalBlock("mic_block", MicBlock::new);
+    public static final RegistryObject<Block> ALEXIRCRAFT_LUCKY_BLOCK = registerNormalBlock("alexircraft_lucky_block", AlexircraftLuckyBlock::new);
+    public static final RegistryObject<Block> JEROMEASF_LUCKY_BLOCK = registerNormalBlock("jeromeasf_lucky_block", JeromeASFLuckyBlock::new);
+    public static final RegistryObject<Block> BABY_DUCK_LUCKY_BLOCK = registerNormalBlock("baby_duck_lucky_block", BabyDuckLuckyBlock::new);
+    public static final RegistryObject<Block> GAMING_WITH_JEN_LUCKY_BLOCK = registerNormalBlock("jen_lucky_block", GammingWithJenLuckyBlock::new);
+    public static final RegistryObject<Block> SKY_DOES_MINECRAFT_LUCKY_BLOCK = registerNormalBlock("sky_lucky_block", SkyDoesMinecraftLuckyBlock::new);
 
-    public static final RegistryObject<Item> MIC_BLOCKITEM = ITEMS.register("mic_block", () -> new BlockItemBase(MIC_BLOCK.get()));
-    public static final RegistryObject<YtIcon> ICON = ITEMS.register("yticon", YtIcon::new);
-    public static final RegistryObject<Mic> MIC = ITEMS.register("mic", Mic::new);
-    public static final RegistryObject<Item> ALEXIRCRAFT_LUCKY_ITEM = ITEMS.register("alexircraft_lucky_block", () -> new BlockItemBase(ALEXIRCRAFT_LUCKY_BLOCK.get()));
-    public static final RegistryObject<Item> JEROMEASF_LUCKY_ITEM = ITEMS.register("jeromeasf_lucky_block", () -> new BlockItemBase(JEROMEASF_LUCKY_BLOCK.get()));
-    public static final RegistryObject<Item> BABY_DUCK_LUCKY_ITEM = ITEMS.register("baby_duck_lucky_block", () -> new BlockItemBase(BABY_DUCK_LUCKY_BLOCK.get()));
-    public static final RegistryObject<Item> GAMING_WITH_JEN_LUCKY_ITEM = ITEMS.register("jen_lucky_block", () -> new BlockItemBase(GAMING_WITH_JEN_LUCKY_BLOCK.get()));
+    public static final RegistryObject<BaseItem> ICON = ITEMS.register("yticon", BaseItem::new);
+    public static final RegistryObject<BaseItem> MIC = ITEMS.register("mic", BaseItem::new);
 
     public static final RegistryObject<Item> YT_HELM = ITEMS.register("yt_helmet", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.HEAD, new Item.Properties()));
     public static final RegistryObject<Item> YT_CHEST = ITEMS.register("yt_chestplate", () -> new ItemModArmor( YOUTUBE, EquipmentSlotType.CHEST, new Item.Properties()));
@@ -596,4 +587,14 @@ public class RegistrationHandler {
     public static final RegistryObject<Item> TEWITY_CHEST = ITEMS.register("tewity_chestplate", () -> new ItemModArmor( TEW_ITY, EquipmentSlotType.CHEST, new Item.Properties()));
     public static final RegistryObject<Item> TEWITY_LEGS = ITEMS.register("tewity_leggings", () -> new ItemModArmor( TEW_ITY, EquipmentSlotType.LEGS, new Item.Properties()));
     public static final RegistryObject<Item> TEWITY_BOOTS = ITEMS.register("tewity_boots", () -> new ItemModArmor( TEW_ITY, EquipmentSlotType.FEET, new Item.Properties()));
+
+    private static <T extends Block> RegistryObject<T> registerNormalBlock(String name, Supplier<T> block) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registerNormalBlockItem(name, toReturn);
+        return toReturn;
+    }
+
+    private static <T extends Block> RegistryObject<Item> registerNormalBlockItem(String name, RegistryObject<T> block) {
+        return RegistrationHandler.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().group(Main.MAIN)));
+    }
 }

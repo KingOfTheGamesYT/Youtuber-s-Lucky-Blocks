@@ -23,11 +23,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
-import thvardhan.ytluckyblocks.entity.EntityAntVenom;
-import thvardhan.ytluckyblocks.entity.EntityCaptainSparklez;
-import thvardhan.ytluckyblocks.entity.EntityLogDotZip;
-import thvardhan.ytluckyblocks.entity.EntitySuperGirlyGamer;
-import thvardhan.ytluckyblocks.misc.ExtraFunctions;
+import thvardhan.ytluckyblocks.functions.ExtraFunctions;
 import thvardhan.ytluckyblocks.misc.RegistrationHandler;
 
 import java.util.Random;
@@ -63,7 +59,7 @@ public class GammingWithJenLuckyBlock extends Block {
     public void onBlockHarvested(World world, net.minecraft.util.math.BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBlockHarvested(world, pos, state, player);
 
-        // ✅ Run only on the logical server
+        //Run only on the server
         if (!world.isRemote) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
             drops(world, pos, player);
@@ -79,13 +75,13 @@ public class GammingWithJenLuckyBlock extends Block {
 
         Random rand = new Random();
 
-        switch (rand.nextInt(1)) {
+        switch (rand.nextInt(56)) {
             case 0: {
-               ExtraFunctions.lookUp(worldIn, player);
+                ExtraFunctions.blockRain(worldIn, player.getPosition(), Blocks.ANVIL, 0, 10);
                 break;
             }
             case 1: {
-                ExtraFunctions.lookUp(worldIn, player);
+                ExtraFunctions.blockRain(worldIn, player.getPosition(), Blocks.ANVIL, 0, 10);
                 break;
             }
             case 2: {
@@ -93,23 +89,34 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 3: {
-                ExtraFunctions.burgerStructOne(worldIn, pos);
+                ExtraFunctions.burgerStruct(worldIn, pos, Blocks.BEACON.getDefaultState(), Blocks.DRAGON_EGG.getDefaultState(), Blocks.GLOWSTONE.getDefaultState());
                 break;
             }
             case 4: {
-                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.SUPERGIRLYGAMER.get(), 5, worldIn, pos, null);
+                ExtraFunctions.summonMobs(RegistrationHandler.SUPERGIRLYGAMER.get(), 5, worldIn, pos, 0, null);
                 break;
             }
             case 5: {
-                ExtraFunctions.summonMobsNearby(EntityType.SKELETON, 5, worldIn, pos, rand);
+                ExtraFunctions.summonMobs(EntityType.SKELETON, 5, worldIn, pos, 30, null);
                 break;
             }
             case 6: {
-                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.SUPERGIRLYGAMER.get(), rand.nextInt(30) + 1, worldIn, pos, null);
+                ExtraFunctions.summonMobs(RegistrationHandler.SUPERGIRLYGAMER.get(), rand.nextInt(30) + 1, worldIn, pos, 0, null);
                 break;
             }
             case 7: {
-                ExtraFunctions.towerStruct(worldIn, pos);
+                ExtraFunctions.buildTower(worldIn, pos,
+                        new Block[] {
+                                Blocks.REDSTONE_BLOCK,
+                                Blocks.LAPIS_BLOCK,
+                                Blocks.COAL_BLOCK,
+                                Blocks.GOLD_BLOCK,
+                                Blocks.IRON_BLOCK,
+                                Blocks.EMERALD_BLOCK,
+                                Blocks.DIAMOND_BLOCK,
+                                Blocks.OBSIDIAN,
+                                Blocks.DRAGON_EGG},
+                        null, 9);
                 break;
             }
             case 8: {
@@ -117,7 +124,7 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 9: {
-                ExtraFunctions.holeDeathTrap(worldIn, pos);
+                ExtraFunctions.createHole(worldIn, pos, false);
                 break;
             }
             case 10: {
@@ -129,14 +136,14 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 12: {
-             ExtraFunctions.summonMobsNearby(EntityType.WOLF, 25, worldIn, pos, rand);
+             ExtraFunctions.summonMobs(EntityType.WOLF, 25, worldIn, pos, 30, null);
              ExtraFunctions.chat("Tame Them If You Want Them.", player);
              ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BONE), 64, 0, 0);
-                ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BONE), 64, 1, 10);
+             ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BONE), 64, 1, 10);
                 break;
             }
             case 13: {
-                ExtraFunctions.burgerStruct(worldIn, pos);
+                ExtraFunctions.burgerStruct(worldIn, pos, Blocks.EMERALD_BLOCK.getDefaultState(), Blocks.DIAMOND_BLOCK.getDefaultState(), Blocks.IRON_BLOCK.getDefaultState());
                 break;
             }
             case 14: {
@@ -174,7 +181,7 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 22: {
-                ExtraFunctions.tntFix(worldIn, pos, 200, player);
+                ExtraFunctions.spawnTNT(worldIn, pos, 200, player, 0, false, 0);
                 break;
             }
             case 23: {
@@ -183,7 +190,7 @@ public class GammingWithJenLuckyBlock extends Block {
             }
             case 24: {
                 ExtraFunctions.chat(TextFormatting.DARK_RED + "BEEP BEEP NUKE =WARNING=", player);
-                ExtraFunctions.tntNearby(worldIn, pos, 200, player, rand);
+                ExtraFunctions.spawnTNT(worldIn, pos, 200, player, 20, false, 0);
                 break;
             }
             case 25: {
@@ -191,27 +198,48 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 26: {
-                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.SUPERGIRLYGAMER.get(), 30, worldIn, pos, null);
+                ExtraFunctions.summonMobs(RegistrationHandler.SUPERGIRLYGAMER.get(), 30, worldIn, pos, 0, null);
                 break;
             }
             case 27: {
-                ExtraFunctions.summonMobsNearby(EntityType.BLAZE, 25, worldIn, pos, rand);
+                ExtraFunctions.summonMobs(EntityType.BLAZE, 25, worldIn, pos, 30, null);
                 break;
             }
             case 28: {
-                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.LOGDOTZIP.get(), 3, worldIn, pos, null);
+                ExtraFunctions.summonMobs(RegistrationHandler.LOGDOTZIP.get(), 3, worldIn, pos, 0, null);
                 break;
             }
             case 29: {
-                ExtraFunctions.summonMobsNearby(EntityType.IRON_GOLEM, rand.nextInt(25) + 1, worldIn, pos, rand);
+                ExtraFunctions.summonMobs(EntityType.IRON_GOLEM, rand.nextInt(25) + 1, worldIn, pos, 30, null);
                 break;
             }
             case 30: {
-                ExtraFunctions.towerStruct(worldIn, pos);
+                ExtraFunctions.buildTower(worldIn, pos,
+                        new Block[] {
+                                Blocks.REDSTONE_BLOCK,
+                                Blocks.LAPIS_BLOCK,
+                                Blocks.COAL_BLOCK,
+                                Blocks.GOLD_BLOCK,
+                                Blocks.IRON_BLOCK,
+                                Blocks.EMERALD_BLOCK,
+                                Blocks.DIAMOND_BLOCK,
+                                Blocks.OBSIDIAN,
+                                Blocks.DRAGON_EGG},
+                        null, 9);
                 break;
             }
             case 31: {
-                ExtraFunctions.randomSixtyFourTower(worldIn, pos, rand);
+                ExtraFunctions.buildTower(worldIn, pos, null,
+                        new Block[] {
+                                Blocks.IRON_BLOCK,
+                                Blocks.DIAMOND_BLOCK,
+                                Blocks.GOLD_BLOCK,
+                                Blocks.EMERALD_BLOCK,
+                                Blocks.BEACON,
+                                Blocks.COAL_BLOCK,
+                                Blocks.REDSTONE_BLOCK,
+                                Blocks.DRAGON_EGG},
+                        64);
                 break;
             }
             case 32: {
@@ -219,11 +247,11 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 33: {
-                ExtraFunctions.mountain(worldIn, pos, rand);
+                ExtraFunctions.mountain(worldIn, pos, Blocks.DIAMOND_BLOCK, rand);
                 break;
             }
             case 34: {
-                ExtraFunctions.lookUp(worldIn, player);
+                ExtraFunctions.blockRain(worldIn, player.getPosition(), Blocks.ANVIL, 0, 10);
                 break;
             }
             case 35: {
@@ -231,11 +259,11 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 36: {
-                ExtraFunctions.summonMobsOnBreakBlock(EntityType.GHAST, rand.nextInt(30) + 1, worldIn, pos, null);
+                ExtraFunctions.summonMobs(EntityType.GHAST, rand.nextInt(30) + 1, worldIn, pos, 0, null);
                 break;
             }
             case 37: {
-                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.ANTVENNOM.get(), rand.nextInt(10) + 1, worldIn, pos, null);
+                ExtraFunctions.summonMobs(RegistrationHandler.ANTVENNOM.get(), rand.nextInt(10) + 1, worldIn, pos, 0, null);
                 break;
             }
             case 38: {
@@ -263,11 +291,11 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 44: {
-                ExtraFunctions.burgerStructOne(worldIn, pos);
+                ExtraFunctions.burgerStruct(worldIn, pos, Blocks.BEACON.getDefaultState(), Blocks.DRAGON_EGG.getDefaultState(), Blocks.GLOWSTONE.getDefaultState());
                 break;
             }
             case 45: {
-                ExtraFunctions.toVoid(worldIn, pos);
+                ExtraFunctions.createHole(worldIn, pos, true);
                 break;
             }
             case 46: {
@@ -275,7 +303,7 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 47: {
-               // ExtraFunctions.setOneBlock(worldIn, pos, ModBlocks.skyDoesMinecraftLuckyBlock);
+                ExtraFunctions.setOneBlock(worldIn, pos, RegistrationHandler.SKY_DOES_MINECRAFT_LUCKY_BLOCK.get());
                 break;
             }
             case 48: {
@@ -287,11 +315,11 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 50: {
-                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.CAPTAIN_SPARKLEZ.get(), rand.nextInt(19) + 1, worldIn, pos, null);
+                ExtraFunctions.summonMobs(RegistrationHandler.CAPTAIN_SPARKLEZ.get(), rand.nextInt(19) + 1, worldIn, pos, 0, null);
                 break;
             }
             case 51: {
-                ExtraFunctions.summonMobsOnBreakBlock(EntityType.RABBIT, 50, worldIn, pos, rabbit -> {
+                ExtraFunctions.summonMobs(EntityType.RABBIT, 50, worldIn, pos, 0, rabbit -> {
                     rabbit.setRabbitType(99); //Killer rabbit
                 });
                 break;
@@ -312,7 +340,6 @@ public class GammingWithJenLuckyBlock extends Block {
                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.SUPER_LEGS.get()));
                 break;
             }
-
         }
     }//method ends
 }

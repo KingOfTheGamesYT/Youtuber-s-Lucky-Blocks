@@ -23,15 +23,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 
-import thvardhan.ytluckyblocks.entity.*;
-import thvardhan.ytluckyblocks.misc.ExtraFunctions;
+import thvardhan.ytluckyblocks.functions.ExtraFunctions;
 import thvardhan.ytluckyblocks.misc.RegistrationHandler;
 
 import java.util.Random;
 
 public class BabyDuckLuckyBlock extends Block {
-
-    private static Random rand = new Random();
 
     public BabyDuckLuckyBlock() {
         super(Properties.create(Material.ROCK)
@@ -62,7 +59,7 @@ public class BabyDuckLuckyBlock extends Block {
     public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         super.onBlockHarvested(world, pos, state, player);
 
-        //Run only on the logical server
+        //Run only on the server
         if (!world.isRemote) {
             drops(world, pos, player);
         }
@@ -95,19 +92,19 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 2: {
-                 ExtraFunctions.mountain(worldIn, pos, rand);
+                 ExtraFunctions.mountain(worldIn, pos, Blocks.DIAMOND_BLOCK, rand);
                 break;
             }
             case 3: {
-                 ExtraFunctions.summonMobsNearby(RegistrationHandler.GHOST.get(), 5, worldIn, pos, rand);
+                 ExtraFunctions.summonMobs(RegistrationHandler.GHOST.get(), 5, worldIn, pos, 30, null);
                 break;
             }
             case 4: {
-                  ExtraFunctions.summonMobsNearby(RegistrationHandler.GHOST.get(), 20, worldIn, pos, rand);
+                  ExtraFunctions.summonMobs(RegistrationHandler.GHOST.get(), 20, worldIn, pos, 30, null);
                 break;
             }
             case 5: {
-                ExtraFunctions.summonMobsNearby(RegistrationHandler.CAPTAIN_SPARKLEZ.get(), 5, worldIn, pos, rand);
+                ExtraFunctions.summonMobs(RegistrationHandler.CAPTAIN_SPARKLEZ.get(), 5, worldIn, pos, 30, null);
                 break;
             }
             case 6: {
@@ -143,11 +140,11 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 14: {
-                 ExtraFunctions.summonMobsOnBreakBlock(EntityType.BLAZE, 5, worldIn, pos, null);
+                 ExtraFunctions.summonMobs(EntityType.BLAZE, 5, worldIn, pos, 0, null);
                 break;
             }
             case 15: {
-                 ExtraFunctions.summonMobsNearby(EntityType.SKELETON, 15, worldIn, pos, rand);
+                 ExtraFunctions.summonMobs(EntityType.SKELETON, 15, worldIn, pos, 30, null);
                 break;
             }
             case 16: {
@@ -159,11 +156,11 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 18: {
-                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.LOGDOTZIP.get(), 1, worldIn, pos, null);
+                ExtraFunctions.summonMobs(RegistrationHandler.LOGDOTZIP.get(), 1, worldIn, pos, 0, null);
                 break;
             }
             case 19: {
-                  ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.POPULARMMOS.get(), 5, worldIn, pos, null);
+                  ExtraFunctions.summonMobs(RegistrationHandler.POPULARMMOS.get(), 5, worldIn, pos, 0, null);
                 break;
             }
             case 20: {
@@ -171,30 +168,30 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 21: {
-                   ExtraFunctions.chat("Something Is Not Right Here....", player);
+                 ExtraFunctions.chat("Something Is Not Right Here....", player);
                  ExtraFunctions.materialKit(worldIn, pos, rand);
                 break;
             }
             case 22: {
-                   ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.ANTVENNOM.get(), rand.nextInt(10) + 1, worldIn, pos, null);
+                   ExtraFunctions.summonMobs(RegistrationHandler.ANTVENNOM.get(), rand.nextInt(10) + 1, worldIn, pos, 0, null);
                 break;
             }
             case 23: {
-                 ExtraFunctions.tpPlayer(player);
+                ExtraFunctions.tpPlayer(player);
                 ExtraFunctions.chat("Fresh Air :'D", player);
                 break;
             }
             case 24: {
-                  ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Blocks.DRAGON_EGG), 50, 1, 5);
+                ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Blocks.DRAGON_EGG), 50, 1, 5);
                 ExtraFunctions.chat("How Are You Going To Train These Many Dragons?", player);
                 break;
             }
             case 25: {
-                 ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.DANTDM.get(), 2, worldIn, pos, null);
+                 ExtraFunctions.summonMobs(RegistrationHandler.DANTDM.get(), 2, worldIn, pos, 0, null);
                 break;
             }
             case 26: {
-                  ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.GHOST.get(), rand.nextInt(10), worldIn, pos, null);
+                  ExtraFunctions.summonMobs(RegistrationHandler.GHOST.get(), rand.nextInt(10), worldIn, pos, 0, null);
                 break;
             }
             case 27: {
@@ -202,7 +199,7 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 28: {
-                   ExtraFunctions.burgerStruct(worldIn, pos);
+                ExtraFunctions.burgerStruct(worldIn, pos, Blocks.EMERALD_BLOCK.getDefaultState(), Blocks.DIAMOND_BLOCK.getDefaultState(), Blocks.IRON_BLOCK.getDefaultState());
                 break;
             }
             case 29: {
@@ -211,7 +208,7 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 30: {
-                 ExtraFunctions.toVoid(worldIn, pos);
+                 ExtraFunctions.createHole(worldIn, pos, true);
                 break;
             }
             case 31: {
@@ -223,7 +220,7 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 33: {
-                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.SERIALPLAYER.get(), 30, worldIn, pos, null);
+                ExtraFunctions.summonMobs(RegistrationHandler.SERIALPLAYER.get(), 30, worldIn, pos, 0, null);
                 break;
             }
             case 34: {
@@ -271,7 +268,7 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 44: {
-                 ExtraFunctions.lookUp(worldIn, player);
+                ExtraFunctions.blockRain(worldIn, player.getPosition(), Blocks.ANVIL, 0, 10);
                 break;
             }
             case 45: {
@@ -283,12 +280,12 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 47: {
-                  ExtraFunctions.setOneBlock(worldIn, pos, Blocks.TNT);
+                ExtraFunctions.setOneBlock(worldIn, pos, Blocks.TNT);
                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
                 break;
             }
             case 48: {
-                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.BABY_DUCK.get(), 30, worldIn, pos, null);
+                ExtraFunctions.summonMobs(RegistrationHandler.BABY_DUCK.get(), 30, worldIn, pos, 0, null);
                 break;
             }
             case 49: {
@@ -296,11 +293,11 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 50: {
-                  ExtraFunctions.holeDeathTrap(worldIn, pos);
+                  ExtraFunctions.createHole(worldIn, pos, false);
                 break;
             }
             case 51: {
-                ExtraFunctions.summonMobsOnBreakBlock(RegistrationHandler.BABY_DUCK.get(), 40, worldIn, pos, null);
+                ExtraFunctions.summonMobs(RegistrationHandler.BABY_DUCK.get(), 40, worldIn, pos, 0, null);
                 break;
             }
             case 52: {

@@ -1,6 +1,7 @@
-package thvardhan.ytluckyblocks.misc;
+package thvardhan.ytluckyblocks.functions;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
@@ -25,22 +26,21 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import net.minecraftforge.server.command.TextComponentHelper;
-import thvardhan.ytluckyblocks.entity.EntityLuckyMob;
+import thvardhan.ytluckyblocks.misc.RegistrationHandler;
 
 import javax.annotation.Nullable;
 import java.util.Random;
-import java.util.UUID;
 import java.util.function.Consumer;
 
 public class ExtraFunctions {
-    int flags = 3;
 
     private static Block[] b = {RegistrationHandler.ALEXIRCRAFT_LUCKY_BLOCK.get(), //ModBlocks.antVenomLuckyBlock, ModBlocks.bajanCanadianLuckyBlock, ModBlocks.captainSparkelzLuckyBlock, ModBlocks.danTDMLuckyBlock, ModBlocks.exploadingTNTLuckyBlock, ModBlocks.frizzleandpopLuckyBlock,
              RegistrationHandler.GAMING_WITH_JEN_LUCKY_BLOCK.get(),
            // ModBlocks.iBallisticSquidLuckyBlock, ModBlocks.iHasCupcakeLuckyBlock,
             RegistrationHandler.JEROMEASF_LUCKY_BLOCK.get(),
             //ModBlocks.lachlanLuckyBlock, ModBlocks.lDShadowLadyLuckyBlock, ModBlocks.youtubeLuckyBlock, ModBlocks.vikkstar123LuckyBlock, ModBlocks.trueMuLuckyBlock, ModBlocks.thnxCyaLuckyBlock,
-            //ModBlocks.tewityLuckyBlock, ModBlocks.stampylongheadLuckyBlock, ModBlocks.sSundeeLuckyBlock, ModBlocks.skyDoesMinecraftLuckyBlock, ModBlocks.serialPlayerLuckyBlock, ModBlocks.prestonPlayzLuckyBlock, ModBlocks.mrwooflessLuckyBlock, ModBlocks.petaZahHuttLuckyBlock,
+            //ModBlocks.tewityLuckyBlock, ModBlocks.stampylongheadLuckyBlock, ModBlocks.sSundeeLuckyBlock,
+             RegistrationHandler.SKY_DOES_MINECRAFT_LUCKY_BLOCK.get(), //ModBlocks.serialPlayerLuckyBlock, ModBlocks.prestonPlayzLuckyBlock, ModBlocks.mrwooflessLuckyBlock, ModBlocks.petaZahHuttLuckyBlock,
            // ModBlocks.pinkSheepYTLuckyBlock, ModBlocks.popularMMOLuckyBlock,
             RegistrationHandler.BABY_DUCK_LUCKY_BLOCK.get(), //ModBlocks.babyLeahLuckyBlock, ModBlocks.babyMaxLuckyBlock, ModBlocks.donutTheDogLuckyBlock, ModBlocks.evilLittleKellyLuckyBlock, ModBlocks.littleAllyLuckyBlock, ModBlocks.littleCarlyMcLuckyBlock
           //  , ModBlocks.littleDonnyLuckyBlock, ModBlocks.littleKellyMcLuckyBlock, ModBlocks.littleLizardGamingLuckyBlock, ModBlocks.maxTheMonkeyLuckyBlock, ModBlocks.sharkyLuckyBlock, ModBlocks.tinyTurtleLuckyBlock, ModBlocks.aphmauLuckyBlock, ModBlocks.scubaSteveLuckyBlock, ModBlocks.littleRopoLuckyBlock,
@@ -86,7 +86,6 @@ public class ExtraFunctions {
         worldIn.addEntity(entityitem);
     }
 
-
     /**
      * Summons A Item Like A Drop
      */
@@ -108,7 +107,7 @@ public class ExtraFunctions {
      */
 
     public static void setTntWithBlock(World worldIn, BlockPos pos, Random rand) {
-        // Pick a random base block from this list
+        //Pick a random base block from this list
         Block[] possibleBlocks = {
                 Blocks.DIAMOND_BLOCK,
                 Blocks.OBSIDIAN,
@@ -146,14 +145,12 @@ public class ExtraFunctions {
         worldIn.setBlockState(c, Blocks.FIRE.getDefaultState(), 3);
     }
 
-
     public static void summonEnchantedItemAsDrop(World worldIn, BlockPos pos, Item i, String name, Enchantment e, int amp) {
         ItemStack itemE = new ItemStack(i);
         itemE.addEnchantment(e, amp);
         itemE.setDisplayName(new StringTextComponent(name));
         summonItemAsDrop(pos, worldIn, itemE);
     }
-
 
     /**
      * Tp to Random Loc.
@@ -180,9 +177,7 @@ public class ExtraFunctions {
     public static void setOneBlock(World worldIn, BlockPos pos, Block block) {
         if (worldIn.isRemote) return;
         BlockPos basePos = pos.east();
-        worldIn.setBlockState(basePos, block.getDefaultState(), 2);
-        worldIn.notifyNeighborsOfStateChange(basePos, block);
-        worldIn.getPendingBlockTicks().scheduleTick(basePos, block, 1);
+        worldIn.setBlockState(basePos, block.getDefaultState(), 3);
     }
 
     /**
@@ -223,7 +218,7 @@ public class ExtraFunctions {
         double d2 = (double)(worldIn.rand.nextFloat() * f) + (1.0D - f) * 0.5D;
 
         for (int i = 0; i < loop; i++) {
-            ItemStack stackCopy = item.copy(); // ✅ make a new copy each time
+            ItemStack stackCopy = item.copy();
             ItemEntity entityItem;
 
             if (style == 1) {
@@ -236,29 +231,35 @@ public class ExtraFunctions {
         }
     }
 
-
     /**
      * lets make a troll chat XD
      */
     public static void trollChat(PlayerEntity player) {
-        if (!player.world.isRemote) { // <-- Only execute on server side
+        if (!player.world.isRemote) { //Only execute on server side
             TextComponent message = TextComponentHelper.createComponentTranslation(player, "message.troll", player.getDisplayName());
             message.mergeStyle(TextFormatting.BLUE);
             player.sendMessage(message, player.getUniqueID());
         }
     }
 
-    public static void toVoid(World worldIn, BlockPos pos) {
+    public static void createHole(World worldIn, BlockPos pos, boolean includeBottom) {
+
+        if (worldIn.isRemote) return;
 
         int h = pos.getY();
-        for (int i = 0; i <= h; i++) {
-            BlockPos AIR = new BlockPos(pos.getX(), pos.getY() - i, pos.getZ());
-            worldIn.setBlockState(AIR, Blocks.AIR.getDefaultState(), 2);
+
+        int limit = includeBottom ? h : h - 1;
+
+        for (int i = 0; i <= limit; i++) {
+
+            BlockPos target = pos.down(i);
+
+            worldIn.setBlockState(target, Blocks.AIR.getDefaultState(), 2);
         }
     }
 
     /**
-     * contains Some Stuff!
+     * Kits!
      */
 
     public static void redstoneKit(World worldIn, BlockPos pos) {
@@ -268,86 +269,137 @@ public class ExtraFunctions {
         summonItemWithLoop(worldIn, pos, Items.REPEATER, 10, 0, 0);
     }
 
+    public static void foodKit(World worldIn, BlockPos pos) {
+        summonBlockAsDrop(pos, worldIn, Blocks.CAKE);
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1), 10, 1, 30);
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BREAD), 16, 1, 10);
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.APPLE), 5, 0, 0);
+        summonItemAsDrop(pos, worldIn, new ItemStack(Items.GOLDEN_APPLE));
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.COOKED_BEEF), 34, 0, 0);
+    }
+
+    public static void materialKit(World worldIn, BlockPos pos, Random rand) {
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.DIAMOND), rand.nextInt(50) + 1, 1, rand.nextInt(5));
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.GOLD_INGOT), rand.nextInt(50) + 1, 1, rand.nextInt(15));
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.IRON_INGOT), rand.nextInt(30) + 1, 1, rand.nextInt(10));
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.EMERALD), rand.nextInt(40) + 1, 1, rand.nextInt(4));
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.COAL), rand.nextInt(10) + 1, 1, rand.nextInt(30));
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.CHEST_MINECART), rand.nextInt(10) + 1, 0, 0);
+        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BLAZE_POWDER), rand.nextInt(64) + 1, 1, rand.nextInt(15));
+    }
+
+    public static void potionKit(World worldIn, BlockPos pos, Random rand) {
+
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.ENDER_PEARL), rand.nextInt(50) + 1, 0, 0);
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.ENDER_EYE), rand.nextInt(50) + 1, 0, 0);
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.MAGMA_CREAM), rand.nextInt(50) + 1, 0, 0);
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BREWING_STAND), 1, 0, 0);
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.FERMENTED_SPIDER_EYE), rand.nextInt(50) + 1, 0, 0);
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.GLISTERING_MELON_SLICE), rand.nextInt(50) + 1, 0, 0);
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.GOLD_NUGGET), rand.nextInt(50) + 1, 0, 0);
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.SPIDER_EYE), rand.nextInt(50) + 1, 0, 0);
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.NETHER_WART), rand.nextInt(50) + 1, 0, 0);
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.GLASS_BOTTLE), rand.nextInt(50) + 1, 0, 0);
+        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BLAZE_ROD), rand.nextInt(50) + 1, 0, 0);
+    }
+
+    public static void musicKit(World worldIn, BlockPos pos) {
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.JUKEBOX));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_11));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_13));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_BLOCKS));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_CAT));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_CHIRP));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_FAR));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_MALL));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_MELLOHI));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_STAL));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_STRAD));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_WAIT));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_WARD));
+        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_PIGSTEP));
+    }
+
     public static void hellWellStructure(World worldIn, BlockPos pos, Random rand) {
 
         if (worldIn.isRemote) {
             return;
         }
-        worldIn.setBlockState(pos, Blocks.LAVA.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 2);
+        worldIn.setBlockState(pos, Blocks.LAVA.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
 
         int r = rand.nextInt(5) + 1;
         for (int i = 0; i < r; i++) {
-            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 2);
-            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 2);
-            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 2);
-            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 2);
+            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
         }
 
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ()), Blocks.GLOWSTONE.getDefaultState(), 2);
-        //setting bricks and netherracks
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.NETHERRACK.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.NETHERRACK.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.NETHERRACK.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.NETHERRACK.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 2, pos.getZ()), RegistrationHandler.LUCKY_PRESSURE_PLATE.get().getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.FIRE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.FIRE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.FIRE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.FIRE.getDefaultState(), 2);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ()), Blocks.GLOWSTONE.getDefaultState(), 3);
+        //Setting bricks and netherracks
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.NETHERRACK.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.NETHERRACK.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.NETHERRACK.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.NETHERRACK.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 2, pos.getZ()), RegistrationHandler.LUCKY_PRESSURE_PLATE.get().getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.FIRE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.FIRE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.FIRE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.FIRE.getDefaultState(), 3);
 
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 2);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 3);
     }
 
     public static void endWellStruct(World worldIn, BlockPos pos, Random rand) {
         if (worldIn.isRemote) {
             return;
         }
-        worldIn.setBlockState(pos, Blocks.WATER.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ()), Blocks.END_STONE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ()), Blocks.END_STONE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 2);
+        worldIn.setBlockState(pos, Blocks.WATER.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ()), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ()), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 3);
 
         int r = rand.nextInt(6) + 1;
         for (int i = 0; i < r; i++) {
-            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.BIRCH_FENCE.getDefaultState(), 2);
-            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.BIRCH_FENCE.getDefaultState(), 2);
-            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.BIRCH_FENCE.getDefaultState(), 2);
-            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.BIRCH_FENCE.getDefaultState(), 2);
+            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
 
         }
 
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ()), Blocks.BEACON.getDefaultState(), 2);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ()), Blocks.BEACON.getDefaultState(), 3);
 
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.OBSIDIAN.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.OBSIDIAN.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.OBSIDIAN.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.OBSIDIAN.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 2, pos.getZ()), RegistrationHandler.LUCKY_PRESSURE_PLATE.get().getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 2);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.OBSIDIAN.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.OBSIDIAN.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.OBSIDIAN.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.OBSIDIAN.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 2, pos.getZ()), RegistrationHandler.LUCKY_PRESSURE_PLATE.get().getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
 
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ()), Blocks.END_STONE.getDefaultState(), 2);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ()), Blocks.END_STONE.getDefaultState(), 2);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ()), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ()), Blocks.END_STONE.getDefaultState(), 3);
     }
 
     public static void addEnchantsMany(ItemStack stack, Enchantment[] e, int amp, World worldIn, BlockPos pos) {
@@ -364,15 +416,15 @@ public class ExtraFunctions {
         int r = rand.nextInt(stack.length);
         int a = rand.nextInt(stack.length);
 
-        // Ensure the loop has a valid range
+        //Ensure the loop has a valid range
         if (a > r) {
             int temp = a;
             a = r;
             r = temp;
         } else if (a == r) {
-            // If they're equal, sometimes spawn 1 item, sometimes none
+            //If they're equal, sometimes spawn 1 item, sometimes none
             if (rand.nextBoolean()) {
-                // keep it as a single-item spawn
+                //Keep it as a single-item spawn
             } else if (a > 0) {
                 a -= 1;
             } else if (r < stack.length - 1) {
@@ -380,13 +432,13 @@ public class ExtraFunctions {
             }
         }
 
-        // Randomly decide if we’ll skip spawning anything at all (just like 1.8.9 sometimes did)
+        //Randomly decide if we’ll skip spawning anything at all
         if (rand.nextInt(10) == 0) {
             // ~10% chance to skip entirely
             return;
         }
 
-        // Loop through the chosen item range — includes 'r' now, so last item (e.g., shovel) can spawn
+        //Loop through the chosen item range
         for (int i = Math.max(0, a); i <= r && i < stack.length; i++) {
 
             int y = rand.nextInt(ench.length);
@@ -400,7 +452,7 @@ public class ExtraFunctions {
                 z -= 1;
             }
             for (int j = z; j < y && j < ench.length; j++) {
-                if (rand.nextInt(3) != 0) { // about 66% chance to apply each potential enchant
+                if (rand.nextInt(3) != 0) { //About 66% chance to apply each potential enchant
                     int n = rand.nextInt(ench.length);
                     stack[i].addEnchantment(ench[n], rand.nextInt(ampUpperLimit) + 1);
                 }
@@ -409,112 +461,40 @@ public class ExtraFunctions {
         }
     }
 
-    public static void holeDeathTrap(World worldIn, BlockPos pos) {
+    public static void mountain(World worldIn, BlockPos pos, Block block, Random rand) {
 
-        int h = pos.getY();
-        for (int i = 0; i < h; i++) {
-            worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() - i, pos.getZ()), Blocks.AIR.getDefaultState(), 2);
-        }
-    }
+        if (worldIn.isRemote) return;
 
-    public static void mountain(World worldIn, BlockPos pos, Random rand) {
-        int r = rand.nextInt(6) + 1;
+        int height = rand.nextInt(6) + 1;
 
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < 3; j++) {
-                worldIn.setBlockState(new BlockPos(pos.getX() + 1+ j, pos.getY() + i, pos.getZ() + j), Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
+        for (int y = 0; y < height; y++) {
+            for (int offset = 0; offset < 3; offset++) {
+
+                worldIn.setBlockState(pos.add(1 + offset, y, offset), block.getDefaultState(), 2);
             }
         }
-    }
-
-    public static void mountainOne(World worldIn, BlockPos pos, Random rand) {
-        int r = rand.nextInt(6) + 1;
-
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < 3; j++) {
-                worldIn.setBlockState(
-                        new BlockPos(pos.getX() + 1 + j, pos.getY() + i, pos.getZ() + j),
-                        Blocks.EMERALD_BLOCK.getDefaultState(),
-                        2
-                );
-            }
-        }
-    }
-
-    public static void foodKit(World worldIn, BlockPos pos) {
-        summonBlockAsDrop(pos, worldIn, Blocks.CAKE);
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1), 10, 1, 30);
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BREAD), 16, 1, 10);
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.APPLE), 5, 0, 0);
-        summonItemAsDrop(pos, worldIn, new ItemStack(Items.GOLDEN_APPLE));
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.COOKED_BEEF), 34, 0, 0);
     }
 
     public static void chat(String chat, PlayerEntity player) {
 
-        if (!player.world.isRemote) { // Only send from server side
+        if (!player.world.isRemote) { //Only send from server side
             player.sendMessage(new StringTextComponent(chat), player.getUniqueID());
         }
     }
 
-    public static void materialKit(World worldIn, BlockPos pos, Random rand) {
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.DIAMOND), rand.nextInt(50) + 1, 1, rand.nextInt(5));
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.GOLD_INGOT), rand.nextInt(50) + 1, 1, rand.nextInt(15));
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.IRON_INGOT), rand.nextInt(30) + 1, 1, rand.nextInt(10));
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.EMERALD), rand.nextInt(40) + 1, 1, rand.nextInt(4));
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.COAL), rand.nextInt(10) + 1, 1, rand.nextInt(30));
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.CHEST_MINECART), rand.nextInt(10) + 1, 0, 0);
-        summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BLAZE_POWDER), rand.nextInt(64) + 1, 1, rand.nextInt(15));
-    }
+    public static void burgerStruct(World worldIn, BlockPos pos, BlockState top, BlockState middle, BlockState bottom) {
 
-    public static void burgerStruct(World worldIn, BlockPos pos) {
-        // Move the structure one block to the east so we don't overwrite the trigger block
         BlockPos basePos = pos.east();
 
-        // Bottom layer - Iron blocks
-        for (int x = 0; x < 3; x++) {
-            for (int z = 0; z < 3; z++) {
-                worldIn.setBlockState(basePos.add(x, 0, z), Blocks.IRON_BLOCK.getDefaultState(), 2);
-            }
-        }
+        BlockState[] layers = new BlockState[] { bottom, middle, top };
 
-        // Middle layer - Diamond blocks
-        for (int x = 0; x < 3; x++) {
-            for (int z = 0; z < 3; z++) {
-                worldIn.setBlockState(basePos.add(x, 1, z), Blocks.DIAMOND_BLOCK.getDefaultState(), 2);
-            }
-        }
+        for (int y = 0; y < layers.length; y++) {
+            BlockState state = layers[y];
 
-        // Top layer - Emerald blocks
-        for (int x = 0; x < 3; x++) {
-            for (int z = 0; z < 3; z++) {
-                worldIn.setBlockState(basePos.add(x, 2, z), Blocks.EMERALD_BLOCK.getDefaultState(), 2);
-            }
-        }
-    }
-
-    public static void burgerStructOne(World worldIn, BlockPos pos) {
-        // Move the structure one block to the east so we don't overwrite the trigger block
-        BlockPos basePos = pos.east();
-
-        // Bottom layer - Glowstone
-        for (int x = 0; x < 3; x++) {
-            for (int z = 0; z < 3; z++) {
-                worldIn.setBlockState(basePos.add(x, 0, z), Blocks.GLOWSTONE.getDefaultState(), 2);
-            }
-        }
-
-        // Middle layer - Dragon Egg
-        for (int x = 0; x < 3; x++) {
-            for (int z = 0; z < 3; z++) {
-                worldIn.setBlockState(basePos.add(x, 1, z), Blocks.DRAGON_EGG.getDefaultState(), 2);
-            }
-        }
-
-        // Top layer - Beacon
-        for (int x = 0; x < 3; x++) {
-            for (int z = 0; z < 3; z++) {
-                worldIn.setBlockState(basePos.add(x, 2, z), Blocks.BEACON.getDefaultState(), 2);
+            for (int x = 0; x < 3; x++) {
+                for (int z = 0; z < 3; z++) {
+                    worldIn.setBlockState(basePos.add(x, y, z), state, 3);
+                }
             }
         }
     }
@@ -561,123 +541,46 @@ public class ExtraFunctions {
         }
     }
 
-    public static void lookUp(World w, PlayerEntity p) {
+    public static void spawnTNT(World worldIn, BlockPos pos, int amount, PlayerEntity player, int radius, boolean rain, int yStep)
+    {
+        for (int i = 0; i < amount; i++) {
 
-        double x = p.getPosX();
-        double y = p.getPosY();
-        double z = p.getPosZ();
+            int x = (int) (pos.getX() + 0.5);
+            int y = pos.getY();
+            int z = (int) (pos.getZ() + 0.5);
 
-        setOneBlock(w, new BlockPos(x, y + 10, z), Blocks.ANVIL);
-    }
-
-    public static void tntFix(World worldIn, BlockPos pos, int amOfTNT, PlayerEntity player) {
-
-        for (int i = 0; i < amOfTNT; i++) {
-            TNTEntity entityTNTprimed = new TNTEntity(worldIn, (double) ((float) pos.getX() + 0.5F), (double) pos.getY(), (double) ((float) pos.getZ() + 0.5F), player);
-            entityTNTprimed.setFuse(worldIn.rand.nextInt(entityTNTprimed.getFuse() / 4) + entityTNTprimed.getFuse() / 8);
-            worldIn.addEntity(entityTNTprimed);
-        }
-    }
-
-    public static void tntNearby(World worldIn, BlockPos pos, int amOfTNT, PlayerEntity player, Random rand) {
-        for (int i = 0; i < amOfTNT; i++) {
-            TNTEntity entityTNTprimed = new TNTEntity(worldIn, (double) ((float) pos.getX() + 0.5F) + rand.nextInt(20), (double) pos.getY() + rand.nextInt(20), (double) ((float) pos.getZ() + 0.5F) + rand.nextInt(20), player);
-            entityTNTprimed.setFuse(worldIn.rand.nextInt(entityTNTprimed.getFuse() / 4) + entityTNTprimed.getFuse() / 8);
-            worldIn.addEntity(entityTNTprimed);
-        }
-    }
-
-    public static void tntRain(World worldIn, BlockPos pos, int amOfTNT, int skip, PlayerEntity player) {
-
-        for (int i = 0; i < amOfTNT; i++) {
-            TNTEntity entityTNTprimed = new TNTEntity(worldIn, (double) ((float) pos.getX() + 0.5F), (double) pos.getY() + (skip * i), (double) ((float) pos.getZ() + 0.5F), player);
-            entityTNTprimed.setFuse(worldIn.rand.nextInt(entityTNTprimed.getFuse() / 4) + entityTNTprimed.getFuse() / 8);
-            worldIn.addEntity(entityTNTprimed);
-        }
-    }
-
-    public static void potionKit(World worldIn, BlockPos pos, Random rand) {
-
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.ENDER_PEARL), rand.nextInt(50) + 1, 0, 0);
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.ENDER_EYE), rand.nextInt(50) + 1, 0, 0);
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.MAGMA_CREAM), rand.nextInt(50) + 1, 0, 0);
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BREWING_STAND), 1, 0, 0);
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.FERMENTED_SPIDER_EYE), rand.nextInt(50) + 1, 0, 0);
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.GLISTERING_MELON_SLICE), rand.nextInt(50) + 1, 0, 0);
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.GOLD_NUGGET), rand.nextInt(50) + 1, 0, 0);
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.SPIDER_EYE), rand.nextInt(50) + 1, 0, 0);
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.NETHER_WART), rand.nextInt(50) + 1, 0, 0);
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.GLASS_BOTTLE), rand.nextInt(50) + 1, 0, 0);
-        ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BLAZE_ROD), rand.nextInt(50) + 1, 0, 0);
-    }
-
-    public static void musicKit(World worldIn, BlockPos pos) {
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.JUKEBOX));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_11));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_13));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_BLOCKS));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_CAT));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_CHIRP));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_FAR));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_MALL));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_MELLOHI));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_STAL));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_STRAD));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_WAIT));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_WARD));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_PIGSTEP));
-    }
-
-    public static void towerStruct(World worldIn, BlockPos pos) {
-
-        // Shift the entire tower 1 block east (positive X)
-        BlockPos base = pos.add(1, 0, 0);
-
-        worldIn.setBlockState(base, Blocks.REDSTONE_BLOCK.getDefaultState(), 3);
-        worldIn.setBlockState(base.up(1), Blocks.LAPIS_BLOCK.getDefaultState(), 3);
-        worldIn.setBlockState(base.up(2), Blocks.COAL_BLOCK.getDefaultState(), 3);
-        worldIn.setBlockState(base.up(3), Blocks.GOLD_BLOCK.getDefaultState(), 3);
-        worldIn.setBlockState(base.up(4), Blocks.IRON_BLOCK.getDefaultState(), 3);
-        worldIn.setBlockState(base.up(5), Blocks.EMERALD_BLOCK.getDefaultState(), 3);
-        worldIn.setBlockState(base.up(6), Blocks.DIAMOND_BLOCK.getDefaultState(), 3);
-        worldIn.setBlockState(base.up(7), Blocks.OBSIDIAN.getDefaultState(), 3);
-        worldIn.setBlockState(base.up(8), Blocks.DRAGON_EGG.getDefaultState(), 3);
-    }
-
-    public static void randomSixtyFourTower(World worldIn, BlockPos pos, Random rand) {
-        // Offset tower to the east of the broken block
-        BlockPos towerBase = pos.east();
-
-        for (int i = 0; i < 64; i++) {
-            BlockPos blockPos = towerBase.up(i);
-            int r = rand.nextInt(8);
-
-            switch (r) {
-                case 0:
-                    worldIn.setBlockState(blockPos, Blocks.IRON_BLOCK.getDefaultState(), 3);
-                    break;
-                case 1:
-                    worldIn.setBlockState(blockPos, Blocks.DIAMOND_BLOCK.getDefaultState(), 3);
-                    break;
-                case 2:
-                    worldIn.setBlockState(blockPos, Blocks.GOLD_BLOCK.getDefaultState(), 3);
-                    break;
-                case 3:
-                    worldIn.setBlockState(blockPos, Blocks.EMERALD_BLOCK.getDefaultState(), 3);
-                    break;
-                case 4:
-                    worldIn.setBlockState(blockPos, Blocks.BEACON.getDefaultState(), 3);
-                    break;
-                case 5:
-                    worldIn.setBlockState(blockPos, Blocks.COAL_BLOCK.getDefaultState(), 3);
-                    break;
-                case 6:
-                    worldIn.setBlockState(blockPos, Blocks.REDSTONE_BLOCK.getDefaultState(), 3);
-                    break;
-                case 7:
-                    worldIn.setBlockState(blockPos, Blocks.DRAGON_EGG.getDefaultState(), 3);
-                    break;
+            if (rain) {
+                y += i * yStep;
+            } else {
+                x += worldIn.rand.nextInt(radius + 1) - radius / 2;
+                z += worldIn.rand.nextInt(radius + 1) - radius / 2;
             }
+
+            TNTEntity tnt = new TNTEntity(worldIn, x, y, z, player);
+
+            tnt.setFuse(worldIn.rand.nextInt(tnt.getFuse() / 4) + tnt.getFuse() / 8);
+
+            worldIn.addEntity(tnt);
+        }
+    }
+
+    public static void buildTower(World worldIn, BlockPos pos, Block[] fixedLayers, Block[] palette, int height) {
+
+        BlockPos base = pos.east();
+
+        for (int i = 0; i < height; i++) {
+
+            BlockPos target = base.up(i);
+
+            Block block;
+
+            if (fixedLayers != null) {
+                block = fixedLayers[Math.min(i, fixedLayers.length - 1)];
+            } else {
+                block = palette[worldIn.rand.nextInt(palette.length)];
+            }
+
+            worldIn.setBlockState(target, block.getDefaultState(), 3);
         }
     }
 
@@ -741,11 +644,7 @@ public class ExtraFunctions {
         worldIn.setBlockState(new BlockPos(x + 1, y - 1, z + 1), Blocks.AIR.getDefaultState());
         worldIn.setBlockState(new BlockPos(x + 1, y - 2, z + 1), Blocks.AIR.getDefaultState());
 
-        ExtraFunctions.summonMobsOnBreakBlock(EntityType.ENDERMITE, 50, worldIn, new BlockPos(x, y, z), null);
-    }
-
-    public static void sandRain(World worldIn, PlayerEntity player) {
-        worldIn.setBlockState(new BlockPos(player.getPosX(), player.getPosY() + 2, player.getPosZ()), Blocks.SAND.getDefaultState(), 2);
+        ExtraFunctions.summonMobs(EntityType.ENDERMITE, 50, worldIn, new BlockPos(x, y, z), 0,null);
     }
 
     public static void flyingIsle(World worldIn, BlockPos pos) {
@@ -756,11 +655,20 @@ public class ExtraFunctions {
         }
     }
 
-    public static void anvilRain(World worldIn, BlockPos pos) {
+    public static void blockRain(World worldIn, BlockPos pos, Block block, int radius, int height) {
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++)
-                worldIn.setBlockState(new BlockPos(pos.getX() + i, pos.getY() + 40, pos.getZ() + j), Blocks.ANVIL.getDefaultState(), 2);
+        if (worldIn.isRemote) return;
+
+        if (radius <= 0) {
+            worldIn.setBlockState(pos.up(height), block.getDefaultState(), 2);
+            return;
+        }
+
+        for (int x = -radius; x < radius; x++) {
+            for (int z = -radius; z < radius; z++) {
+
+                worldIn.setBlockState(pos.add(x, height, z), block.getDefaultState(), 2);
+            }
         }
     }
 
@@ -776,9 +684,8 @@ public class ExtraFunctions {
         worldIn.setBlockState(new BlockPos(player.getPosX() + 1, player.getPosY() - 1, player.getPosZ() - 1), Blocks.SLIME_BLOCK.getDefaultState());
         }
 
-    /*
-     * summons 40 blocks in each dir.
-     */
+    //Summons 40 blocks in each dir.
+
     public static void parabolaStruct(World worldIn, BlockPos pos) {
         for (int i = 0; i < 80; i++) {
             ExtraFunctions.setOneBlock(worldIn, new BlockPos(pos.getX(), pos.getY() + i, pos.getZ() + i), Blocks.ACACIA_PLANKS);
@@ -794,12 +701,10 @@ public class ExtraFunctions {
         }
     }//TODO ENHANCE THIS THING.
 
-
     public static void saflyTeleportPlayer(World worldIn, ServerPlayerEntity player) {
         flyingIsle(worldIn, new BlockPos(player.getPosX(), player.getPosY(), player.getPosZ()));
         tpPlayer(player);
     }
-
 
     public static void tntPlaceNearby(World worldIn, BlockPos pos, int amOfTNT, Random rand) {
         for (int i = 0; i < amOfTNT; i++) {
@@ -814,13 +719,10 @@ public class ExtraFunctions {
                 for (int j = 0; j < 5; j++)
                     ExtraFunctions.setOneBlock(worldIn, new BlockPos(pos.getX() - 2 + j, pos.getY() - 1 + k, pos.getZ() + i), Blocks.RED_SANDSTONE);
 
-
         for (int k = 0; k < 2; k++)
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
                     ExtraFunctions.setOneBlock(worldIn, new BlockPos(pos.getX() - 1 + j, pos.getY() + k, pos.getZ() + i), b[r.nextInt(b.length)]);
-
-
     }
 
     //TODO fake apple
@@ -850,6 +752,7 @@ public class ExtraFunctions {
     }
 
     public static void fireCamp(World worldIn, PlayerEntity player) {
+
         setOneBlock(worldIn, new BlockPos(player.getPosX(), player.getPosY() - 1, player.getPosZ()), Blocks.NETHERRACK);
         setOneBlock(worldIn, new BlockPos(player.getPosX(), player.getPosY(), player.getPosZ()), Blocks.FIRE);
         double x = player.getPosX();
@@ -860,17 +763,14 @@ public class ExtraFunctions {
             for (int j = 0; j < 4; j++) {
                 for (int k = 0; k < 4; k++)
                     setOneBlock(worldIn, new BlockPos(x - 3 + j, y - 3 + i, z + k), Blocks.TNT);
-
-
             }
         }
-
-        tntFix(worldIn, new BlockPos(x, y, z), 1, player);
+        ExtraFunctions.spawnTNT(worldIn, new BlockPos(x,y,z), 1, player, 0, false, 0);
     }
 
     public static void tpPlayerInGround(PlayerEntity player) {
         double x = player.getPosX();
-        double y = player.getPosY() - 3; // Adjust the Y-coordinate to move the player down by 3 blocks.
+        double y = player.getPosY() - 3; //Move the player down by 3 blocks.
         double z = player.getPosZ();
 
         player.setPositionAndUpdate(x, y, z);
@@ -897,71 +797,51 @@ public class ExtraFunctions {
         setOneBlock(worldIn, new BlockPos(x, y + 2, z), Blocks.OBSIDIAN);
     }
 
-    public static <T extends MobEntity> void summonMobsOnBreakBlock(EntityType<T> type, int loop, World worldIn, BlockPos pos, @Nullable Consumer<T> customizer) {
+    public static <T extends MobEntity> void summonMobs(EntityType<T> type, int loop, World worldIn, BlockPos pos, int radius, @Nullable Consumer<T> customizer) {
 
         if (worldIn.isRemote) return;
 
         ServerWorld serverWorld = (ServerWorld) worldIn;
 
         for (int i = 0; i < loop; i++) {
+
             T mob = type.create(serverWorld);
             if (mob == null) continue;
 
-            double offsetX = (serverWorld.rand.nextDouble() - 0.5) * 4.0;
-            double offsetZ = (serverWorld.rand.nextDouble() - 0.5) * 4.0;
+            double x;
+            double y;
+            double z;
 
-            //Always spawn slightly above the block
-            double spawnY = pos.getY() + 1.1D;
+            if (radius <= 0) {
+                x = pos.getX() + 0.5D;
+                y = pos.getY() + 1.1D;
+                z = pos.getZ() + 0.5D;
+            } else {
+                double offsetX = (serverWorld.rand.nextDouble() - 0.5D) * radius;
+                double offsetZ = (serverWorld.rand.nextDouble() - 0.5D) * radius;
 
-            // Check for solid blocks above, and move up if needed
-            BlockPos spawnPos = new BlockPos(pos.getX() + offsetX, spawnY, pos.getZ() + offsetZ);
-            while (!serverWorld.isAirBlock(spawnPos) && spawnPos.getY() < serverWorld.getHeight()) {
-                spawnPos = spawnPos.up();
+                x = pos.getX() + offsetX;
+                y = pos.getY();
+                z = pos.getZ() + offsetZ;
             }
 
-            mob.setLocationAndAngles(spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5,
-                    serverWorld.rand.nextFloat() * 360F, 0F);
+            BlockPos spawnPos = new BlockPos(x, y, z);
 
-            //Ensure mob spawns fully on ground if it's a ground mob
-            mob.onInitialSpawn(serverWorld, serverWorld.getDifficultyForLocation(spawnPos),
-                    SpawnReason.EVENT, null, null);
+            mob.setPosition(x, y, z);
 
-            if (customizer != null) customizer.accept(mob);
+            while (!serverWorld.hasNoCollisions(mob) && spawnPos.getY() < serverWorld.getHeight()) {
+                spawnPos = spawnPos.up();
+                mob.setPosition(spawnPos.getX() + 0.5D, spawnPos.getY(), spawnPos.getZ() + 0.5D);
+            }
+
+            mob.setLocationAndAngles(spawnPos.getX() + 0.5D, spawnPos.getY(), spawnPos.getZ() + 0.5D, serverWorld.rand.nextFloat() * 360F, 0F);
+            mob.onInitialSpawn(serverWorld, serverWorld.getDifficultyForLocation(spawnPos), SpawnReason.EVENT, null, null);
+
+            if (customizer != null) {
+                customizer.accept(mob);
+            }
 
             serverWorld.addEntity(mob);
-        }
-    }
-
-    public static void summonMobsNearby(EntityType<? extends MobEntity> type, int loop, World worldIn, BlockPos pos, Random rand) {
-        for (int i = 0; i < loop; i++) {
-            MobEntity mob = type.create(worldIn);
-            if (mob == null) continue;
-
-            mob.setPosition(pos.getX() + rand.nextInt(30), pos.getY(), pos.getZ() + rand.nextInt(30));
-            worldIn.addEntity(mob);
-        }
-    }
-
-    public static void summonTammedWolfs(World worldIn, PlayerEntity player, int loop, BlockPos pos) {
-
-        for (int i = 0; i <= loop - 1; i++) {
-
-            WolfEntity w = new WolfEntity(EntityType.WOLF,worldIn);
-            w.setPosition(pos.getX(), pos.getY(), pos.getZ());
-            w.setTamed(true);
-            w.setSitting(true);
-            w.setOwnerId(UUID.fromString(player.getUniqueID().toString()));
-            worldIn.addEntity(w);
-        }
-    }
-
-    public static void summonLuckyMobs(World worldIn, int loop, BlockPos pos) {
-
-        for (int i = 0; i <= loop - 1; i++) {
-
-            EntityLuckyMob w = new EntityLuckyMob(RegistrationHandler.LUCKY_MOB.get(), worldIn);
-            w.setPosition(pos.getX(), pos.getY(), pos.getZ());
-            worldIn.addEntity(w);
         }
     }
 }//CLASS END HERE

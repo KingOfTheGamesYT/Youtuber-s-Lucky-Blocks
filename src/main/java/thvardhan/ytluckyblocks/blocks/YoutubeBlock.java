@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.common.ToolType;
 
-import thvardhan.ytluckyblocks.misc.ExtraFunctions;
+import thvardhan.ytluckyblocks.functions.ExtraFunctions;
 import thvardhan.ytluckyblocks.misc.RegistrationHandler;
 
 import java.util.Random;

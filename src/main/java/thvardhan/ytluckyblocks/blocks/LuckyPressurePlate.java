@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.common.ToolType;
 
-import thvardhan.ytluckyblocks.misc.ExtraFunctions;
+import thvardhan.ytluckyblocks.functions.ExtraFunctions;
 import thvardhan.ytluckyblocks.misc.RegistrationHandler;
 
 import java.util.Collections;
@@ -77,7 +77,7 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 3: {
-                     ExtraFunctions.anvilRain(worldIn, pos);
+                     ExtraFunctions.blockRain(worldIn, pos, Blocks.ANVIL, 5, 40);
                     break;
                 }
                 case 4: {
@@ -93,7 +93,12 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 7: {
-                    ExtraFunctions.summonTammedWolfs(worldIn, (PlayerEntity) entityIn, 21, pos);
+                    ExtraFunctions.summonMobs(EntityType.WOLF, 21, worldIn, pos, 0,
+                            wolf -> {
+                                wolf.setTamed(true);
+                                wolf.setSitting(true);
+                                wolf.setOwnerId(entityIn.getUniqueID());
+                    });
                     break;
                 }
                 case 8: {
@@ -117,7 +122,7 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 13: {
-                        ExtraFunctions.flyingIsle(worldIn, pos);
+                    ExtraFunctions.flyingIsle(worldIn, pos);
                     ExtraFunctions.chat("Look Up ^", (PlayerEntity) entityIn);
                     break;
                 }
@@ -126,11 +131,11 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 15: {
-                     ExtraFunctions.burgerStruct(worldIn, pos);
+                    ExtraFunctions.burgerStruct(worldIn, pos, Blocks.EMERALD_BLOCK.getDefaultState(), Blocks.DIAMOND_BLOCK.getDefaultState(), Blocks.IRON_BLOCK.getDefaultState());
                     break;
                 }
                 case 16: {
-                    ExtraFunctions.tntNearby(worldIn, pos, 150, (PlayerEntity) entityIn, rand);
+                    ExtraFunctions.spawnTNT(worldIn, pos, 150, (PlayerEntity) entityIn, 20, false, 0);
                     break;
                 }
                 case 17: {
@@ -146,7 +151,12 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 20: {
-                      ExtraFunctions.summonTammedWolfs(worldIn, (PlayerEntity) entityIn, 21, pos);
+                    ExtraFunctions.summonMobs(EntityType.WOLF, 21, worldIn, pos, 0,
+                            wolf -> {
+                                wolf.setTamed(true);
+                                wolf.setSitting(true);
+                                wolf.setOwnerId(entityIn.getUniqueID());
+                            });
                     break;
                 }
                 case 21: {
@@ -154,11 +164,11 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 22: {
-                     ExtraFunctions.sandRain(worldIn, (PlayerEntity) entityIn);
+                    ExtraFunctions.blockRain(worldIn, entityIn.getPosition(), Blocks.SAND, 0, 2);
                     break;
                 }
                 case 23: {
-                      ExtraFunctions.tntFix(worldIn, pos, 5, (PlayerEntity) entityIn);
+                    ExtraFunctions.spawnTNT(worldIn, pos, 5, (PlayerEntity) entityIn, 0, false, 0);
                     break;
                 }
                 case 24: {
@@ -227,7 +237,7 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 40: {
-                    ExtraFunctions.summonMobsOnBreakBlock(EntityType.WITHER, 1, worldIn, pos, null);
+                    ExtraFunctions.summonMobs(EntityType.WITHER, 1, worldIn, pos, 0, null);
                     break;
                 }
                 case 41: {
@@ -235,8 +245,8 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 42: {
-                        ExtraFunctions.summonLuckyMobs(worldIn, 5, pos);
-                    break;
+                    ExtraFunctions.summonMobs(RegistrationHandler.LUCKY_MOB.get(), 5, worldIn, pos, 0, null);
+                      break;
                 }
                 case 43: {
                      ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.HAY_BLOCK));
@@ -267,7 +277,7 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 50: {
-                    ExtraFunctions.summonMobsOnBreakBlock(EntityType.GHAST, 25, worldIn, pos, null);
+                    ExtraFunctions.summonMobs(EntityType.GHAST, 25, worldIn, pos, 0, null);
                     break;
                 }
                 case 51: {

@@ -34,17 +34,17 @@ public class Main {
 
     public Main() {
         instance = this;
-        // Register the setup method for modloading
+        //Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register the doClientStuff method for modloading
+        //Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-        // Register ourselves for server and other game events we are interested in
-       // MinecraftForge.EVENT_BUS.register(new YTEventHandler());
+        //Register ourselves for server and other game events we are interested in
+       //MinecraftForge.EVENT_BUS.register(new YTEventHandler());
         RegistrationHandler.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        // some preinit code
+        //Some preinit code
         LOGGER.info("Registering Attributes");
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(RegistrationHandler.SCUBA_STEVE.get(), EntityScubaSteve.getAttributes().create());
@@ -98,8 +98,8 @@ public class Main {
         });
     }
 
+    //Do something that can only be done on the client
     private void doClientStuff(final FMLClientSetupEvent event) {
-        // do something that can only be done on the client
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.SCUBA_STEVE.get(), EntityScubaSteveRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.ALEXIRCRAFT.get(), EntityAlexircraftRender::new);
         RenderingRegistry.registerEntityRenderingHandler(RegistrationHandler.ANTVENNOM.get(), EntityAntVenomRender::new);
