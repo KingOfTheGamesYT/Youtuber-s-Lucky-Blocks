@@ -1,8 +1,6 @@
 package thvardhan.ytluckyblocks.functions;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -18,6 +16,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.state.properties.BedPart;
+import net.minecraft.state.properties.DoubleBlockHalf;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextComponent;
@@ -175,9 +176,75 @@ public class ExtraFunctions {
     }
 
     public static void setOneBlock(World worldIn, BlockPos pos, Block block) {
+
         if (worldIn.isRemote) return;
+
         BlockPos basePos = pos.east();
+
+        if (block instanceof BedBlock) {
+            placeBed(worldIn, basePos, (BedBlock) block);
+            return;
+        }
+
+        if (block instanceof DoorBlock) {
+            placeDoor(worldIn, basePos, (DoorBlock) block);
+            return;
+        }
+
+        if (block instanceof TallFlowerBlock || block instanceof TallGrassBlock) {
+            placeDoublePlant(worldIn, basePos, block);
+            return;
+        }
         worldIn.setBlockState(basePos, block.getDefaultState(), 3);
+    }
+
+    private static void placeDoor(World worldIn, BlockPos pos, DoorBlock door) {
+
+        Direction facing = Direction.NORTH;
+
+        worldIn.setBlockState(
+                pos,
+                door.getDefaultState()
+                        .with(DoorBlock.HALF, DoubleBlockHalf.LOWER)
+                        .with(DoorBlock.FACING, facing), 3
+        );
+
+        worldIn.setBlockState(
+                pos.up(),
+                door.getDefaultState()
+                        .with(DoorBlock.HALF, DoubleBlockHalf.UPPER)
+                        .with(DoorBlock.FACING, facing), 3
+        );
+    }
+
+    private static void placeDoublePlant(World worldIn, BlockPos pos, Block block) {
+
+        worldIn.setBlockState(
+                pos,
+                block.getDefaultState()
+                        .with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER), 3
+        );
+
+        worldIn.setBlockState(
+                pos.up(),
+                block.getDefaultState()
+                        .with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER), 3
+        );
+    }
+
+    private static void placeBed(World worldIn, BlockPos pos, BedBlock bed) {
+
+        Direction facing = Direction.NORTH;
+
+        worldIn.setBlockState(pos, bed.getDefaultState()
+                        .with(BedBlock.PART, BedPart.FOOT)
+                        .with(BedBlock.HORIZONTAL_FACING, facing), 3
+        );
+
+        worldIn.setBlockState(pos.offset(facing), bed.getDefaultState()
+                        .with(BedBlock.PART, BedPart.HEAD)
+                        .with(BedBlock.HORIZONTAL_FACING, facing), 3
+        );
     }
 
     /**
@@ -325,81 +392,110 @@ public class ExtraFunctions {
         if (worldIn.isRemote) {
             return;
         }
-        worldIn.setBlockState(pos, Blocks.LAVA.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+
+        //Shift structure 2 blocks east
+        BlockPos basePos = pos.east(2);
+
+        //Center lava
+        worldIn.setBlockState(basePos, Blocks.LAVA.getDefaultState(), 3);
+
+        //Bottom ring
+        worldIn.setBlockState(basePos.add(0, 0, 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(0, 0, -1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, 0, -1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, 0, 0), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, 0, 0), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, 0, -1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, 0, 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, 0, 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
 
         int r = rand.nextInt(5) + 1;
+
+        //Fence pillars
         for (int i = 0; i < r; i++) {
-            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
-            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
-            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
-            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
+
+            worldIn.setBlockState(basePos.add(1, 1 + i, 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(basePos.add(-1, 1 + i, -1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(basePos.add(1, 1 + i, -1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(basePos.add(-1, 1 + i, 1), Blocks.NETHER_BRICK_FENCE.getDefaultState(), 3);
         }
 
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ()), Blocks.GLOWSTONE.getDefaultState(), 3);
-        //Setting bricks and netherracks
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.NETHERRACK.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.NETHERRACK.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.NETHERRACK.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.NETHERRACK.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 2, pos.getZ()), RegistrationHandler.LUCKY_PRESSURE_PLATE.get().getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.FIRE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.FIRE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.FIRE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.FIRE.getDefaultState(), 3);
+        //Roof center
+        worldIn.setBlockState(basePos.add(0, r + 1, 0), Blocks.GLOWSTONE.getDefaultState(), 3);
 
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() - 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() + 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ()), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        //Roof corners
+        worldIn.setBlockState(basePos.add(1, r + 1, 1), Blocks.NETHERRACK.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, r + 1, -1), Blocks.NETHERRACK.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, r + 1, 1), Blocks.NETHERRACK.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, r + 1, -1), Blocks.NETHERRACK.getDefaultState(), 3);
+
+        //Top decorations
+        worldIn.setBlockState(basePos.add(0, r + 2, 0), RegistrationHandler.LUCKY_PRESSURE_PLATE.get().getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, r + 2, 1), Blocks.FIRE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, r + 2, -1), Blocks.FIRE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, r + 2, 1), Blocks.FIRE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, r + 2, -1), Blocks.FIRE.getDefaultState(), 3);
+
+        //Roof sides
+        worldIn.setBlockState(basePos.add(0, r + 1, -1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(0, r + 1, 1), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, r + 1, 0), Blocks.NETHER_BRICKS.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, r + 1, 0), Blocks.NETHER_BRICKS.getDefaultState(), 3);
     }
 
     public static void endWellStruct(World worldIn, BlockPos pos, Random rand) {
+
         if (worldIn.isRemote) {
             return;
         }
-        worldIn.setBlockState(pos, Blocks.WATER.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ()), Blocks.END_STONE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ()), Blocks.END_STONE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 3);
 
+        //Shift structure east
+        BlockPos basePos = pos.east(2);
+
+        //Center water
+        worldIn.setBlockState(basePos, Blocks.WATER.getDefaultState(), 3);
+
+        //Bottom ring
+        worldIn.setBlockState(basePos.add(0, 0, 1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(0, 0, -1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, 0, -1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, 0, 0), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, 0, 0), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, 0, -1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, 0, 1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, 0, 1), Blocks.END_STONE.getDefaultState(), 3);
         int r = rand.nextInt(6) + 1;
-        for (int i = 0; i < r; i++) {
-            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
-            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
-            worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + 1 + i, pos.getZ() - 1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
-            worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + 1 + i, pos.getZ() + 1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
 
+        //Fence pillars
+        for (int i = 0; i < r; i++) {
+
+            worldIn.setBlockState(basePos.add(1, 1 + i, 1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(basePos.add(-1, 1 + i, -1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(basePos.add(1, 1 + i, -1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
+            worldIn.setBlockState(basePos.add(-1, 1 + i, 1), Blocks.BIRCH_FENCE.getDefaultState(), 3);
         }
 
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ()), Blocks.BEACON.getDefaultState(), 3);
+        //Roof center
+        worldIn.setBlockState(basePos.add(0, r + 1, 0), Blocks.BEACON.getDefaultState(), 3);
 
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.OBSIDIAN.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.OBSIDIAN.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ() + 1), Blocks.OBSIDIAN.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ() - 1), Blocks.OBSIDIAN.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 2, pos.getZ()), RegistrationHandler.LUCKY_PRESSURE_PLATE.get().getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 2, pos.getZ() + 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 2, pos.getZ() - 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
+        //Roof corners
+        worldIn.setBlockState(basePos.add(1, r + 1, 1), Blocks.OBSIDIAN.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, r + 1, -1), Blocks.OBSIDIAN.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, r + 1, 1), Blocks.OBSIDIAN.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, r + 1, -1), Blocks.OBSIDIAN.getDefaultState(), 3);
 
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() - 1), Blocks.END_STONE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + r + 1, pos.getZ() + 1), Blocks.END_STONE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() - 1, pos.getY() + r + 1, pos.getZ()), Blocks.END_STONE.getDefaultState(), 3);
-        worldIn.setBlockState(new BlockPos(pos.getX() + 1, pos.getY() + r + 1, pos.getZ()), Blocks.END_STONE.getDefaultState(), 3);
+        //Top decorations
+        worldIn.setBlockState(basePos.add(1, r + 2, 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(0, r + 2, 0), RegistrationHandler.LUCKY_PRESSURE_PLATE.get().getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, r + 2, -1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, r + 2, 1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, r + 2, -1), Blocks.END_PORTAL_FRAME.getDefaultState(), 3);
+
+        //Roof sides
+        worldIn.setBlockState(basePos.add(0, r + 1, -1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(0, r + 1, 1), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(-1, r + 1, 0), Blocks.END_STONE.getDefaultState(), 3);
+        worldIn.setBlockState(basePos.add(1, r + 1, 0), Blocks.END_STONE.getDefaultState(), 3);
     }
 
     public static void addEnchantsMany(ItemStack stack, Enchantment[] e, int amp, World worldIn, BlockPos pos) {
