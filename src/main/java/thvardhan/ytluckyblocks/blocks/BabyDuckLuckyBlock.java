@@ -281,7 +281,7 @@ public class BabyDuckLuckyBlock extends Block {
             }
             case 47: {
                 ExtraFunctions.setOneBlock(worldIn, pos, Blocks.TNT);
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
                 break;
             }
             case 48: {
@@ -301,19 +301,19 @@ public class BabyDuckLuckyBlock extends Block {
                 break;
             }
             case 52: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.DUCK_BOOTS.get()));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.DUCK_BOOTS.get()));
                 break;
             }
             case 53: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.DUCK_CHEST.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.DUCK_CHEST.get()));
                 break;
             }
             case 54: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.DUCK_HELM.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.DUCK_HELM.get()));
                 break;
             }
             case 55: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.DUCK_LEGS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.DUCK_LEGS.get()));
                 break;
             }
         }

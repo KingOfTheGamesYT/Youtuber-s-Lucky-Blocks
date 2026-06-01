@@ -1,12 +1,6 @@
 package thvardhan.ytluckyblocks.functions;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -16,34 +10,29 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT)
 public class TooltipRomanFix {
 
     @SubscribeEvent
     public static void onTooltipRender(ItemTooltipEvent event) {
-        ItemStack stack = event.getItemStack();
+        List<ITextComponent> tooltip = event.getToolTip();
 
-        if (stack.isEnchanted()) {
-            List<ITextComponent> tooltip = event.getToolTip();
-            Map<Enchantment, Integer> enchants = EnchantmentHelper.getEnchantments(stack);
+        for (int i = 0; i < tooltip.size(); i++) {
+            String text = tooltip.get(i).getString();
 
-            int index = 0;
-            for (Map.Entry<Enchantment, Integer> entry : enchants.entrySet()) {
-                Enchantment enchant = entry.getKey();
-                int level = entry.getValue();
-                String roman = toRoman(level);
+            if (text.contains("enchantment.level.")) {
+                Matcher matcher = Pattern.compile("enchantment\\.level\\.(\\d+)").matcher(text);
 
-                //Build proper display line (like vanilla does)
-                IFormattableTextComponent enchText = new TranslationTextComponent(enchant.getName());
-                enchText.appendString(" ").appendString(roman);
-                enchText.mergeStyle(TextFormatting.GRAY);
+                if (matcher.find()) {
+                    int level = Integer.parseInt(matcher.group(1));
 
-                //Replace the vanilla "enchantment.level.x" line
-                if (index + 1 < tooltip.size()) {
-                    tooltip.set(index + 1, enchText);
+                    String fixedText = text.replace(matcher.group(), toRoman(level));
+
+                    tooltip.set(i, new StringTextComponent(fixedText).mergeStyle(TextFormatting.GRAY));
                 }
-                index++;
             }
         }
     }

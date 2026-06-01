@@ -30,11 +30,11 @@ public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, Play
             Random rand = new Random();
             switch (rand.nextInt(2)) {
                 case 0: {
-                    ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(ExtraFunctions.randomBlock()));
+                    ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(ExtraFunctions.randomBlock()));
                     break;
                 }
                 case 1: {
-                    ExtraFunctions.summonBlockAsDrop(pos, worldIn, RegistrationHandler.GOLD_PLAY_BUTTON.get());
+                    ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.GOLD_PLAY_BUTTON.get()));
                     break;
                 }
             }

@@ -155,7 +155,7 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 16: {
-               ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.COMMAND_BLOCK));
+               ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.COMMAND_BLOCK));
                 ExtraFunctions.chat("If You Are On Creative Then Nice Else Its Waste.", player);
                 break;
             }
@@ -181,7 +181,7 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 22: {
-                ExtraFunctions.spawnTNT(worldIn, pos, 200, player, 0, false, 0);
+                ExtraFunctions.spawnTNT(worldIn, pos, player, 200, 0, 0);
                 break;
             }
             case 23: {
@@ -190,7 +190,7 @@ public class GammingWithJenLuckyBlock extends Block {
             }
             case 24: {
                 ExtraFunctions.chat(TextFormatting.DARK_RED + "BEEP BEEP NUKE =WARNING=", player);
-                ExtraFunctions.spawnTNT(worldIn, pos, 200, player, 20, false, 0);
+                ExtraFunctions.spawnTNT(worldIn, pos, player,200, 20, 0);
                 break;
             }
             case 25: {
@@ -267,27 +267,27 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 38: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.LEVIN_SWORD.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.LEVIN_SWORD.get()));
                 break;
             }
             case 39: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.LOG_SWORD.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.LOG_SWORD.get()));
                 break;
             }
             case 40: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_LEGS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_LEGS.get()));
                 break;
             }
             case 41: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
                 break;
             }
             case 42: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_HELM.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_HELM.get()));
                 break;
             }
             case 43: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_BOOTS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_BOOTS.get()));
                 break;
             }
             case 44: {
@@ -311,7 +311,7 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 49: {
-                ExtraFunctions.summonBlockAsDrop(pos, worldIn, Blocks.CAKE);
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.CAKE));
                 break;
             }
             case 50: {
@@ -325,19 +325,19 @@ public class GammingWithJenLuckyBlock extends Block {
                 break;
             }
             case 52: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.SUPER_BOOTS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.SUPER_BOOTS.get()));
                 break;
             }
             case 53: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.SUPER_CHEST.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.SUPER_CHEST.get()));
                 break;
             }
             case 54: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.SUPER_HELM.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.SUPER_HELM.get()));
                 break;
             }
             case 55: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.SUPER_LEGS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.SUPER_LEGS.get()));
                 break;
             }
         }

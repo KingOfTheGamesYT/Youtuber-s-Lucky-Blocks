@@ -99,11 +99,11 @@ public class AlexircraftLuckyBlock extends Block {
             }
             case 3: {
                 ExtraFunctions.hellWellStructure(worldIn, new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 2), rand);
-                   ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE), 64, 1, 50);
+                ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE), 64, 1, 50);
                 break;
             }
             case 4: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.DIAMOND_AXE));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.DIAMOND_AXE));
                 break;
             }
             case 5: {
@@ -119,7 +119,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 8: {
-               ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.MEGA_SWORD.get()));
+               ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.MEGA_SWORD.get()));
                 break;
             }
             case 9: {
@@ -165,7 +165,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 17: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.APPLE));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.APPLE));
                 break;
             }
             case 18: {
@@ -173,23 +173,23 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 19: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.ALEX_BOOTS.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.ALEX_BOOTS.get()));
                 break;
             }
             case 20: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.ALEX_CHEST.get()));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.ALEX_CHEST.get()));
                 break;
             }
             case 21: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.ALEX_HELM.get()));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.ALEX_HELM.get()));
                 break;
             }
             case 22: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.ALEX_LEGS.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.ALEX_LEGS.get()));
                 break;
             }
             case 23: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.SPONGE));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.SPONGE));
                 break;
             }
             case 24: {
@@ -214,23 +214,23 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 29: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.DEVIL_SWORD.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.DEVIL_SWORD.get()));
                 break;
             }
             case 30: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.LOG_SWORD.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.LOG_SWORD.get()));
                 break;
             }
             case 31: {
-               ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.BLACK_NEON_SWORD.get()));
+               ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.BLACK_NEON_SWORD.get()));
                 break;
             }
             case 32: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.ALEX_BOOTS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.ALEX_BOOTS.get()));
                 break;
             }
             case 33: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
                 break;
             }
             case 34: {
@@ -250,9 +250,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 38: {
-               Random rand = worldIn.getRandom();
-               int golemCount = rand.nextInt(5); // 0–4
-                  ExtraFunctions.summonMobs(EntityType.IRON_GOLEM, golemCount, worldIn, pos, 0, null);
+                  ExtraFunctions.summonMobs(EntityType.IRON_GOLEM, worldIn.getRandom().nextInt(5), worldIn, pos, 0, null);
                 break;
             }
             case 39: {
@@ -261,7 +259,7 @@ public class AlexircraftLuckyBlock extends Block {
             }
             case 40: {
                 ExtraFunctions.setOneBlock(worldIn, pos, Blocks.TNT);
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
                 break;
             }
             case 41: {
@@ -273,7 +271,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 43: {
-            ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.BATTLE_AXE.get()));
+            ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.BATTLE_AXE.get()));
                 break;
             }
             case 44: {
@@ -285,7 +283,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 46: {
-               ExtraFunctions.spawnTNT(worldIn, pos, 50, player, 0, true, 10);
+               ExtraFunctions.spawnTNT(worldIn, pos, player,50, 0, 10);
                 break;
             }
             case 47: {
@@ -295,7 +293,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 48: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.SNOW_SWORD.get()));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.SNOW_SWORD.get()));
                 break;
             }
             case 49: {
@@ -332,7 +330,7 @@ public class AlexircraftLuckyBlock extends Block {
             }
             case 55: {
                ExtraFunctions.addEnchantsMany(new ItemStack(Items.WOODEN_HOE), e, 60, worldIn, pos);
-                  ExtraFunctions.chat("You Just Got A God Hoe", player);
+               ExtraFunctions.chat("You Just Got A God Hoe", player);
                 break;
             }
             case 56: {
@@ -383,7 +381,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 65: {
-                ExtraFunctions.summonBlockAsDrop(pos, worldIn, RegistrationHandler.JEROMEASF_LUCKY_BLOCK.get());
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROMEASF_LUCKY_BLOCK.get()));
                 break;
             }
             case 66: {
@@ -391,27 +389,27 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 67: {
-                ExtraFunctions.summonBlockAsDrop(pos, worldIn, Blocks.CAKE);
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.CAKE));
                 break;
             }
             case 68: {
-                 ExtraFunctions.summonBlockAsDrop(pos, worldIn, Blocks.DRAGON_EGG);
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.DRAGON_EGG));
                 break;
             }
             case 69: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_BOOTS.get()));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_BOOTS.get()));
                 break;
             }
             case 70: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
                 break;
             }
             case 71: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_HELM.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_HELM.get()));
                 break;
             }
             case 72: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_LEGS.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_LEGS.get()));
                 break;
             }
             case 73: {
@@ -461,7 +459,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 79: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.LEVIN_SWORD.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.LEVIN_SWORD.get()));
                 break;
             }
             case 80: {
@@ -492,7 +490,7 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 86: {
-                ExtraFunctions.spawnTNT(worldIn, pos, 5, player, 0, false, 0);
+                ExtraFunctions.spawnTNT(worldIn, pos, player, 5 , 0, 0);
                 break;
             }
             case 87: {
@@ -512,11 +510,11 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 91: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.PAPER));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.PAPER));
                 break;
             }
             case 92: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.MELON));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.MELON));
                 break;
             }
             case 93: {
@@ -536,25 +534,25 @@ public class AlexircraftLuckyBlock extends Block {
                 break;
             }
             case 97: {
-                ExtraFunctions.spawnTNT(worldIn, pos, 50, player, 0, false, 0);
+                ExtraFunctions.spawnTNT(worldIn, pos, player,50, 0, 0);
                 break;
             }
             case 98: {
                 ItemStack waterBottle = new ItemStack(Items.POTION);
                 waterBottle.getOrCreateTag().putString("Potion", "minecraft:water");
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, waterBottle);
+                ExtraFunctions.summonDrop(pos, worldIn, waterBottle);
                 break;
             }
             case 99: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.STONE_BUTTON));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.STONE_BUTTON));
                 break;
             }
             case 100: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.DIAMOND_AXE));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.DIAMOND_AXE));
                 break;
             }
             case 101: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.DIAMOND_SWORD));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.DIAMOND_SWORD));
                 break;
             }
         }//switch ends

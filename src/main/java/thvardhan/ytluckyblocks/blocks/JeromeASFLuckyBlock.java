@@ -144,7 +144,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 14: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
                 break;
             }
             case 15: {
@@ -180,7 +180,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 23: {
-               ExtraFunctions.spawnTNT(worldIn, pos, 400, player, 20, false, 0);
+               ExtraFunctions.spawnTNT(worldIn, pos, player,400, 20, 0);
                 break;
             }
             case 24: {
@@ -192,15 +192,15 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 26: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.DEVIL_SWORD.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.DEVIL_SWORD.get()));
                 break;
             }
             case 27: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.LEVIN_SWORD.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.LEVIN_SWORD.get()));
                 break;
             }
             case 28: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.MIC.get()));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.MIC.get()));
                 break;
             }
             case 29: {
@@ -296,7 +296,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 49: {
-               // ExtraFunctions.setOneBlock(worldIn, pos, ModBlocks.frizzleandpopLuckyBlock);
+                ExtraFunctions.setOneBlock(worldIn, pos, RegistrationHandler.FRIZZLEANDPOP_LUCKY_BLOCK.get());
                 break;
             }
             case 50: {
@@ -308,7 +308,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 52: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROME_HELM.get()));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROME_HELM.get()));
                 break;
             }
             case 53: {
@@ -316,11 +316,11 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 54: {
-                   ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROME_CHEST.get()));
+                   ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROME_CHEST.get()));
                 break;
             }
             case 55: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROME_LEGS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROME_LEGS.get()));
                 break;
             }
             case 56: {
@@ -332,11 +332,11 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 58: {
-                   ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.BATTLE_AXE.get()));
+                   ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.BATTLE_AXE.get()));
                 break;
             }
             case 59: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.RAINBOW_SWORD.get()));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.RAINBOW_SWORD.get()));
                 break;
             }
             case 60: {
@@ -344,12 +344,12 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 61: {
-                  ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.MILK_BUCKET), 50, 1, 2);
+                ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.MILK_BUCKET), 50, 1, 2);
                 ExtraFunctions.chat("Use these to clean any bad effects you get while opening these lucky blocks", player);
                 break;
             }
             case 62: {
-                ExtraFunctions.spawnTNT(worldIn, pos, 5, player, 0, false, 0);
+                ExtraFunctions.spawnTNT(worldIn, pos, player,5, 0, 0);
                 break;
             }
             case 63: {
@@ -366,7 +366,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 65: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.BAKED_POTATO));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.BAKED_POTATO));
                 ExtraFunctions.chat("Here, take this one potato (which you cant even plant :v) for your efforts", player);
                 break;
             }
@@ -379,7 +379,7 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 68: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1));
                 break;
             }
             case 69: {
@@ -453,11 +453,11 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 86: {
-                   ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROME_LEGS.get()));
+                   ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROME_LEGS.get()));
                 break;
             }
             case 87: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROME_HELM.get()));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.JEROME_HELM.get()));
                 break;
             }
             case 88: {
@@ -475,7 +475,7 @@ public class JeromeASFLuckyBlock extends Block {
             }
             case 91: {
                ExtraFunctions.summonItemStackWithLoop(worldIn, pos, new ItemStack(Blocks.TNT), 64, 1, 5);
-               ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
+               ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
                 break;
             }
             case 92: {
@@ -491,15 +491,15 @@ public class JeromeASFLuckyBlock extends Block {
                 break;
             }
             case 95: {
-                  ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.CAKE));
+                  ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.CAKE));
                 break;
             }
             case 96: {
-                   ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.DRAGON_EGG));
+                   ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.DRAGON_EGG));
                 break;
             }
             case 97: {
-                 ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.BEDROCK));
+                 ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.BEDROCK));
                 break;
             }
             case 98: {

@@ -75,8 +75,8 @@ public class SkyDoesMinecraftLuckyBlock extends Block {
 
         Random rand = new Random();
 
-        switch (rand.nextInt(1)) {
-            case 99: {
+        switch (rand.nextInt(56)) {
+            case 0: {
                 ExtraFunctions.blockRain(worldIn, player.getPosition(), Blocks.ANVIL, 0, 10);
                 break;
             }
@@ -137,7 +137,7 @@ public class SkyDoesMinecraftLuckyBlock extends Block {
                 break;
             }
             case 10: {
-               // ExtraFunctions.setOneBlock(worldIn, pos, RegistrationHandler.popularMMOLuckyBlock);
+               ExtraFunctions.setOneBlock(worldIn, pos, RegistrationHandler.POPULARMMOS_LUCKY_BLOCK.get());
                 break;
             }
             case 11: {
@@ -157,27 +157,27 @@ public class SkyDoesMinecraftLuckyBlock extends Block {
                 break;
             }
             case 15: {
-                ExtraFunctions.summonBlockAsDrop(pos, worldIn, Blocks.CAKE);
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.CAKE));
                 break;
             }
             case 16: {
-                ExtraFunctions.summonBlockAsDrop(pos, worldIn, Blocks.DRAGON_EGG);
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.DRAGON_EGG));
                 break;
             }
             case 17: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_BOOTS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_BOOTS.get()));
                 break;
             }
             case 18: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
                 break;
             }
             case 19: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_HELM.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_HELM.get()));
                 break;
             }
             case 20: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_LEGS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_LEGS.get()));
                 break;
             }
             case 21: {
@@ -185,7 +185,7 @@ public class SkyDoesMinecraftLuckyBlock extends Block {
                 break;
             }
             case 22: {
-                ExtraFunctions.spawnTNT(worldIn, pos, 1, player, 0, false, 0);
+                ExtraFunctions.spawnTNT(worldIn, pos, player,1, 0, 0);
                 break;
             }
             case 23: {
@@ -193,7 +193,7 @@ public class SkyDoesMinecraftLuckyBlock extends Block {
                 break;
             }
             case 24: {
-                ExtraFunctions.spawnTNT(worldIn, pos, 52, player, 20, false, 0);
+                ExtraFunctions.spawnTNT(worldIn, pos, player,52, 20, 0);
                 break;
             }
             case 25: {
@@ -259,11 +259,11 @@ public class SkyDoesMinecraftLuckyBlock extends Block {
                 break;
             }
             case 39: {
-                ExtraFunctions.spawnTNT(worldIn, pos, 5, player, 0, false, 0);
+                ExtraFunctions.spawnTNT(worldIn, pos, player,5, 0, 0);
                 break;
             }
             case 40: {
-                ExtraFunctions.spawnTNT(worldIn, pos, 5, player, 0, true, 10);
+                ExtraFunctions.spawnTNT(worldIn, pos, player,5, 0, 10);
                 break;
             }
             case 41: {
@@ -288,7 +288,7 @@ public class SkyDoesMinecraftLuckyBlock extends Block {
             }
             case 46: {
                 ExtraFunctions.setOneBlock(worldIn, pos, Blocks.TNT);
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
                 break;
             }
             case 47: {
@@ -312,19 +312,19 @@ public class SkyDoesMinecraftLuckyBlock extends Block {
                 break;
             }
             case 52: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.SKY_BOOTS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.SKY_BOOTS.get()));
                 break;
             }
             case 53: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.SKY_CHEST.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.SKY_CHEST.get()));
                 break;
             }
             case 54: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.SKY_HELM.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.SKY_HELM.get()));
                 break;
             }
             case 55: {
-                ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.SKY_LEGS.get()));
+                ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.SKY_LEGS.get()));
                 break;
             }
         }

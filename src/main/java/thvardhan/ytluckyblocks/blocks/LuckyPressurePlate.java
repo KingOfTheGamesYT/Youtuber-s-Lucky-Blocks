@@ -135,7 +135,7 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 16: {
-                    ExtraFunctions.spawnTNT(worldIn, pos, 150, (PlayerEntity) entityIn, 20, false, 0);
+                    ExtraFunctions.spawnTNT(worldIn, pos, (PlayerEntity) entityIn,150, 20, 0);
                     break;
                 }
                 case 17: {
@@ -147,7 +147,7 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 19: {
-                    ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
+                    ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.FLINT_AND_STEEL));
                     break;
                 }
                 case 20: {
@@ -168,7 +168,7 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 23: {
-                    ExtraFunctions.spawnTNT(worldIn, pos, 5, (PlayerEntity) entityIn, 0, false, 0);
+                    ExtraFunctions.spawnTNT(worldIn, pos, (PlayerEntity) entityIn,5, 0, 0);
                     break;
                 }
                 case 24: {
@@ -177,7 +177,7 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 25: {
-                     ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(ExtraFunctions.randomBlock()));
+                     ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(ExtraFunctions.randomBlock()));
                     break;
                 }
                 case 26: {
@@ -185,15 +185,15 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 27: {
-                      ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.DIAMOND_AXE));
+                      ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.DIAMOND_AXE));
                     break;
                 }
                 case 28: {
-                      ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.DIAMOND_PICKAXE));
+                      ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.DIAMOND_PICKAXE));
                     break;
                 }
                 case 29: {
-                     ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.DIAMOND_SWORD));
+                     ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.DIAMOND_SWORD));
                     break;
                 }
                 case 30: {
@@ -205,35 +205,35 @@ public class LuckyPressurePlate extends Block {
                     break;
                 }
                 case 32: {
-                      ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_BOOTS.get()));
+                      ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_BOOTS.get()));
                     break;
                 }
                 case 33: {
-                     ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_HAMMER.get()));
+                     ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_HAMMER.get()));
                     break;
                 }
                 case 34: {
-                    ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
+                    ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_CHEST.get()));
                     break;
                 }
                 case 35: {
-                       ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_HELM.get()));
+                       ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_HELM.get()));
                     break;
                 }
                 case 36: {
-                    ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_LEGS.get()));
+                    ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.YT_LEGS.get()));
                     break;
                 }
                 case 37: {
-                     ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.IRON_PLAY_BUTTON.get()));
+                     ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.IRON_PLAY_BUTTON.get()));
                     break;
                 }
                 case 38: {
-                    ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.GOLD_PLAY_BUTTON.get()));
+                    ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.GOLD_PLAY_BUTTON.get()));
                     break;
                 }
                 case 39: {
-                     ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(RegistrationHandler.DIAMOND_PLAY_BUTTON.get()));
+                     ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(RegistrationHandler.DIAMOND_PLAY_BUTTON.get()));
                     break;
                 }
                 case 40: {
@@ -249,7 +249,7 @@ public class LuckyPressurePlate extends Block {
                       break;
                 }
                 case 43: {
-                     ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.HAY_BLOCK));
+                     ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.HAY_BLOCK));
                     break;
                 }
                 case 44: {

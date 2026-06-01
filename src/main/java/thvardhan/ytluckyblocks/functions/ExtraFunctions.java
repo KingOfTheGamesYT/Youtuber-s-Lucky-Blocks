@@ -35,15 +35,15 @@ import java.util.function.Consumer;
 
 public class ExtraFunctions {
 
-    private static Block[] b = {RegistrationHandler.ALEXIRCRAFT_LUCKY_BLOCK.get(), //ModBlocks.antVenomLuckyBlock, ModBlocks.bajanCanadianLuckyBlock, ModBlocks.captainSparkelzLuckyBlock, ModBlocks.danTDMLuckyBlock, ModBlocks.exploadingTNTLuckyBlock, ModBlocks.frizzleandpopLuckyBlock,
-             RegistrationHandler.GAMING_WITH_JEN_LUCKY_BLOCK.get(),
+    private static Block[] b = {RegistrationHandler.ALEXIRCRAFT_LUCKY_BLOCK.get(), //ModBlocks.antVenomLuckyBlock, ModBlocks.bajanCanadianLuckyBlock, ModBlocks.captainSparkelzLuckyBlock, ModBlocks.danTDMLuckyBlock, ModBlocks.exploadingTNTLuckyBlock,
+             RegistrationHandler.FRIZZLEANDPOP_LUCKY_BLOCK.get(), RegistrationHandler.GAMING_WITH_JEN_LUCKY_BLOCK.get(),
            // ModBlocks.iBallisticSquidLuckyBlock, ModBlocks.iHasCupcakeLuckyBlock,
             RegistrationHandler.JEROMEASF_LUCKY_BLOCK.get(),
             //ModBlocks.lachlanLuckyBlock, ModBlocks.lDShadowLadyLuckyBlock, ModBlocks.youtubeLuckyBlock, ModBlocks.vikkstar123LuckyBlock, ModBlocks.trueMuLuckyBlock, ModBlocks.thnxCyaLuckyBlock,
             //ModBlocks.tewityLuckyBlock, ModBlocks.stampylongheadLuckyBlock, ModBlocks.sSundeeLuckyBlock,
              RegistrationHandler.SKY_DOES_MINECRAFT_LUCKY_BLOCK.get(), //ModBlocks.serialPlayerLuckyBlock, ModBlocks.prestonPlayzLuckyBlock, ModBlocks.mrwooflessLuckyBlock, ModBlocks.petaZahHuttLuckyBlock,
-           // ModBlocks.pinkSheepYTLuckyBlock, ModBlocks.popularMMOLuckyBlock,
-            RegistrationHandler.BABY_DUCK_LUCKY_BLOCK.get(), //ModBlocks.babyLeahLuckyBlock, ModBlocks.babyMaxLuckyBlock, ModBlocks.donutTheDogLuckyBlock, ModBlocks.evilLittleKellyLuckyBlock, ModBlocks.littleAllyLuckyBlock, ModBlocks.littleCarlyMcLuckyBlock
+           // ModBlocks.pinkSheepYTLuckyBlock,
+            RegistrationHandler.POPULARMMOS_LUCKY_BLOCK.get(), RegistrationHandler.BABY_DUCK_LUCKY_BLOCK.get(), //ModBlocks.babyLeahLuckyBlock, ModBlocks.babyMaxLuckyBlock, ModBlocks.donutTheDogLuckyBlock, ModBlocks.evilLittleKellyLuckyBlock, ModBlocks.littleAllyLuckyBlock, ModBlocks.littleCarlyMcLuckyBlock
           //  , ModBlocks.littleDonnyLuckyBlock, ModBlocks.littleKellyMcLuckyBlock, ModBlocks.littleLizardGamingLuckyBlock, ModBlocks.maxTheMonkeyLuckyBlock, ModBlocks.sharkyLuckyBlock, ModBlocks.tinyTurtleLuckyBlock, ModBlocks.aphmauLuckyBlock, ModBlocks.scubaSteveLuckyBlock, ModBlocks.littleRopoLuckyBlock,
           //  ModBlocks.mrCrainerLuckyBlock, ModBlocks.littleAngelLuckyBlock
       };
@@ -74,32 +74,20 @@ public class ExtraFunctions {
     }
 
     /**
-     * Summons A Block Like A Drop
+     * Summons A Block/Item Like A Drop
      */
-    public static void summonBlockAsDrop(BlockPos pos, World worldIn, Block block) {
+    public static void summonDrop(BlockPos pos, World worldIn, ItemStack stack) {
 
         float f = 0.5F;
-        double d0 = (double) (worldIn.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-        double d1 = (double) (worldIn.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-        double d2 = (double) (worldIn.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-        ItemEntity entityitem = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(block));
-        entityitem.setDefaultPickupDelay();
-        worldIn.addEntity(entityitem);
-    }
 
-    /**
-     * Summons A Item Like A Drop
-     */
+        double d0 = worldIn.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+        double d1 = worldIn.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+        double d2 = worldIn.rand.nextFloat() * f + (1.0F - f) * 0.5D;
 
-    public static void summonItemAsDrop(BlockPos pos, World worldIn, ItemStack stack) {
+        ItemEntity entityItem = new ItemEntity(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, stack);
 
-        float f = 0.5F;
-        double d0 = (double) (worldIn.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-        double d1 = (double) (worldIn.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-        double d2 = (double) (worldIn.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-        ItemEntity entityitem = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, stack);
-        entityitem.setDefaultPickupDelay();
-        worldIn.addEntity(entityitem);
+        entityItem.setDefaultPickupDelay();
+        worldIn.addEntity(entityItem);
     }
 
     /**
@@ -150,7 +138,7 @@ public class ExtraFunctions {
         ItemStack itemE = new ItemStack(i);
         itemE.addEnchantment(e, amp);
         itemE.setDisplayName(new StringTextComponent(name));
-        summonItemAsDrop(pos, worldIn, itemE);
+        summonDrop(pos, worldIn, itemE);
     }
 
     /**
@@ -337,11 +325,11 @@ public class ExtraFunctions {
     }
 
     public static void foodKit(World worldIn, BlockPos pos) {
-        summonBlockAsDrop(pos, worldIn, Blocks.CAKE);
+        summonDrop(pos, worldIn, new ItemStack(Blocks.CAKE));
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.ENCHANTED_GOLDEN_APPLE, 1), 10, 1, 30);
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.BREAD), 16, 1, 10);
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.APPLE), 5, 0, 0);
-        summonItemAsDrop(pos, worldIn, new ItemStack(Items.GOLDEN_APPLE));
+        summonDrop(pos, worldIn, new ItemStack(Items.GOLDEN_APPLE));
         summonItemStackWithLoop(worldIn, pos, new ItemStack(Items.COOKED_BEEF), 34, 0, 0);
     }
 
@@ -371,20 +359,20 @@ public class ExtraFunctions {
     }
 
     public static void musicKit(World worldIn, BlockPos pos) {
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Blocks.JUKEBOX));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_11));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_13));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_BLOCKS));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_CAT));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_CHIRP));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_FAR));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_MALL));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_MELLOHI));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_STAL));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_STRAD));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_WAIT));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_WARD));
-        ExtraFunctions.summonItemAsDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_PIGSTEP));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Blocks.JUKEBOX));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_11));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_13));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_BLOCKS));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_CAT));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_CHIRP));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_FAR));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_MALL));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_MELLOHI));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_STAL));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_STRAD));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_WAIT));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_WARD));
+        ExtraFunctions.summonDrop(pos, worldIn, new ItemStack(Items.MUSIC_DISC_PIGSTEP));
     }
 
     public static void hellWellStructure(World worldIn, BlockPos pos, Random rand) {
@@ -503,7 +491,7 @@ public class ExtraFunctions {
         for (Enchantment anE : e) {
             stack.addEnchantment(anE, amp);
         }
-        summonItemAsDrop(pos, worldIn, stack);
+        summonDrop(pos, worldIn, stack);
     }
 
     public static void addRandomEnchtToRandomItems(World worldIn, ItemStack[] stack, Enchantment[] ench, int ampUpperLimit, BlockPos pos, Random rand) {
@@ -637,19 +625,18 @@ public class ExtraFunctions {
         }
     }
 
-    public static void spawnTNT(World worldIn, BlockPos pos, int amount, PlayerEntity player, int radius, boolean rain, int yStep)
+    public static void spawnTNT(World worldIn, BlockPos pos, PlayerEntity player, int amount, int radius, int heightSpacing)
     {
         for (int i = 0; i < amount; i++) {
 
-            int x = (int) (pos.getX() + 0.5);
-            int y = pos.getY();
-            int z = (int) (pos.getZ() + 0.5);
+            double x = pos.getX() + 0.5;
+            double y = pos.getY() + (heightSpacing * i);
+            double z = pos.getZ() + 0.5;
 
-            if (rain) {
-                y += i * yStep;
-            } else {
-                x += worldIn.rand.nextInt(radius + 1) - radius / 2;
-                z += worldIn.rand.nextInt(radius + 1) - radius / 2;
+            if (radius > 0) {
+
+                x += worldIn.rand.nextInt(radius * 2 + 1) - radius;
+                z += worldIn.rand.nextInt(radius * 2 + 1) - radius;
             }
 
             TNTEntity tnt = new TNTEntity(worldIn, x, y, z, player);
@@ -861,7 +848,7 @@ public class ExtraFunctions {
                     setOneBlock(worldIn, new BlockPos(x - 3 + j, y - 3 + i, z + k), Blocks.TNT);
             }
         }
-        ExtraFunctions.spawnTNT(worldIn, new BlockPos(x,y,z), 1, player, 0, false, 0);
+        ExtraFunctions.spawnTNT(worldIn, new BlockPos(x,y,z), player, 1, 0, 0);
     }
 
     public static void tpPlayerInGround(PlayerEntity player) {
